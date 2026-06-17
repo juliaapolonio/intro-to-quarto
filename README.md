@@ -5,6 +5,7 @@
 1. Clone esse repositório e entre nele:
 
 `git clone https://github.com/juliaapolonio/intro-to-quarto.git`
+
 `cd intro-to-quarto`
 
 3. Crie um ambiente conda a partir da receita:
