@@ -100,7 +100,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-5bf5b86c408db74ff82dc95a1ae4ab97.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ef8d696cfc69e156fc06347635fbd537.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -784,13 +784,16 @@ sequências + qualidades
 <li>Um link e uma imagem com <code>width=70%</code></li>
 <li>Uma fórmula com subscrito (<code>CO~2~</code>)</li>
 </ol>
+<div class="timer" data-minutes="15">
+
+</div>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>⏱️ 15 minutos — solução na seção 3.4 do material</p>
+<p>Solução na seção 3.4 do material</p>
 </div>
 </div>
 </div>
@@ -1070,13 +1073,16 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 <li>Uma <strong>footnote</strong></li>
 <li><strong>Duas citações</strong> + um <code>referencias.bib</code> que você mesmo cria + seção de referências</li>
 </ol>
+<div class="timer" data-minutes="20">
+
+</div>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>⏱️ 20 minutos — solução na seção 3.11 do material</p>
+<p>Solução na seção 3.11 do material</p>
 </div>
 </div>
 </div>
@@ -1384,13 +1390,16 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 <li>Um chunk com <code>cache: true</code></li>
 </ol>
 <p><strong>Desafio:</strong> um chunk que <strong>mostra</strong> sem executar (comando de cluster)</p>
+<div class="timer" data-minutes="15">
+
+</div>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>⏱️ 15 minutos — solução na seção 4.5 do material</p>
+<p>Solução na seção 4.5 do material</p>
 </div>
 </div>
 </div>
@@ -1692,13 +1701,16 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 <li>Adicione <code>format: pdf</code> e use <strong>conteúdo condicional</strong></li>
 </ol>
 <p><strong>Desafio:</strong> um <code>_brand.yml</code> com duas cores e uma fonte do Google</p>
+<div class="timer" data-minutes="20">
+
+</div>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>⏱️ 20 minutos — solução na seção 5.8 do material</p>
+<p>Solução na seção 5.8 do material</p>
 </div>
 </div>
 </div>
@@ -2039,13 +2051,16 @@ Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.</
 </div>
 </div>
 </div>
+<div class="timer" data-minutes="40">
+
+</div>
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>⏱️ 40 minutos — solução completa e comentada na seção 6.9 do material</p>
+<p>Solução na seção 6.9 do material</p>
 </div>
 </div>
 </div>
@@ -2368,6 +2383,154 @@ Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.</
           RevealZoom
         ]
       });
+    </script>
+    <!--
+      Cronômetro dos exercícios
+      =========================
+      Injetado nos slides via `include-after-body: timer.html`.
+
+      Uso: coloque em qualquer slide
+
+          <div class="timer" data-minutes="15"></div>
+
+      Clique no mostrador para iniciar/pausar; no ↺ para reiniciar.
+      Atributos opcionais:
+        data-minutes="15"     duração (aceita decimais, ex.: "1.5")
+        data-autostart="true" começa sozinho ao entrar no slide
+        data-silent="true"    não toca o aviso sonoro no fim
+
+      Os estilos ficam em custom.scss (seção "Cronômetro dos exercícios").
+    -->
+    <script>
+    (function () {
+      "use strict";
+
+      function format(sec) {
+        var m = Math.floor(sec / 60);
+        var s = sec % 60;
+        return m + ":" + (s < 10 ? "0" : "") + s;
+      }
+
+      // Três toques curtos quando o tempo acaba. Falha em silêncio se o
+      // navegador bloquear áudio.
+      function beep() {
+        try {
+          var Ctx = window.AudioContext || window.webkitAudioContext;
+          if (!Ctx) return;
+          var ctx = new Ctx();
+          [0, 0.28, 0.56].forEach(function (offset) {
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            var t = ctx.currentTime + offset;
+            osc.type = "sine";
+            osc.frequency.value = 880;
+            gain.gain.setValueAtTime(0.0001, t);
+            gain.gain.exponentialRampToValueAtTime(0.18, t + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.20);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(t);
+            osc.stop(t + 0.22);
+          });
+        } catch (e) { /* sem som, sem problema */ }
+      }
+
+      function setup(el) {
+        if (el.dataset.timerReady === "1") return;   // evita inicializar duas vezes
+        el.dataset.timerReady = "1";
+
+        var total = Math.max(1, Math.round(parseFloat(el.dataset.minutes || "5") * 60));
+        var left = total;
+        var ticker = null;
+        var silent = el.dataset.silent === "true";
+
+        var face = document.createElement("button");
+        face.type = "button";
+        face.className = "timer-face";
+        face.setAttribute("aria-label", "Iniciar ou pausar o cronômetro");
+
+        var reset = document.createElement("button");
+        reset.type = "button";
+        reset.className = "timer-reset";
+        reset.textContent = "\u21BA";
+        reset.setAttribute("aria-label", "Reiniciar o cronômetro");
+
+        el.appendChild(face);
+        el.appendChild(reset);
+
+        function paint() {
+          face.textContent = format(left);
+          el.classList.toggle("is-running", ticker !== null);
+          el.classList.toggle("is-warning", left > 0 && left <= Math.max(60, total * 0.2));
+          el.classList.toggle("is-done", left === 0);
+        }
+
+        function stop() {
+          if (ticker !== null) {
+            clearInterval(ticker);
+            ticker = null;
+          }
+        }
+
+        // Conta a partir de um horário-alvo, não decrementando: assim o tempo
+        // continua correto mesmo se o navegador estrangular o timer em aba oculta.
+        function start() {
+          if (ticker !== null || left === 0) return;
+          var endsAt = Date.now() + left * 1000;
+          ticker = setInterval(function () {
+            left = Math.max(0, Math.round((endsAt - Date.now()) / 1000));
+            if (left === 0) {
+              stop();
+              if (!silent) beep();
+            }
+            paint();
+          }, 250);
+          paint();
+        }
+
+        face.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          if (ticker !== null) { stop(); } else { start(); }
+          paint();
+        });
+
+        reset.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          stop();
+          left = total;
+          paint();
+        });
+
+        el.__timer = { start: start, stop: stop };
+        paint();
+      }
+
+      function init() {
+        document.querySelectorAll(".timer").forEach(setup);
+
+        // Pausa ao sair do slide; inicia sozinho apenas se data-autostart="true".
+        if (window.Reveal && typeof Reveal.on === "function") {
+          Reveal.on("slidechanged", function (event) {
+            document.querySelectorAll(".timer").forEach(function (el) {
+              if (!el.__timer) return;
+              if (event.previousSlide && event.previousSlide.contains(el)) {
+                el.__timer.stop();
+              }
+              if (event.currentSlide && event.currentSlide.contains(el) &&
+                  el.dataset.autostart === "true") {
+                el.__timer.start();
+              }
+            });
+          });
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    })();
     </script>
     
     <script>
