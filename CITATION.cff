@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Introdução ao Quarto — minicurso"
+message: "Se você reutilizar este material, por favor cite-o como abaixo."
+type: dataset
+authors:
+  - given-names: "SEU NOME"
+    family-names: "SOBRENOME"
+    affiliation: "SUA INSTITUIÇÃO"
+repository-code: "https://github.com/juliaapolonio/intro-to-quarto"
+url: "https://juliaapolonio.github.io/intro-to-quarto/"
+license: CC-BY-4.0
+date-released: "2026-01-01"
+keywords:
+  - quarto
+  - pesquisa reproduzível
+  - bioinformática
+  - minicurso

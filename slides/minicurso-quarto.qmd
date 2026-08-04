@@ -1,0 +1,1342 @@
+---
+title: "Introdução ao Quarto"
+subtitle: "Simpósio Norte-Nordeste de Bioinformática"
+author: "Nome de quem ministra"   # <- edite aqui
+date: today
+date-format: "DD/MM/YYYY"
+lang: pt-BR
+format:
+  revealjs:
+    theme: [default, custom.scss]
+    slide-number: c/t
+    show-slide-number: all
+    progress: true
+    controls: true
+    chalkboard: true
+    preview-links: auto
+    hash-type: number
+    transition: fade
+    background-transition: fade
+    incremental: false
+    code-line-numbers: true
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github
+    footer: "Introdução ao Quarto — SNNB"
+    width: 1280
+    height: 720
+    center-title-slide: true
+    menu:
+      side: left
+execute:
+  echo: true
+  warning: false
+  message: false
+knitr:
+  opts_chunk:
+    comment: "#>"
+    collapse: true
+---
+
+## Boas-vindas! {.smaller}
+
+::::{.columns}
+:::{.column width="55%"}
+**O que você vai levar daqui**
+
+- Escrever documentos que misturam texto, código e resultados
+- Gerar HTML, PDF, Word e slides do mesmo arquivo
+- Fazer relatórios que se atualizam sozinhos quando o dado muda
+- Personalizar a aparência com CSS e `_brand.yml`
+
+:::
+:::{.column width="45%"}
+**Antes de começarmos**
+
+```bash
+git clone https://github.com/\
+juliaapolonio/intro-to-quarto.git
+cd intro-to-quarto
+conda env create -f environment.yml
+conda activate quarto-env
+positron .
+```
+
+E para conferir:
+
+```bash
+quarto check
+```
+:::
+::::
+
+::: {.callout-tip}
+Todo o material, com as soluções, está em `minicurso-quarto.qmd`.
+:::
+
+## Agenda {.smaller}
+
+| | Bloco | Tempo |
+|:--|:--|--:|
+| 1 | Introdução | 20 min |
+| 2 | O Quarto | 25 min |
+| 3 | Notação Markdown — **Ex. 1 e 2** | 70 min |
+| — | ☕ Intervalo | 15 min |
+| 4 | Header / YAML — **Ex. 3** | 35 min |
+| 5 | Personalização — **Ex. 4** | 50 min |
+| 6 | Code chunks — **Ex. 5** | 70 min |
+| 7 | Encerramento | 15 min |
+
+
+# 1. Introdução {background-color="#12355B"}
+
+## O problema {.smaller}
+
+::: {.incremental}
+1. Rodar o pipeline
+2. Gerar 12 figuras e 5 tabelas
+3. Salvar tudo em `resultados/`
+4. Abrir o Word e colar figura por figura
+5. Escrever o texto ao redor
+6. *"Pode trocar o corte de p < 0,05 para p < 0,01?"*
+7. **Voltar ao passo 1**
+:::
+
+. . .
+
+::: {.callout-important}
+## A regra de ouro
+Se você **copiou e colou** um resultado para dentro do texto, ele **vai** ficar
+desatualizado. É só uma questão de tempo.
+:::
+
+## A solução: *literate programming* {.smaller}
+
+Texto, código e resultado no **mesmo arquivo**.
+
+```{mermaid}
+%%| fig-width: 11
+flowchart LR
+    A["documento.qmd<br/>texto + código"] --> B["knitr / jupyter"]
+    B --> C["markdown"]
+    C --> D["Pandoc"]
+    D --> E["HTML"]
+    D --> F["PDF"]
+    D --> G["Word"]
+    D --> H["Slides"]
+```
+
+::: {.fragment}
+A ideia é de Knuth (1984); a prática virou padrão em pesquisa reproduzível
+(Peng 2011; Sandve et al. 2013).
+:::
+
+## Por que usar Quarto?
+
+::: {.incremental}
+- **Reprodutibilidade** — o número no texto foi *calculado*, não digitado
+- **Rastreabilidade** — `.qmd` é texto puro → versiona no Git
+- **Um fonte, vários destinos** — HTML, PDF, Word, slides, site, livro
+- **Poliglota** — R, Python, Julia, Observable JS
+- **Bonito por padrão** — sem precisar saber CSS
+:::
+
+::: {.fragment}
+> Estes slides foram feitos em Quarto. O material do curso também.
+:::
+
+## Extensões
+
+```bash
+quarto add quarto-ext/fontawesome
+quarto list extensions
+quarto remove quarto-ext/fontawesome
+```
+
+| Extensão | Serve para |
+|:--|:--|
+| `quarto-ext/fontawesome` | Ícones |
+| `quarto-journals/*` | Templates de periódicos |
+| `quarto-ext/lightbox` | Ampliar figuras ao clicar |
+| `shafayetShafee/downloadthis` | Botão de download |
+| `quarto-ext/pointer` | Laser pointer nos slides |
+
+::: {.callout-warning appearance="simple"}
+Extensões ficam em `_extensions/` — **commite essa pasta**.
+:::
+
+## Documentação {.smaller}
+
+- 📘 Guia: <https://quarto.org/docs/guide/>
+- 🔎 Referência de YAML: <https://quarto.org/docs/reference/>
+- 🖼️ Galeria: <https://quarto.org/docs/gallery/>
+- ⭐ Awesome Quarto: <https://github.com/mcanouil/awesome-quarto>
+- 💬 Dúvidas: <https://github.com/quarto-dev/quarto-cli/discussions>
+
+. . .
+
+::: {.callout-tip}
+## Dica
+Toda página da documentação mostra o `.qmd` que gerou o exemplo. Quando algo
+parecer mágico, vá no código-fonte.
+:::
+
+# 2. O Quarto {background-color="#12355B"}
+
+## As três partes de um `.qmd`
+
+````markdown
+---
+title: "Meu relatório"      # 1. HEADER YAML
+format: html
+---
+
+## Introdução                # 2. TEXTO EM MARKDOWN
+
+Texto normal em **markdown**.
+````
+
+E a terceira parte, o **chunk**:
+
+```{{r}}
+#| label: exemplo
+1 + 1
+```
+
+## Anatomia de um chunk
+
+```{{r}}
+#| label: minha-analise
+#| echo: false
+#| fig-cap: "Uma figura qualquer"
+
+plot(1:10)
+```
+
+::: {.incremental}
+- `` ```{r} `` → abre o bloco e define a linguagem
+- `#|` (*hash-pipe*) → opções do chunk, em YAML
+- `` ``` `` → fecha o bloco
+:::
+
+## Renderização
+
+```bash
+quarto render documento.qmd            # todos os formatos
+quarto render documento.qmd --to pdf   # só um
+quarto preview documento.qmd           # recarrega sozinho ✨
+quarto render                          # projeto inteiro
+```
+
+. . .
+
+No Positron / RStudio: botão **Render** ou `Ctrl/Cmd + Shift + K`.
+
+. . .
+
+::: {.callout-tip}
+Deixe `quarto preview` rodando numa aba do terminal o curso inteiro.
+:::
+
+## Formatos de saída {.smaller}
+
+| Formato | YAML | Nota |
+|:--|:--|:--|
+| Página web | `html` | Padrão, interativo |
+| Artigo | `pdf` | Via LaTeX (TinyTeX) |
+| Word | `docx` | Para colaborar fora do R |
+| Slides | `revealjs`, `beamer`, `pptx` | `revealjs` é HTML |
+| Site / livro | projeto `website` / `book` | Vários `.qmd` |
+| Painel | `dashboard` | *Value boxes*, abas |
+| README | `gfm` | Markdown do GitHub |
+
+## R Markdown vs Quarto {.smaller}
+
+| | R Markdown | Quarto |
+|:--|:--|:--|
+| Motor | Pacote `rmarkdown` (exige R) | Executável independente |
+| Linguagens | R (+ `reticulate`) | R, Python, Julia, OJS |
+| Opções | `{r fig.width=6}` | `#| fig-width: 6` |
+| Cross-refs | Precisa de `bookdown` | Nativo |
+| Callouts, tabsets | Pacotes / CSS | Nativos |
+| Slides | `xaringan`, `ioslides` | `revealjs` |
+
+## Duas armadilhas da migração
+
+::: {.incremental}
+1. **Ponto vira hífen**
+   `fig.cap` → `fig-cap`, `out.width` → `out-width`
+
+2. **Opções saem da chave e vão para o corpo**
+:::
+
+::: {.fragment}
+Antes:
+
+```{{r meu-chunk, echo=FALSE, fig.cap="Legenda"}}
+plot(x, y)
+```
+
+Agora:
+
+```{{r}}
+#| label: meu-chunk
+#| echo: false
+#| fig-cap: "Legenda"
+```
+:::
+
+::: {.fragment}
+Boa notícia: `quarto render arquivo.Rmd` funciona. Migre aos poucos.
+:::
+
+# 3. Notação Markdown {background-color="#12355B"}
+
+## Formatação de texto {.smaller}
+
+::::{.columns}
+:::{.column width="50%"}
+```markdown
+*itálico*
+**negrito**
+***os dois***
+~~riscado~~
+`código`
+H~2~O
+10^-9^
+[versalete]{.smallcaps}
+> citação
+```
+:::
+:::{.column width="50%"}
+*itálico*  
+**negrito**  
+***os dois***  
+~~riscado~~  
+`código`  
+H~2~O  
+10^-9^  
+[versalete]{.smallcaps}
+
+> citação
+:::
+::::
+
+::: {.callout-warning appearance="simple"}
+Parágrafo novo exige **linha em branco**.
+:::
+
+## Títulos
+
+```markdown
+# Nível 1
+## Nível 2
+### Nível 3
+
+## Métodos {#sec-metodos}   ← id manual, para referenciar
+```
+
+. . .
+
+::: {.callout-warning}
+## Um `#` só
+Se você usa `title:` no YAML, comece as seções em `##`.
+:::
+
+## Links e imagens
+
+```markdown
+[texto](https://quarto.org)
+<https://quarto.org>
+[para outra seção](#sec-metodos)
+
+![Legenda](imagens/fig.png)
+![Legenda](imagens/fig.png){width=60%}
+![Legenda](imagens/fig.png){#fig-minha fig-align="left"}
+```
+
+. . .
+
+A diferença entre link e imagem é o **`!`** na frente.
+
+. . .
+
+::: {.callout-tip appearance="simple"}
+Use **caminhos relativos** — `imagens/fig.png`, nunca `/home/seu-usuario/...`
+:::
+
+## Listas {.smaller}
+
+::::{.columns}
+:::{.column width="50%"}
+```markdown
+- item
+- outro
+  - subitem
+- terceiro
+
+1. primeiro
+2. segundo
+
+- [ ] pendente
+- [x] feito
+
+FASTQ
+: sequências + qualidades
+```
+:::
+:::{.column width="50%"}
+- item
+- outro
+  - subitem
+- terceiro
+
+1. primeiro
+2. segundo
+
+FASTQ
+: sequências + qualidades
+:::
+::::
+
+::: {.callout-warning appearance="simple"}
+**Linha em branco antes da lista.** É o bug nº 1 de Markdown.
+:::
+
+## 🧪 Exercício 1 {background-color="#D95F02"}
+
+**Crie `exercicio1.qmd` com:**
+
+1. Header YAML: título, autoria, `format: html`
+2. `## Sobre mim` — parágrafo com **negrito** e *itálico*
+3. `## Ferramentas` — lista com 3 itens, um com 2 subitens
+4. `## Passos de RNA-seq` — lista ordenada de 4 etapas
+5. Um link e uma imagem com `width=70%`
+6. Uma fórmula com subscrito (`CO~2~`)
+
+::: {.callout-note appearance="simple"}
+⏱️ 15 minutos — solução na seção 3.4 do material
+:::
+
+## Footnotes
+
+```markdown
+Este método é amplamente usado.[^1]
+
+[^1]: Ainda que existam críticas relevantes.
+
+Ou em linha.^[Assim, sem declarar depois.]
+```
+
+. . .
+
+O rótulo (`[^1]`, `[^metodo]`) é só interno — a numeração final é automática e
+segue a ordem de aparição.
+
+## Tabelas de pipe
+
+```markdown
+| Gene   | log2FC | p-ajustado |
+|:-------|-------:|-----------:|
+| BRCA1  |   2,31 |     0,0001 |
+| TP53   |  -1,87 |     0,0034 |
+
+: Genes diferencialmente expressos {#tbl-degs .striped}
+```
+
+. . .
+
+| Gene   | log2FC | p-ajustado |
+|:-------|-------:|-----------:|
+| BRCA1  |   2,31 |     0,0001 |
+| TP53   |  -1,87 |     0,0034 |
+
+. . .
+
+Alinhamento: `:---` esquerda · `---:` direita · `:---:` centro  
+Classes: `.striped` `.hover` `.bordered` `.sm`
+
+## Tabelas de grade
+
+Quando a célula precisa de mais de uma linha:
+
+```markdown
++-------------+------------------+
+| Etapa       | Ferramentas      |
++=============+==================+
+| QC          | - FastQC         |
+|             | - MultiQC        |
++-------------+------------------+
+| Alinhamento | - STAR           |
++-------------+------------------+
+```
+
+::: {.callout-tip appearance="simple"}
+Acima de ~10 linhas: **gere a tabela por código** (`knitr::kable`, `gt`).  
+Conversor útil: <https://www.tablesgenerator.com/markdown_tables>
+:::
+
+## Equações
+
+Em linha: `$E = mc^2$` → $E = mc^2$
+
+. . .
+
+Em bloco, com id para referenciar:
+
+```markdown
+$$
+\log_2 \text{FC} = \log_2\!\left(\frac{\mu_{trat}}{\mu_{ctrl}}\right)
+$$ {#eq-log2fc}
+```
+
+$$
+\log_2 \text{FC} = \log_2\!\left(\frac{\mu_{trat}}{\mu_{ctrl}}\right)
+$$
+
+. . .
+
+E no texto: `A @eq-log2fc mostra...` → "A Equação 1 mostra..."
+
+## Diagramas — Mermaid
+
+```{{mermaid}}
+flowchart TD
+    A[FASTQ] --> B[QC]
+    B --> C{Qualidade OK?}
+    C -->|Sim| D[Alinhamento]
+    C -->|Não| E[Trimagem]
+    E --> B
+```
+
+```{mermaid}
+%%| fig-width: 6
+flowchart TD
+    A[FASTQ] --> B[QC]
+    B --> C{Qualidade OK?}
+    C -->|Sim| D[Alinhamento]
+    C -->|Não| E[Trimagem]
+    E --> B
+```
+
+::: {.callout-note appearance="simple"}
+Em blocos `mermaid` as opções usam `%%|`; em `dot`, usam `//|`.
+:::
+
+## Diagramas — Graphviz
+
+```{dot}
+//| fig-width: 8
+//| fig-height: 2.5
+digraph G {
+  rankdir=LR;
+  node [shape=box, style="rounded,filled",
+        fillcolor="#EAF2F8", fontname="Helvetica"];
+  "_quarto.yml" -> "analise.qmd";
+  "referencias.bib" -> "analise.qmd";
+  "styles.css" -> "analise.qmd";
+  "analise.qmd" -> "_site/analise.html";
+}
+```
+
+## Citações {.smaller}
+
+No YAML:
+
+```yaml
+bibliography: referencias.bib
+csl: nature.csl        # opcional
+```
+
+::::{.columns}
+:::{.column width="45%"}
+| Sintaxe | Saída |
+|:--|:--|
+| `[@sandve2013]` | (Sandve et al., 2013) |
+| `@sandve2013` | Sandve et al. (2013) |
+| `[@a; @b]` | (A, 2011; B, 2013) |
+| `[-@peng2011]` | (2011) |
+:::
+:::{.column width="55%"}
+```bibtex
+@article{sandve2013,
+  author  = {Sandve, G. K. and others},
+  title   = {Ten Simple Rules for
+             Reproducible Research},
+  journal = {PLoS Comput Biol},
+  year    = {2013}
+}
+```
+:::
+::::
+
+::: {.callout-tip appearance="simple"}
+Zotero + Better BibTeX · `citation("DESeq2")` no R · estilos `.csl` em
+<https://github.com/citation-style-language/styles>
+:::
+
+## 🧪 Exercício 2 {background-color="#D95F02"}
+
+**Adicione ao seu documento:**
+
+1. Uma **tabela** com 4 genes e 3 colunas, com id `#tbl-genes`, referenciada no texto
+2. Uma **equação numerada** (`#eq-media`), referenciada no texto
+3. Um **diagrama Mermaid** do seu fluxo de trabalho
+4. Uma **footnote**
+5. **Duas citações** + um `referencias.bib` que você mesmo cria + seção de referências
+
+::: {.callout-note appearance="simple"}
+⏱️ 20 minutos — solução na seção 3.11 do material
+:::
+
+# ☕ Intervalo — 15 min {background-color="#7FBC41"}
+
+# 4. Header {background-color="#12355B"}
+
+## O painel de controle {.smaller}
+
+::::{.columns}
+:::{.column width="48%"}
+**Mínimo**
+
+```yaml
+---
+title: "Análise"
+format: html
+---
+```
+
+**Confortável**
+
+```yaml
+---
+title: "Análise"
+subtitle: "Projeto Caatinga-Seq"
+author: "Fulana de Tal"
+date: today
+lang: pt-BR
+format: html
+---
+```
+:::
+:::{.column width="52%"}
+**Completo**
+
+```yaml
+---
+title: "Análise"
+author:
+  - name: "Fulana de Tal"
+    email: "fulana@ufrn.br"
+    affiliation: "UFRN"
+    orcid: "0000-0000-0000-0000"
+date: today
+lang: pt-BR
+abstract: |
+  Relatório da análise de 12 amostras.
+format:
+  html:
+    toc: true
+    number-sections: true
+    code-fold: true
+bibliography: referencias.bib
+---
+```
+:::
+::::
+
+## Opções de HTML que valem a pena {.smaller}
+
+| Opção | Efeito |
+|:--|:--|
+| `toc: true` / `toc-location: left` | Sumário |
+| `number-sections: true` | Numera seções (**necessário para `@sec-`**) |
+| `code-fold: true` / `show` | Código recolhido |
+| `code-tools: true` | Menu para baixar o fonte |
+| `df-print: paged` | Data frames paginados |
+| `theme: cosmo` | Tema Bootswatch |
+| `anchor-sections: true` | Link permanente nos títulos |
+
+## `embed-resources` {.smaller}
+
+```yaml
+format:
+  html:
+    embed-resources: true
+```
+
+. . .
+
+::: {.callout-important}
+## A opção mais útil deste curso
+Sem ela: `documento.html` + pasta `documento_files/`.  
+Se você mandar só o HTML por e-mail, **ele chega quebrado**.
+
+Com ela: **um único arquivo**, com tudo embutido, que abre offline.
+:::
+
+. . .
+
+Custo: arquivo maior e render um pouco mais lento.  
+`self-contained: true` era o nome antigo — está **depreciado**.
+
+## Cache {.smaller}
+
+```yaml
+execute:
+  cache: true          # documento inteiro
+```
+
+```{{r}}
+#| label: modelo-pesado
+#| cache: true         # só este chunk
+resultado <- DESeq(dds)
+```
+
+. . .
+
+::: {.callout-warning}
+## A pegadinha
+O `knitr` detecta mudanças no **código**, não nos **dados**.  
+Editou o CSV sem tocar no código? O cache serve o resultado **velho**.
+:::
+
+. . .
+
+```{{r}}
+#| cache: true
+#| dependson: ["carrega-dados"]
+```
+
+Limpar: `quarto render --cache-refresh` ou apagar `*_cache/`.
+
+## `freeze`: cache para projetos
+
+```yaml
+execute:
+  freeze: auto      # só re-executa se o .qmd mudar
+```
+
+. . .
+
+Os resultados vão para `_freeze/` e **podem ser commitados**.
+
+. . .
+
+::: {.callout-tip}
+Isso permite publicar o site num servidor que **não tem R instalado** — e sem
+subir os dados brutos.
+:::
+
+## Documento vs chunk {.smaller}
+
+| | Documento | Chunk |
+|:--|:--|:--|
+| Onde | Topo, entre `---` | Dentro, com `#|` |
+| Alcance | Tudo | Só ali |
+| Sintaxe | YAML | YAML com `#|` |
+
+. . .
+
+**O mais específico vence:**
+
+```yaml
+---
+execute:
+  echo: false      # nenhum código aparece...
+---
+```
+
+```{{r}}
+#| echo: true      # ...exceto neste
+head(mtcars)
+```
+
+## Opções de chunk essenciais {.smaller}
+
+| Opção | Efeito |
+|:--|:--|
+| `eval` | Executa? |
+| `echo` | Mostra o código? |
+| `output` | Mostra o resultado? |
+| `warning` / `message` | Mostra avisos / mensagens? |
+| `error: true` | Continua mesmo com erro |
+| `include: false` | Executa e não mostra **nada** |
+| `label` | Identificador (para cross-refs) |
+| `fig-cap`, `fig-width`, `out-width`, `fig-alt` | Figuras |
+
+## O chunk `setup`
+
+```{{r}}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+knitr::opts_chunk$set(fig.align = "center", dpi = 300)
+set.seed(42)
+```
+
+. . .
+
+::: {.callout-important}
+`set.seed()` é **obrigatório** sempre que houver aleatoriedade: simulação,
+permutação, subamostragem, *bootstrap*, UMAP…
+:::
+
+## 🧪 Exercício 3 {background-color="#D95F02"}
+
+**Transforme o header do seu documento:**
+
+1. Autoria com `name` e `affiliation`; `date: today`; `lang: pt-BR`
+2. Sumário à esquerda (profundidade 2) e seções numeradas
+3. `code-fold` e `code-tools`
+4. `embed-resources: true`
+5. Sem avisos nem mensagens
+6. Um chunk `setup` com `include: false`
+7. Um chunk que executa mas **não mostra** o código
+8. Um chunk com `cache: true`
+
+**Desafio:** um chunk que **mostra** sem executar (comando de cluster)
+
+::: {.callout-note appearance="simple"}
+⏱️ 15 minutos — solução na seção 4.5 do material
+:::
+
+# 5. Personalização {background-color="#12355B"}
+
+## Callouts
+
+```markdown
+::: {.callout-tip}
+## Título personalizado
+Conteúdo.
+:::
+```
+
+::::{.columns}
+:::{.column width="50%"}
+::: {.callout-note appearance="simple"}
+`note` — observação
+:::
+::: {.callout-tip appearance="simple"}
+`tip` — dica
+:::
+::: {.callout-warning appearance="simple"}
+`warning` — aviso
+:::
+:::
+:::{.column width="50%"}
+::: {.callout-important appearance="simple"}
+`important` — crítico
+:::
+::: {.callout-caution appearance="simple"}
+`caution` — cuidado
+:::
+
+Atributos: `collapse="true"`, `appearance="simple"`, `icon=false`
+:::
+::::
+
+## Colunas {.smaller}
+
+```markdown
+:::: {.columns}
+::: {.column width="60%"}
+Coluna larga.
+:::
+::: {.column width="40%"}
+Coluna estreita.
+:::
+::::
+```
+
+. . .
+
+::: {.callout-warning}
+## Conte os dois-pontos
+A div **externa** precisa de **mais** `:` que as internas — `::::` fora,
+`:::` dentro. É assim que o Pandoc sabe qual fecha qual.
+:::
+
+## Tabsets
+
+```markdown
+::: {.panel-tabset}
+## R
+Código em R.
+## Python
+Código em Python.
+:::
+```
+
+::: {.panel-tabset}
+### R
+
+```r
+media <- mean(c(1, 2, 3, 4, 5))
+```
+
+### Python
+
+```python
+import statistics
+media = statistics.mean([1, 2, 3, 4, 5])
+```
+
+### Bash
+
+```bash
+awk '{s+=$1} END {print s/NR}' numeros.txt
+```
+:::
+
+## Larguras e margens
+
+```markdown
+::: {.column-margin}
+Nota lateral.
+:::
+```
+
+Classes de largura, do mais estreito ao mais largo:
+
+`.column-body` → `.column-body-outset` → `.column-page` →
+`.column-screen-inset` → `.column-screen`
+
+. . .
+
+::: {.callout-tip appearance="simple"}
+`.column-page` é ótimo para heatmaps e tabelas largas.
+:::
+
+## CSS {.smaller}
+
+```yaml
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+```
+
+```css
+:root { --cor-primaria: #2C7FB8; }
+
+.destaque {
+  background-color: #FFF3CD;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+h2 {
+  color: var(--cor-primaria);
+  border-bottom: 2px solid var(--cor-primaria);
+}
+```
+
+E no texto: `[palavra importante]{.destaque}`
+
+::: {.callout-tip appearance="simple"}
+Botão direito → **Inspecionar** mostra qual classe controla cada elemento.
+:::
+
+## SCSS: mexer no tema por dentro {.smaller}
+
+```yaml
+format:
+  html:
+    theme: [cosmo, custom.scss]
+```
+
+```scss
+/*-- scss:defaults --*/
+$primary: #2C7FB8;
+$font-family-sans-serif: "Source Sans Pro", sans-serif;
+$h2-font-size: 1.6rem;
+
+/*-- scss:rules --*/
+.callout-note { border-left-color: $primary; }
+```
+
+. . .
+
+25 temas prontos: `cosmo` `flatly` `journal` `litera` `minty` `sandstone`
+`darkly`…
+
+```yaml
+theme:
+  light: flatly
+  dark: darkly
+```
+
+## `_brand.yml` {.smaller}
+
+Uma identidade visual, **todos** os formatos.
+
+```yaml
+# _brand.yml (na raiz do projeto)
+color:
+  palette:
+    azul-profundo: "#12355B"
+    laranja: "#D95F02"
+  primary: azul-profundo
+  secondary: laranja
+
+typography:
+  fonts:
+    - family: Roboto
+      source: google
+  base: Roboto
+  headings: {family: Roboto, weight: 600}
+
+logo:
+  medium: logos/logo.png
+```
+
+Nada precisa ser declarado no `.qmd`. Para desligar: `brand: false`.
+
+## `_quarto.yml`: o projeto inteiro {.smaller}
+
+```yaml
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Projeto Caatinga-Seq"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Início
+      - href: resultados.qmd
+        text: Resultados
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+execute:
+  freeze: auto
+```
+
+Vale para todos os `.qmd` — e cada um pode sobrescrever.
+
+## Personalização no PDF {.smaller}
+
+```yaml
+format:
+  pdf:
+    documentclass: article
+    papersize: a4
+    geometry: [top=25mm, bottom=25mm, left=25mm, right=25mm]
+    fontsize: 11pt
+    linestretch: 1.5
+    colorlinks: true
+    toc: true
+    number-sections: true
+    fig-pos: "H"        # fixa a figura onde ela foi escrita
+```
+
+::: {.callout-warning}
+## Erros clássicos
+- Pacote LaTeX faltando → `quarto install tinytex`
+- Figura "fugindo" de página → `fig-pos: "H"`
+- **CSS não funciona no PDF.** No PDF, o equivalente é LaTeX.
+:::
+
+## Conteúdo condicional
+
+```markdown
+::: {.content-visible when-format="html"}
+Tabela interativa aqui.
+:::
+
+::: {.content-visible when-format="pdf"}
+Tabela estática aqui.
+:::
+
+::: {.content-hidden when-format="pdf"}
+Tudo menos PDF.
+:::
+```
+
+. . .
+
+```yaml
+format:
+  html: {toc: true}
+  pdf: {documentclass: article}
+```
+
+```bash
+quarto render doc.qmd          # os dois
+quarto render doc.qmd --to pdf # só um
+```
+
+## 🧪 Exercício 4 {background-color="#D95F02"}
+
+1. Um callout de cada tipo — um com título próprio, outro recolhível
+2. Um bloco de **duas colunas**
+3. Um **tabset** com duas abas
+4. Um `styles.css` com a classe `.destaque` e `h2` colorido — e aplique
+5. Tema claro/escuro alternável
+6. Adicione `format: pdf` e use **conteúdo condicional**
+
+**Desafio:** um `_brand.yml` com duas cores e uma fonte do Google
+
+::: {.callout-note appearance="simple"}
+⏱️ 20 minutos — solução na seção 5.8 do material
+:::
+
+# 6. Code chunks {background-color="#12355B"}
+
+## O básico
+
+```{r}
+#| label: media-slide
+x <- c(12, 15, 9, 22, 18)
+mean(x)
+```
+
+. . .
+
+O código aparece, o resultado aparece embaixo, e o resultado **é de verdade** —
+foi calculado agora, na renderização.
+
+## Código inline: o recurso mais subestimado
+
+```{r}
+#| include: false
+set.seed(2026)
+expressao <- rnorm(120, mean = 8.4, sd = 1.9)
+```
+
+Você escreve:
+
+> Foram analisadas `r knitr::inline_expr("length(expressao)")` medidas, com
+> média de `r knitr::inline_expr("round(mean(expressao), 2)")`.
+
+. . .
+
+E sai:
+
+> Foram analisadas `r length(expressao)` medidas, com média de
+> `r round(mean(expressao), 2)` e desvio de `r round(sd(expressao), 2)`.
+
+. . .
+
+::: {.callout-important}
+Se o dado mudar, **a frase muda sozinha**.
+:::
+
+## Plots
+
+```{r}
+#| label: fig-slide-plot
+#| fig-cap: "Peso versus consumo no mtcars."
+#| fig-width: 8
+#| fig-height: 3.6
+
+plot(mtcars$wt, mtcars$mpg, pch = 19, col = "#2C7FB8",
+     xlab = "Peso", ylab = "Milhas por galão")
+abline(lm(mpg ~ wt, data = mtcars), col = "#D95F02", lwd = 2)
+```
+
+## Opções de figura {.smaller}
+
+| Opção | Efeito |
+|:--|:--|
+| `fig-cap` | Legenda |
+| `fig-width` / `fig-height` | Tamanho **em polegadas** com que o R desenha |
+| `out-width` | Tamanho na página (`"70%"`) |
+| `fig-align` | `left`, `center`, `right` |
+| `fig-alt` | Texto alternativo — **acessibilidade** |
+| `fig-dpi` | 300 para publicação |
+| `column: margin` | Figura na margem |
+
+## Subfiguras num só chunk
+
+```{r}
+#| label: fig-slide-painel
+#| fig-cap: "Distribuições"
+#| fig-subcap: ["Consumo", "Potência"]
+#| layout-ncol: 2
+#| fig-width: 4.5
+#| fig-height: 3
+
+hist(mtcars$mpg, col = "#2C7FB8", border = "white", main = "", xlab = "mpg")
+hist(mtcars$hp, col = "#D95F02", border = "white", main = "", xlab = "hp")
+```
+
+Ids automáticos: `@fig-slide-painel-1`, `@fig-slide-painel-2`
+
+## Tabelas por código
+
+```{r}
+#| label: tbl-slide
+#| tbl-cap: "Primeiras linhas do mtcars."
+
+knitr::kable(head(mtcars[, c("mpg", "cyl", "hp")], 4),
+             col.names = c("Consumo", "Cilindros", "Potência"))
+```
+
+. . .
+
+`kable` (simples) · `gt` (publicação) · `kableExtra` (agrupamentos) ·
+`DT` (interativa) · `flextable` (Word)
+
+## Cross-references {.smaller}
+
+**Duas regras:** rótulo com o prefixo certo + `@rotulo` no texto.
+
+| Elemento | Prefixo | Rotular com | Citar |
+|:--|:--|:--|:--|
+| Figura (chunk) | `fig-` | `label` + `fig-cap` | `@fig-x` |
+| Figura (markdown) | `fig-` | `![Cap](i.png){#fig-x}` | `@fig-x` |
+| Tabela (chunk) | `tbl-` | `label` + `tbl-cap` | `@tbl-x` |
+| Tabela (markdown) | `tbl-` | `: Cap {#tbl-x}` | `@tbl-x` |
+| Equação | `eq-` | `$$..$$ {#eq-x}` | `@eq-x` |
+| Seção | `sec-` | `## Tít {#sec-x}` | `@sec-x` |
+
+## Três armadilhas de cross-reference
+
+::: {.incremental}
+1. **Sem legenda, sem referência.** `label: fig-x` sem `fig-cap` não vira
+   figura referenciável.
+2. **`@sec-` exige `number-sections: true`.**
+3. **O prefixo é literal.** `label: figura-1` ❌ · `label: fig-1` ✅
+:::
+
+. . .
+
+Variações: `@fig-x` → Figura 1 · `[@fig-x]` → (Figura 1) · `[-@fig-x]` → 1
+
+## Outras linguagens
+
+```{{python}}
+import pandas as pd
+df = pd.read_csv("counts.csv")
+print(df.describe())
+```
+
+```{{bash}}
+#| eval: false
+fastqc -t 8 -o qc/ dados/*.fastq.gz
+multiqc qc/ -o qc/
+```
+
+. . .
+
+::: {.callout-note appearance="simple"}
+`engine: knitr` mistura R e Python (via `reticulate`).  
+`engine: jupyter` roda um kernel só. Documento só-Python usa `jupyter` sozinho.
+:::
+
+## 🧬 Exercício 5 — o integrador {background-color="#D95F02" .smaller}
+
+Construa `exercicio5.qmd`: um relatório de expressão diferencial completo.
+
+::::{.columns}
+:::{.column width="50%"}
+**Header e dados**
+
+1. Autoria, `date: today`, `lang: pt-BR`
+2. TOC à esquerda, numeração, `code-fold: show`, `code-tools`, `embed-resources`
+3. Sem warnings/messages; `bibliography`
+4. Chunk `setup` com `set.seed(2026)`
+5. Simule **2000 genes × 12 amostras**, com **150 genes DE**
+6. Chunk **com cache**: log2FC, teste *t*, correção BH
+:::
+:::{.column width="50%"}
+**Resultados e acabamento**
+
+7. Tabela dos 10 mais significativos → `@tbl-top-genes`
+8. **Volcano plot** → `@fig-volcano` (com `fig-alt`!)
+9. Painel com **2 subfiguras** → `@fig-diagnostico`
+10. **3 números** vindos de código inline
+11. Equação numerada do log2FC
+12. Um callout de limitação
+13. Citação + referências
+14. `sessionInfo()`
+:::
+::::
+
+## 🎯 Critério de sucesso {background-color="#D95F02"}
+
+Troque `n_de <- 150` por `n_de <- 300` e renderize de novo.
+
+. . .
+
+**Tudo** deve mudar sozinho: a tabela, as duas figuras e os números do
+parágrafo — sem você tocar em uma vírgula do texto.
+
+. . .
+
+::: {.callout-important}
+Se usou `cache: true`, vai precisar de `dependson: ["simulacao"]`.  
+Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.
+:::
+
+::: {.callout-note appearance="simple"}
+⏱️ 40 minutos — solução completa e comentada na seção 6.9 do material
+:::
+
+# 7. Encerramento {background-color="#12355B"}
+
+## O que vimos
+
+```{mermaid}
+%%| fig-width: 11
+flowchart LR
+    Q(("Quarto")) --> M["Markdown"]
+    Q --> H["Header"]
+    Q --> P["Personalização"]
+    Q --> C["Code chunks"]
+    M --> M1["Texto · tabelas · equações<br/>diagramas · citações"]
+    H --> H1["YAML · opções de chunk<br/>embed-resources · cache"]
+    P --> P1["Callouts · colunas · tabsets<br/>CSS · SCSS · brand.yml"]
+    C --> C1["Plots · tabelas · inline<br/>cross-references"]
+```
+
+## Cinco hábitos para levar daqui {.smaller}
+
+::: {.incremental}
+1. **Nunca digite um número que o computador pode calcular.** Use código inline.
+2. **Comece pelo `embed-resources: true`.** Relatório que abre quebrado não é lido.
+3. **Rotule figuras e tabelas desde o início.** Renomear depois dói.
+4. **Versione o `.qmd`, ignore a saída.**  
+   `.gitignore`: `*_files/` `*_cache/` `/_site/` `/.quarto/`
+5. **Demorou mais de 30 s? Use cache** — e lembre do `dependson`.
+:::
+
+## Para onde ir agora {.smaller}
+
+| Quero… | Procure por |
+|:--|:--|
+| Site do laboratório | Quarto Websites + GitHub Pages |
+| Escrever a dissertação | Quarto Books, `quarto-journals` |
+| Painel de resultados | `format: dashboard` |
+| Um relatório por amostra | Parâmetros + `quarto_render()` |
+| Ambiente reproduzível | `renv`, `conda`, Docker |
+| Publicar rápido | `quarto publish quarto-pub` |
+
+. . .
+
+**No material completo:** anexos sobre parâmetros, publicação, solução de
+problemas, `environment.yml` e uma cola rápida.
+
+## Obrigada! {.center background-color="#12355B"}
+
+::: {style="text-align: center; font-size: 1.3em; margin-top: 1em;"}
+📁 `github.com/juliaapolonio/intro-to-quarto`
+
+📘 `minicurso-quarto.qmd` — conteúdo e soluções
+
+🌐 <https://quarto.org/docs/guide/>
+:::
+
+::: {style="text-align: center; margin-top: 1.5em;"}
+**Dúvidas?**
+:::

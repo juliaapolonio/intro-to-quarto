@@ -1,0 +1,62 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.qmd"
+    - "material/*.qmd"
+    - "slides/*.qmd"
+
+website:
+  title: "Introdução ao Quarto"
+  description: "Minicurso do Simpósio Norte-Nordeste de Bioinformática"
+  site-url: "https://juliaapolonio.github.io/intro-to-quarto/"
+  repo-url: "https://github.com/juliaapolonio/intro-to-quarto"
+  repo-actions: [issue]
+  favicon: img/favicon.svg
+  open-graph: true
+  page-navigation: true
+
+  navbar:
+    logo: img/logo.svg
+    title: "Introdução ao Quarto"
+    left:
+      - href: index.qmd
+        text: "Início"
+      - href: setup.qmd
+        text: "Setup e materiais"
+      - href: material/minicurso-quarto.qmd
+        text: "Material do curso"
+      - href: exercicios.qmd
+        text: "Exercícios"
+      - href: recursos.qmd
+        text: "Recursos"
+    right:
+      - text: "Documentação do Quarto"
+        href: https://quarto.org/docs/guide/
+      - icon: github
+        href: https://github.com/juliaapolonio/intro-to-quarto
+        aria-label: "Repositório no GitHub"
+
+  page-footer:
+    left: "Minicurso ministrado no Simpósio Norte-Nordeste de Bioinformática."
+    center: "Feito com [Quarto](https://quarto.org)."
+    right: "[Código-fonte](https://github.com/juliaapolonio/intro-to-quarto)"
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles.scss]
+      dark: [darkly, styles.scss]
+    toc: true
+    toc-depth: 3
+    toc-title: "Nesta página"
+    code-copy: true
+    code-overflow: wrap
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+
+execute:
+  freeze: auto
+
+lang: pt-BR

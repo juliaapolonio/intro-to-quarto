@@ -1,0 +1,84 @@
+/*-- scss:defaults --*/
+// ===========================================================================
+// styles.scss — tema do site do minicurso "Introdução ao Quarto"
+// Aplicado por cima de `cosmo` (claro) e `darkly` (escuro).
+// ===========================================================================
+
+$azul-profundo: #12355B;
+$azul-claro:    #2C7FB8;
+$laranja:       #D95F02;
+
+$primary:   $azul-claro;
+$secondary: $laranja;
+$link-color: $azul-claro;
+
+$font-family-sans-serif: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace: "Fira Code", "SFMono-Regular", Menlo, Consolas, monospace;
+
+$h1-font-size: 2.1rem;
+$h2-font-size: 1.6rem;
+$h3-font-size: 1.25rem;
+
+$navbar-bg: $azul-profundo;
+$navbar-fg: #FFFFFF;
+$footer-bg: $azul-profundo;
+$footer-fg: #E8EDF2;
+
+
+/*-- scss:rules --*/
+
+// Navbar --------------------------------------------------------------------
+.navbar-brand img {
+  max-height: 34px;
+  margin-right: 0.5rem;
+}
+
+.navbar .nav-link:hover {
+  color: #FFD9B3 !important;
+}
+
+// Títulos -------------------------------------------------------------------
+h2 {
+  border-bottom: 2px solid rgba($azul-claro, 0.35);
+  padding-bottom: 0.25rem;
+  margin-top: 2.2rem;
+}
+
+// Tabelas -------------------------------------------------------------------
+table {
+  font-size: 0.95rem;
+}
+
+thead th {
+  border-bottom: 2px solid $azul-claro;
+}
+
+// Código --------------------------------------------------------------------
+code:not(pre code) {
+  color: $laranja;
+  font-size: 0.9em;
+}
+
+div.sourceCode {
+  border-radius: 6px;
+}
+
+// Callouts ------------------------------------------------------------------
+.callout {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+// Rodapé --------------------------------------------------------------------
+.nav-footer {
+  font-size: 0.88rem;
+}
+
+// Classe de destaque, usada no material e no Exercício 4 --------------------
+.destaque {
+  background-color: #FFF3CD;
+  color: #1A1A1A;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-weight: 600;
+}

@@ -1,0 +1,107 @@
+---
+title: "Recursos"
+toc: true
+---
+
+O melhor complemento ao minicurso é a própria
+[documentação do Quarto](https://quarto.org/docs/guide/) — ela é excelente,
+tem exemplos copiáveis e mostra o `.qmd` que gerou cada exemplo.
+
+Abaixo, o que consultar depois do curso.
+
+## Documentação oficial
+
+| Link | O que tem |
+|:--|:--|
+| [Guia](https://quarto.org/docs/guide/) | Tutoriais por tema, do básico ao avançado |
+| [Referência](https://quarto.org/docs/reference/) | Todas as opções de YAML e de chunk |
+| [Galeria](https://quarto.org/docs/gallery/) | Exemplos com código-fonte |
+| [Temas HTML](https://quarto.org/docs/output-formats/html-themes.html) | Os 25 temas Bootswatch |
+| [Extensões](https://quarto.org/docs/extensions/) | Catálogo oficial |
+| [Discussões](https://github.com/quarto-dev/quarto-cli/discussions) | Onde tirar dúvidas |
+
+## Livros e cursos
+
+- [**R for Data Science (2ª ed.)**](https://r4ds.hadley.nz/) — Wickham,
+  Çetinkaya-Rundel e Grolemund. Tem capítulos dedicados ao Quarto.
+- [**R Markdown Cookbook**](https://bookdown.org/yihui/rmarkdown-cookbook/) —
+  Xie, Dervieux e Riederer. Escrito para R Markdown, mas quase todas as receitas
+  do `knitr` valem igualmente no Quarto.
+- [**Dynamic Documents with R and knitr**](https://yihui.org/knitr/) — Xie. Para
+  quem quer entender o motor por dentro.
+- [**Happy Git and GitHub for the useR**](https://happygitwithr.com/) — Bryan.
+  Se você vai versionar seus `.qmd` (e deveria), comece por aqui.
+
+## Aprofundando por tema
+
+::: {.panel-tabset}
+
+### Sites e livros
+
+- [Quarto Websites](https://quarto.org/docs/websites/) — o formato usado neste
+  próprio site
+- [Quarto Books](https://quarto.org/docs/books/) — para dissertações e teses
+- [Publishing](https://quarto.org/docs/publishing/) — GitHub Pages, Netlify,
+  Quarto Pub
+
+### Documentos científicos
+
+- [Quarto Journals](https://github.com/quarto-journals) — templates de
+  periódicos (PLOS, Elsevier, ACM, Biophysical Journal…)
+- [Cross-references](https://quarto.org/docs/authoring/cross-references.html)
+- [Citações e bibliografia](https://quarto.org/docs/authoring/citations.html)
+- [Estilos CSL](https://github.com/citation-style-language/styles) — milhares de
+  estilos de citação
+
+### Interatividade
+
+- [Dashboards](https://quarto.org/docs/dashboards/) — painéis com *value boxes*
+  e abas
+- [Observable JS](https://quarto.org/docs/interactive/ojs/) — gráficos
+  interativos sem servidor
+- [Shiny em Quarto](https://quarto.org/docs/interactive/shiny/)
+- [Quarto Live](https://r-wasm.github.io/quartolive/) — R e Python rodando no
+  navegador, sem instalação
+
+### Reprodutibilidade
+
+- [`renv`](https://rstudio.github.io/renv/) — trava as versões dos pacotes de R
+- [`targets`](https://books.ropensci.org/targets/) — pipelines reproduzíveis
+  em R
+- [Rocker](https://rocker-project.org/) — imagens Docker com R
+- [The Turing Way](https://the-turing-way.netlify.app/) — guia abrangente de
+  ciência de dados reproduzível
+
+:::
+
+## Leituras sobre pesquisa reproduzível
+
+- [**Literate Programming**](https://doi.org/10.1093/comjnl/27.2.97) — Knuth
+  (1984). O artigo que criou a ideia de misturar código e prosa.
+- [**Reproducible Research in Computational Science**](https://doi.org/10.1126/science.1213847)
+  — Peng (2011). O texto curto que popularizou o termo em ciência computacional.
+- [**Ten Simple Rules for Reproducible Computational Research**](https://doi.org/10.1371/journal.pcbi.1003285)
+  — Sandve et al. (2013). Dez regras práticas, todas aplicáveis a partir de
+  amanhã.
+
+## Coleções da comunidade
+
+- [**Awesome Quarto**](https://github.com/mcanouil/awesome-quarto) — a lista mais
+  completa de extensões, templates, temas e exemplos.
+- [**Quarto Extensions**](https://m.canouil.dev/quarto-extensions/) — catálogo
+  navegável com busca.
+
+## Comunidades brasileiras de bioinformática
+
+- [**AB³ — Associação Brasileira de Bioinformática e Biologia Computacional**](https://www.ab3c.org.br/)
+- [**Bioinfo Brasil**](https://bioinfo.com.br/)
+- [**R-Ladies**](https://rladies.org/) — capítulos em várias cidades do
+  Norte e Nordeste
+
+::: {.callout-tip appearance="simple"}
+## Achou algo que deveria estar aqui?
+
+Abra uma
+[issue no repositório](https://github.com/juliaapolonio/intro-to-quarto/issues) —
+sugestões são muito bem-vindas.
+:::

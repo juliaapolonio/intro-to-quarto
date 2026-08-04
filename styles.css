@@ -1,0 +1,90 @@
+/* ==========================================================================
+   styles.css — Minicurso "Introdução ao Quarto"
+   Usado pelo documento principal e como referência para o Exercício 4.
+   ========================================================================== */
+
+/* Variáveis reutilizáveis ------------------------------------------------- */
+:root {
+  --cor-primaria: #12355B;
+  --cor-secundaria: #2C7FB8;
+  --cor-destaque: #D95F02;
+  --cor-fundo-suave: #F7F9FB;
+}
+
+/* Títulos ----------------------------------------------------------------- */
+h1.title {
+  color: var(--cor-primaria);
+}
+
+h2 {
+  color: var(--cor-primaria);
+  border-bottom: 2px solid var(--cor-secundaria);
+  padding-bottom: 0.2em;
+  margin-top: 2rem;
+}
+
+h3 {
+  color: var(--cor-secundaria);
+}
+
+/* Classe de destaque: use com [texto]{.destaque} --------------------------- */
+.destaque {
+  background-color: #FFF3CD;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Blocos de código -------------------------------------------------------- */
+pre code {
+  font-size: 0.85em;
+  line-height: 1.45;
+}
+
+code:not(pre code) {
+  color: var(--cor-destaque);
+  background-color: var(--cor-fundo-suave);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+/* Tabelas ----------------------------------------------------------------- */
+table {
+  font-size: 0.94em;
+}
+
+caption, .table-caption {
+  color: #555;
+  font-size: 0.9em;
+}
+
+/* Callouts ---------------------------------------------------------------- */
+.callout {
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Enunciados de exercício ficam com um ar de "caixa de tarefa" ------------- */
+.callout-note .callout-title:has(+ * ) {
+  font-weight: 600;
+}
+
+/* Citações em bloco ------------------------------------------------------- */
+blockquote {
+  border-left: 4px solid var(--cor-secundaria);
+  background-color: var(--cor-fundo-suave);
+  padding: 0.6em 1em;
+  color: #333;
+}
+
+/* Sumário lateral --------------------------------------------------------- */
+#TOC, .sidebar {
+  font-size: 0.92em;
+}
+
+/* Impressão --------------------------------------------------------------- */
+@media print {
+  .callout {
+    break-inside: avoid;
+  }
+}

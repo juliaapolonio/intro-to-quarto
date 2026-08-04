@@ -1,0 +1,169 @@
+---
+title: "Exercícios"
+toc: true
+---
+
+Os cinco exercícios do minicurso, reunidos numa página só para consulta rápida
+durante a aula.
+
+As **soluções comentadas** estão no
+[material do curso](material/minicurso-quarto.qmd), em blocos recolhíveis ao
+final de cada seção. Tente resolver antes de abrir — o valor está na tentativa,
+não na resposta.
+
+::: {.callout-tip appearance="simple"}
+Trabalhe sempre com `quarto preview` rodando numa aba do terminal. Ele
+re-renderiza sozinho a cada vez que você salva.
+:::
+
+---
+
+## Exercício 1 — Seu primeiro documento {#exercicio-1}
+
+::: {.callout-note appearance="simple"}
+⏱️ 15 minutos · Bloco 3 (Notação Markdown) ·
+[Ver solução](material/minicurso-quarto.qmd#sec-ex1)
+:::
+
+Crie um arquivo `exercicio1.qmd` e produza um HTML com:
+
+1. Um header YAML com **título**, **seu nome** e `format: html`.
+2. Uma seção `## Sobre mim` com um parágrafo contendo pelo menos uma palavra em
+   **negrito** e uma em *itálico*.
+3. Uma seção `## Ferramentas que eu uso` com uma **lista não ordenada** de 3
+   ferramentas, sendo que uma delas tem **dois subitens**.
+4. Uma seção `## Passos de uma análise de RNA-seq` com uma **lista ordenada** de
+   4 etapas.
+5. Um **link** para a documentação do Quarto e uma **imagem** com largura de 70%.
+6. Uma fórmula química com subscrito (ex.: `CO~2~`) em algum lugar do texto.
+
+Renderize com `quarto render exercicio1.qmd` e abra o HTML.
+
+---
+
+## Exercício 2 — Markdown avançado {#exercicio-2}
+
+::: {.callout-note appearance="simple"}
+⏱️ 20 minutos · Bloco 3 (Notação Markdown) ·
+[Ver solução](material/minicurso-quarto.qmd#sec-ex2)
+:::
+
+Continue no mesmo documento (ou crie `exercicio2.qmd`) e adicione:
+
+1. Uma **tabela** com pelo menos 4 genes e 3 colunas (gene, log2FC, p-valor),
+   com legenda, id `#tbl-genes` e uma referência a ela no texto.
+2. Uma **equação numerada** para a média aritmética, com id `#eq-media`, e uma
+   referência no texto.
+3. Um **diagrama Mermaid** representando as etapas do seu fluxo de trabalho.
+4. Pelo menos **uma footnote**.
+5. **Duas citações** usando um `referencias.bib` criado por você, e uma seção de
+   referências ao final.
+
+**Desafio:** aplique a classe `.striped` na tabela e adicione uma segunda
+equação em linha no meio de um parágrafo.
+
+---
+
+## Exercício 3 — Dominando o header {#exercicio-3}
+
+::: {.callout-note appearance="simple"}
+⏱️ 15 minutos · Bloco 4 (Header) ·
+[Ver solução](material/minicurso-quarto.qmd#sec-ex3)
+:::
+
+Transforme o header do seu documento para que ele tenha:
+
+1. Autoria com `name` e `affiliation`.
+2. `date: today` e `lang: pt-BR`.
+3. Sumário à esquerda, com profundidade 2, e seções numeradas.
+4. Código recolhido por padrão (`code-fold`) e ferramentas de código ativadas.
+5. HTML autocontido (`embed-resources`).
+6. Nenhum aviso nem mensagem no documento final.
+7. Um chunk `setup` com `include: false`.
+8. Um chunk que **execute** o código mas **não mostre** o código.
+9. Um chunk marcado com `cache: true`.
+
+**Desafio:** um chunk que **mostre** o código sem executá-lo — útil para
+documentar comandos que rodam no cluster.
+
+---
+
+## Exercício 4 — Deixando bonito {#exercicio-4}
+
+::: {.callout-note appearance="simple"}
+⏱️ 20 minutos · Bloco 5 (Personalização) ·
+[Ver solução](material/minicurso-quarto.qmd#sec-ex4)
+:::
+
+Adicione ao seu documento:
+
+1. Um **callout** de cada tipo (`note`, `tip`, `warning`), sendo que um tem
+   título personalizado e outro é **recolhível**.
+2. Um bloco em **duas colunas**.
+3. Um **tabset** com duas abas ("R" e "Bash", por exemplo).
+4. Um `styles.css` que defina uma classe `.destaque` com fundo amarelo e mude a
+   cor dos títulos `h2` — e aplique a classe a alguma palavra do texto.
+5. Um tema claro/escuro alternável.
+6. `format: pdf` no YAML, e uma frase que apareça **só no HTML** usando
+   conteúdo condicional.
+
+**Desafio:** crie um `_brand.yml` com duas cores e uma fonte do Google Fonts.
+
+---
+
+## Exercício 5 — Relatório reproduzível completo {#exercicio-5}
+
+::: {.callout-note appearance="simple"}
+⏱️ 40 minutos · Bloco 6 (Code chunks) ·
+[Ver solução](material/minicurso-quarto.qmd#sec-ex5)
+:::
+
+O exercício integrador: um relatório de análise de expressão diferencial que
+usa **tudo** o que vimos. Crie `exercicio5.qmd` com:
+
+### A. Header
+
+1. Título, autoria com afiliação, `date: today`, `lang: pt-BR`.
+2. `format: html` com sumário à esquerda, seções numeradas, `code-fold: show`,
+   `code-tools: true` e `embed-resources: true`.
+3. Avisos e mensagens desligados globalmente.
+4. `bibliography: referencias.bib`.
+
+### B. Dados (simulados — não precisa de arquivo externo)
+
+5. Um chunk `setup` com `include: false`, `set.seed(2026)` e as bibliotecas.
+6. Um chunk que simule uma matriz de contagens de **2000 genes × 12 amostras**
+   (6 controles, 6 tratados), em que **150 genes** sejam de fato
+   diferencialmente expressos.
+7. Um chunk **com cache** que calcule log2FC e p-valor (teste *t*) por gene, e
+   aplique correção de Benjamini–Hochberg.
+
+### C. Resultados
+
+8. Uma **tabela** com os 10 genes mais significativos, referenciada como
+   `@tbl-top-genes`.
+9. Um **volcano plot** referenciado como `@fig-volcano`, com `fig-cap` e
+   `fig-alt`.
+10. Um painel com **duas subfiguras** (histograma dos p-valores e distribuição
+    dos log2FC), referenciado como `@fig-diagnostico`.
+11. Pelo menos **três números no texto vindos de código inline**.
+
+### D. Acabamento
+
+12. Uma **equação numerada** para o log2FC, referenciada no texto.
+13. Um **callout** apontando uma limitação da análise.
+14. Uma **citação** e a seção de referências.
+15. Uma seção "Informações da sessão" com `sessionInfo()`.
+
+::: {.callout-important}
+## 🎯 Critério de sucesso
+
+Troque o número de genes diferencialmente expressos de **150 para 300** no
+chunk de simulação e renderize de novo.
+
+**Todo** o relatório — texto, tabela, figuras e números — deve se atualizar
+sozinho, sem você tocar em uma vírgula do texto.
+
+Se usou `cache: true`, vai precisar de `dependson` para que a mudança se
+propague. Essa é exatamente a pegadinha do Bloco 4.
+:::

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 232" width="200" height="232" role="img" aria-label="Logo do minicurso Introducao ao Quarto">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#12355B"/>
+      <stop offset="100%" stop-color="#2C7FB8"/>
+    </linearGradient>
+  </defs>
+  <polygon points="100,4 196,58 196,174 100,228 4,174 4,58"
+           fill="url(#g)" stroke="#D95F02" stroke-width="7"/>
+  <text x="100" y="96" text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif" font-size="21"
+        fill="#FFFFFF" letter-spacing="1.5">INTRO AO</text>
+  <text x="100" y="146" text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif" font-size="46"
+        font-weight="700" fill="#FFFFFF">quarto</text>
+  <text x="100" y="182" text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif" font-size="15"
+        fill="#F4C99B" letter-spacing="2.5">SNNB</text>
+</svg>

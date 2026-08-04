@@ -1,0 +1,146 @@
+---
+title: "Setup e materiais"
+toc: true
+---
+
+::: {.callout-important}
+## Faça isso antes do curso
+
+A instalação leva alguns minutos e depende de internet. Se você deixar para o
+dia, vai perder o primeiro bloco esperando o conda resolver dependências.
+:::
+
+## Instalação local
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/juliaapolonio/intro-to-quarto.git
+cd intro-to-quarto
+```
+
+### 2. Crie o ambiente conda a partir da receita
+
+```bash
+conda env create -f environment.yml
+```
+
+::: {.callout-tip appearance="simple"}
+Se você usa `mamba` ou `micromamba`, troque `conda` por eles — a resolução é
+bem mais rápida.
+:::
+
+### 3. Ative o ambiente
+
+```bash
+conda activate quarto-env
+```
+
+### 4. Abra o Positron
+
+```bash
+positron .
+```
+
+Se preferir, abra a pasta no RStudio ou no VS Code — o material funciona em
+qualquer um deles.
+
+## Verificando a instalação
+
+Com o ambiente ativado, rode:
+
+```bash
+quarto check
+```
+
+A saída deve mostrar `[✓]` para o Quarto, o Pandoc e o motor `knitr`. Para
+testar de ponta a ponta, renderize o material do curso:
+
+```bash
+quarto render material/minicurso-quarto.qmd
+```
+
+Se o HTML abrir com figuras e tabelas, está tudo pronto.
+
+::: {.callout-warning collapse="true"}
+## Deu erro? Comece por aqui
+
+| Sintoma | Solução |
+|:--|:--|
+| `quarto: command not found` | O ambiente não está ativo: `conda activate quarto-env` |
+| `conda env create` trava resolvendo | Use `mamba env create -f environment.yml` |
+| Erro de pacote LaTeX ao gerar PDF | `quarto install tinytex` |
+| `there is no package called '...'` | `conda env update -f environment.yml --prune` |
+
+A lista completa de problemas comuns está no
+[Anexo C do material](material/minicurso-quarto.qmd#sec-troubleshooting).
+:::
+
+## Sem instalar nada
+
+Se a instalação falhar no dia, você ainda consegue acompanhar:
+
+- Todo o material está publicado neste site — veja
+  [Material do curso](material/minicurso-quarto.qmd).
+- Para escrever e renderizar `.qmd` no navegador, o
+  [Posit Cloud](https://posit.cloud/) oferece um plano gratuito com RStudio e
+  Quarto já instalados.
+- Você também pode acompanhar em dupla com quem tiver o ambiente funcionando —
+  o curso é tranquilo o suficiente para isso.
+
+## Materiais
+
+### Material do curso
+
+O documento principal traz **todo o conteúdo e as soluções comentadas de todos
+os exercícios**. As soluções ficam escondidas em blocos recolhíveis: tente
+resolver antes de abrir.
+
+- 📘 [Material completo (HTML)](material/minicurso-quarto.qmd)
+- 📄 [Código-fonte `.qmd`](https://github.com/juliaapolonio/intro-to-quarto/blob/main/material/minicurso-quarto.qmd)
+
+### Slides
+
+Os slides usados em aula, em `revealjs`:
+
+- 🖥️ [Slides do minicurso](slides/minicurso-quarto.qmd)
+- 📄 [Código-fonte `.qmd`](https://github.com/juliaapolonio/intro-to-quarto/blob/main/slides/minicurso-quarto.qmd)
+
+::: {.callout-tip appearance="simple"}
+## Atalhos dos slides
+
+`S` abre as notas do apresentador · `F` entra em tela cheia · `O` mostra a
+visão geral · `B` abre o quadro de anotações · `?` lista todos os atalhos.
+
+Para salvar em PDF: abra `?print-pdf` no fim da URL e imprima pelo navegador.
+:::
+
+### Arquivos de apoio
+
+| Arquivo | Para que serve |
+|:--|:--|
+| `environment.yml` | Receita do ambiente conda |
+| `referencias.bib` | Bibliografia usada nos exemplos de citação |
+| `styles.css` | Estilos do material — é também a resposta do Exercício 4 |
+| `slides/custom.scss` | Tema dos slides |
+
+## Estrutura do repositório
+
+```
+intro-to-quarto/
+├── _quarto.yml              # configuração do site
+├── index.qmd                # esta página inicial
+├── setup.qmd                # esta página
+├── exercicios.qmd           # enunciados dos exercícios
+├── recursos.qmd             # leituras e links
+├── material/
+│   └── minicurso-quarto.qmd # conteúdo + soluções
+├── slides/
+│   ├── minicurso-quarto.qmd # apresentação revealjs
+│   └── custom.scss          # tema dos slides
+├── img/                     # logo e imagens do site
+├── referencias.bib
+├── styles.css
+├── styles.scss
+└── environment.yml
+```

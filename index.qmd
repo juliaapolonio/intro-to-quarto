@@ -1,0 +1,142 @@
+---
+title: "Introdução ao Quarto"
+subtitle: "Minicurso — Simpósio Norte-Nordeste de Bioinformática"
+toc: true
+---
+
+![](img/logo.svg){width="220" fig-align="center" fig-alt="Logo do minicurso: um hexágono com o símbolo do Quarto."}
+
+Bem-vindo ao minicurso **Introdução ao Quarto**!
+
+::: {.callout-tip appearance="simple"}
+Comece pela página [Setup e materiais](setup.qmd) para preparar seu computador
+**antes** do início do curso.
+:::
+
+## Descrição
+
+Relatórios de bioinformática costumam nascer partidos: o pipeline roda no
+cluster, as figuras saem em uma pasta, as tabelas em outra, e o texto é
+escrito em um editor que não faz ideia de onde aqueles números vieram. Quando
+o dado muda — e ele sempre muda — todo o trabalho manual de montagem precisa
+ser refeito.
+
+Neste minicurso de **5 horas** você vai aprender a usar o
+[Quarto](https://quarto.org) para escrever documentos em que texto, código e
+resultados vivem no mesmo arquivo. Vamos partir da notação Markdown e chegar a
+um relatório completo de expressão diferencial que se atualiza sozinho quando o
+dado de entrada muda.
+
+O curso é **prático e tranquilo**: cada bloco termina em um exercício, e todas
+as soluções estão comentadas no material.
+
+## Público-alvo
+
+Este curso é para você se:
+
+- trabalha com dados e precisa comunicar resultados (relatórios, artigos,
+  apresentações, sites);
+- já escreveu algum código em R ou Python, ainda que pouco;
+- quer parar de copiar e colar figuras e números de um lugar para outro.
+
+**Não é pré-requisito** saber R avançado, LaTeX, HTML ou CSS. Todo o código
+executado no curso usa R base.
+
+## Ementa
+
+::: {.panel-tabset}
+
+### Programa
+
+| Bloco | Conteúdo | Tempo |
+|:--|:--|--:|
+| 1 | **Introdução** — por que Quarto, extensões, documentação | 20 min |
+| 2 | **O Quarto** — features, renderização, R Markdown vs Quarto | 25 min |
+| 3 | **Notação Markdown** — texto, listas, tabelas, equações, diagramas, citações | 70 min |
+| — | ☕ Intervalo | 15 min |
+| 4 | **Header** — YAML, `embed-resources`, cache, chunk vs documento | 35 min |
+| 5 | **Personalização** — callouts, colunas, CSS, `_brand.yml`, PDF | 50 min |
+| 6 | **Code chunks** — plots, tabelas, código inline, cross-references | 70 min |
+| 7 | **Encerramento** — hábitos e próximos passos | 15 min |
+
+### Detalhamento
+
+**Introdução**
+
+- Agenda do minicurso
+- Por que usar Quarto?
+- Extensões
+- Documentação
+
+**O Quarto**
+
+- Features
+- Renderização
+- R Markdown vs Quarto
+
+**Notação Markdown**
+
+- Formatação de texto · Títulos · Links e imagens · Listas
+- **Exercício 1**
+- Footnotes · Tabelas · Equações · Diagramas · Citações
+- **Exercício 2**
+
+**Header**
+
+- Headers básicos · Embed resources · Cache
+- Document header vs chunk header
+- **Exercício 3**
+
+**Personalização**
+
+- Elementos HTML · CSS · YAML e `_brand.yml` · Personalização no PDF
+- **Exercício 4**
+
+**Code chunks**
+
+- Plots · Tabelas · Cross-references
+- **Exercício 5**
+
+**Encerramento**
+
+:::
+
+## O que você vai levar daqui
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### Durante o curso
+
+- Um relatório reproduzível de expressão diferencial, feito por você
+- Cinco exercícios resolvidos, do "olá mundo" ao relatório completo
+- Um documento que gera HTML **e** PDF a partir do mesmo fonte
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### Depois do curso
+
+- O [material completo](material/minicurso-quarto.qmd) com todas as soluções
+- Anexos sobre relatórios parametrizados, publicação e solução de problemas
+- Uma [cola rápida](material/minicurso-quarto.qmd#sec-cheatsheet) de sintaxe
+:::
+
+:::
+
+## Ferramentas
+
+O curso usa o **Quarto** com o motor `knitr` (R). O ambiente vem pronto em um
+arquivo `environment.yml` do conda, e a IDE sugerida é o
+[Positron](https://positron.posit.co/) — mas tudo funciona igualmente bem no
+RStudio, no VS Code ou em qualquer editor de texto com um terminal ao lado.
+
+As instruções de instalação estão na página
+[Setup e materiais](setup.qmd).
+
+::: {.callout-note appearance="simple"}
+## Licença
+
+O material está sob licença [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt-BR)
+e o código sob [MIT](https://opensource.org/licenses/MIT). Sinta-se livre para
+reutilizar, adaptar e reministrar, citando a fonte.
+:::

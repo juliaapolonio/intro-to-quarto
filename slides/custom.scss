@@ -1,0 +1,120 @@
+/*-- scss:defaults --*/
+// ===========================================================================
+// custom.scss — tema dos slides do minicurso "Introdução ao Quarto"
+// ===========================================================================
+
+$azul-profundo: #12355B;
+$azul-claro:    #2C7FB8;
+$laranja:       #D95F02;
+$verde:         #7FBC41;
+$cinza:         #F4F6F8;
+
+// Cores base
+$body-bg:        #FFFFFF;
+$body-color:     #1A1A1A;
+$link-color:     $azul-claro;
+$selection-bg:   rgba(217, 95, 2, 0.25);
+
+// Tipografia
+$font-family-sans-serif: "Source Sans Pro", "Helvetica Neue", Helvetica, sans-serif;
+$presentation-font-size-root: 34px;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-color: $azul-profundo;
+$presentation-heading-font-weight: 650;
+$presentation-h1-font-size: 2.0em;
+$presentation-h2-font-size: 1.35em;
+$presentation-h3-font-size: 1.1em;
+
+// Código
+$code-block-font-size: 0.62em;
+$code-block-bg: $cinza;
+$code-color: $laranja;
+
+
+/*-- scss:rules --*/
+
+// Slides de seção (com background-color) ficam com texto branco
+.reveal .slide-background-content + * {
+  color: inherit;
+}
+
+.reveal section[data-background-color] h1,
+.reveal section[data-background-color] h2,
+.reveal section[data-background-color] h3,
+.reveal section[data-background-color] p,
+.reveal section[data-background-color] li,
+.reveal section[data-background-color] strong {
+  color: #FFFFFF;
+}
+
+// Blocos de código com uma borda discreta
+.reveal pre {
+  box-shadow: none;
+  border: 1px solid #DDE3E8;
+  border-radius: 6px;
+}
+
+.reveal pre code {
+  padding: 0.7em 0.9em;
+  max-height: 520px;
+}
+
+// Tabelas mais leves
+.reveal table {
+  font-size: 0.68em;
+  border-collapse: collapse;
+}
+
+.reveal table th {
+  background-color: $cinza;
+  color: $azul-profundo;
+  border-bottom: 2px solid $azul-claro;
+}
+
+.reveal table td,
+.reveal table th {
+  padding: 0.28em 0.6em;
+}
+
+// Callouts um pouco mais compactos nos slides
+.reveal .callout {
+  font-size: 0.82em;
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+
+// Citações em bloco
+.reveal blockquote {
+  border-left: 4px solid $azul-claro;
+  background-color: $cinza;
+  box-shadow: none;
+  font-style: normal;
+  padding: 0.5em 0.9em;
+  width: 100%;
+}
+
+// Rodapé e numeração discretos
+.reveal .footer,
+.reveal .slide-number {
+  color: #8A94A0;
+  font-size: 0.55em;
+}
+
+// Classe utilitária para slides muito densos
+.reveal .smaller {
+  font-size: 0.8em;
+}
+
+// Listas com um pouco mais de respiro
+.reveal ul li,
+.reveal ol li {
+  margin-bottom: 0.32em;
+}
+
+// Destaque de texto
+.reveal .destaque {
+  background-color: #FFF3CD;
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+  font-weight: 600;
+}
