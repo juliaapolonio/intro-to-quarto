@@ -1,0 +1,38 @@
+# ---- Quarto ----------------------------------------------------------------
+/.quarto/
+/_site/
+/_book/
+*_files/
+*_cache/
+*.html
+!/docs/**/*.html
+
+# NÃO ignore _freeze/ — ele precisa ser commitado para o GitHub Actions
+# publicar sem instalar R. (Veja o README.)
+
+# ---- Saídas geradas --------------------------------------------------------
+*.pdf
+*.docx
+material/imagens/
+!img/
+
+# ---- R ---------------------------------------------------------------------
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# ---- Python ----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+
+# ---- Sistema operacional ---------------------------------------------------
+.DS_Store
+Thumbs.db
+*~
+.vscode/
+
+**/*.quarto_ipynb
