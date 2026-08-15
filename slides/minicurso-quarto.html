@@ -11,7 +11,6 @@
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Julia Apolonio e Romério Filho">
-  <meta name="dcterms.date" content="2026-04-08">
   <title>Introdução ao Quarto</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -100,7 +99,7 @@
     code span.vs { color: #032f62; } /* VerbatimString */
     code span.wa { color: #ff5555; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-ef8d696cfc69e156fc06347635fbd537.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-9133505ee71912474c5f25645fbb0b57.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -197,6 +196,18 @@
   <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
   <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
   <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+  <link href="../site_libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+  <script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <link href="../site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+  <script src="../site_libs/datatables-binding-0.34.0/datatables.js"></script>
+  <script src="../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="../site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="../site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+  <script src="../site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+  <link href="../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+  <script src="../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
 <meta property="og:title" content="Introdução ao Quarto">
 <meta property="og:description" content="Simpósio Norte-Nordeste de Bioinformática">
 <meta property="og:site_name" content="Introdução ao Quarto">
@@ -217,9 +228,9 @@ Julia Apolonio e Romério Filho
 </div>
 </div>
 
-  <p class="date">04/08/2026</p>
+  <p class="date">15/08/2026</p>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Boas-vindas!</h2>
 <div class="columns">
 <div class="column" style="width:55%;">
@@ -255,7 +266,7 @@ Julia Apolonio e Romério Filho
 </div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Agenda</h2>
 <table class="caption-top">
 <thead>
@@ -314,7 +325,7 @@ Julia Apolonio e Romério Filho
 <h1>1. Introdução</h1>
 
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>O problema</h2>
 <ol type="1">
 <li class="fragment">Rodar o pipeline</li>
@@ -341,41 +352,17 @@ Julia Apolonio e Romério Filho
 </div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>A solução: <em>literate programming</em></h2>
 <p>Texto, código e resultado no <strong>mesmo arquivo</strong>.</p>
-<div class="cell" data-reveal="true" data-fig-width="11" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a></a>flowchart LR</span>
-<span id="cb3-2"><a></a>    A["documento.qmd&lt;br/&gt;texto + código"] --&gt; B["knitr / jupyter"]</span>
-<span id="cb3-3"><a></a>    B --&gt; C["markdown"]</span>
-<span id="cb3-4"><a></a>    C --&gt; D["Pandoc"]</span>
-<span id="cb3-5"><a></a>    D --&gt; E["HTML"]</span>
-<span id="cb3-6"><a></a>    D --&gt; F["PDF"]</span>
-<span id="cb3-7"><a></a>    D --&gt; G["Word"]</span>
-<span id="cb3-8"><a></a>    D --&gt; H["Slides"]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A["documento.qmd&lt;br/&gt;texto + código"] --&gt; B["knitr / jupyter"]
-    B --&gt; C["markdown"]
-    C --&gt; D["Pandoc"]
-    D --&gt; E["HTML"]
-    D --&gt; F["PDF"]
-    D --&gt; G["Word"]
-    D --&gt; H["Slides"]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
+<div class="fragment">
+<p>Você escreve <strong>um</strong> <code>.qmd</code>. O <code>knitr</code> executa o código, o Pandoc converte, e saem HTML, PDF, Word ou slides — todos com os <strong>mesmos</strong> resultados.</p>
 </div>
 <div class="fragment">
 <p>A ideia é de Knuth (1984); a prática virou padrão em pesquisa reproduzível (Peng 2011; Sandve et al.&nbsp;2013).</p>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Por que usar Quarto?</h2>
 <ul>
 <li class="fragment"><strong>Reprodutibilidade</strong> — o número no texto foi <em>calculado</em>, não digitado</li>
@@ -390,11 +377,11 @@ Julia Apolonio e Romério Filho
 </blockquote>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Extensões</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a></a><span class="ex">quarto</span> add quarto-ext/fontawesome</span>
-<span id="cb4-2"><a></a><span class="ex">quarto</span> list extensions</span>
-<span id="cb4-3"><a></a><span class="ex">quarto</span> remove quarto-ext/fontawesome</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a></a><span class="ex">quarto</span> add quarto-ext/fontawesome</span>
+<span id="cb3-2"><a></a><span class="ex">quarto</span> list extensions</span>
+<span id="cb3-3"><a></a><span class="ex">quarto</span> remove quarto-ext/fontawesome</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -425,18 +412,8 @@ Julia Apolonio e Romério Filho
 </tr>
 </tbody>
 </table>
-<div class="callout callout-warning callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p>Extensões ficam em <code>_extensions/</code> — <strong>commite essa pasta</strong>.</p>
-</div>
-</div>
-</div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Documentação</h2>
 <ul>
 <li>📘 Guia: <a href="https://quarto.org/docs/guide/" class="uri">https://quarto.org/docs/guide/</a></li>
@@ -466,43 +443,43 @@ Julia Apolonio e Romério Filho
 <h1>2. O Quarto</h1>
 
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>As três partes de um <code>.qmd</code></h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="co">---</span></span>
-<span id="cb5-2"><a></a><span class="an">title:</span><span class="co"> "Meu relatório"      # 1. HEADER YAML</span></span>
-<span id="cb5-3"><a></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb5-4"><a></a><span class="co">---</span></span>
-<span id="cb5-5"><a></a></span>
-<span id="cb5-6"><a></a><span class="fu">## Introdução                # 2. TEXTO EM MARKDOWN</span></span>
-<span id="cb5-7"><a></a></span>
-<span id="cb5-8"><a></a>Texto normal em **markdown**.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a></a><span class="co">---</span></span>
+<span id="cb4-2"><a></a><span class="an">title:</span><span class="co"> "Meu relatório"      # 1. HEADER YAML</span></span>
+<span id="cb4-3"><a></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb4-4"><a></a><span class="co">---</span></span>
+<span id="cb4-5"><a></a></span>
+<span id="cb4-6"><a></a><span class="fu">## Introdução                # 2. TEXTO EM MARKDOWN</span></span>
+<span id="cb4-7"><a></a></span>
+<span id="cb4-8"><a></a>Texto normal em **markdown**.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>E a terceira parte, o <strong>chunk</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb6-2"><a></a><span class="co">#| label: exemplo</span></span>
-<span id="cb6-3"><a></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb6-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb5-2"><a></a><span class="co">#| label: exemplo</span></span>
+<span id="cb5-3"><a></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb5-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Anatomia de um chunk</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb7-2"><a></a><span class="co">#| label: minha-analise</span></span>
-<span id="cb7-3"><a></a><span class="co">#| echo: false</span></span>
-<span id="cb7-4"><a></a><span class="co">#| fig-cap: "Uma figura qualquer"</span></span>
-<span id="cb7-5"><a></a></span>
-<span id="cb7-6"><a></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb7-7"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb6-2"><a></a><span class="co">#| label: minha-analise</span></span>
+<span id="cb6-3"><a></a><span class="co">#| echo: false</span></span>
+<span id="cb6-4"><a></a><span class="co">#| fig-cap: "Uma figura qualquer"</span></span>
+<span id="cb6-5"><a></a></span>
+<span id="cb6-6"><a></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb6-7"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li class="fragment"><code>```{r}</code> → abre o bloco e define a linguagem</li>
 <li class="fragment"><code>#|</code> (<em>hash-pipe</em>) → opções do chunk, em YAML</li>
 <li class="fragment"><code>```</code> → fecha o bloco</li>
 </ul>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Renderização</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a></a><span class="ex">quarto</span> render documento.qmd            <span class="co"># todos os formatos</span></span>
-<span id="cb8-2"><a></a><span class="ex">quarto</span> render documento.qmd <span class="at">--to</span> pdf   <span class="co"># só um</span></span>
-<span id="cb8-3"><a></a><span class="ex">quarto</span> preview documento.qmd           <span class="co"># recarrega sozinho ✨</span></span>
-<span id="cb8-4"><a></a><span class="ex">quarto</span> render                          <span class="co"># projeto inteiro</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a></a><span class="ex">quarto</span> render documento.qmd            <span class="co"># todos os formatos</span></span>
+<span id="cb7-2"><a></a><span class="ex">quarto</span> render documento.qmd <span class="at">--to</span> pdf   <span class="co"># só um</span></span>
+<span id="cb7-3"><a></a><span class="ex">quarto</span> preview documento.qmd           <span class="co"># recarrega sozinho ✨</span></span>
+<span id="cb7-4"><a></a><span class="ex">quarto</span> render                          <span class="co"># projeto inteiro</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>No Positron / RStudio: botão <strong>Render</strong> ou <code>Ctrl/Cmd + Shift + K</code>.</p>
 </div>
@@ -522,7 +499,7 @@ Julia Apolonio e Romério Filho
 </div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Formatos de saída</h2>
 <table class="caption-top">
 <thead>
@@ -571,7 +548,7 @@ Julia Apolonio e Romério Filho
 </tbody>
 </table>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>R Markdown vs Quarto</h2>
 <table class="caption-top">
 <thead>
@@ -615,7 +592,7 @@ Julia Apolonio e Romério Filho
 </tbody>
 </table>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Duas armadilhas da migração</h2>
 <ol type="1">
 <li class="fragment"><p><strong>Ponto vira hífen</strong> <code>fig.cap</code> → <code>fig-cap</code>, <code>out.width</code> → <code>out-width</code></p></li>
@@ -625,11 +602,11 @@ Julia Apolonio e Romério Filho
 <p>Antes:</p>
 <p><code>{r meu-chunk, echo=FALSE, fig.cap="Legenda"} plot(x, y)</code></p>
 <p>Agora:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb9-2"><a></a><span class="co">#| label: meu-chunk</span></span>
-<span id="cb9-3"><a></a><span class="co">#| echo: false</span></span>
-<span id="cb9-4"><a></a><span class="co">#| fig-cap: "Legenda"</span></span>
-<span id="cb9-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a></a><span class="co">#| label: meu-chunk</span></span>
+<span id="cb8-3"><a></a><span class="co">#| echo: false</span></span>
+<span id="cb8-4"><a></a><span class="co">#| fig-cap: "Legenda"</span></span>
+<span id="cb8-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p>Boa notícia: <code>quarto render arquivo.Rmd</code> funciona. Migre aos poucos.</p>
@@ -640,19 +617,19 @@ Julia Apolonio e Romério Filho
 <h1>3. Notação Markdown</h1>
 
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Formatação de texto</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a>*itálico*</span>
-<span id="cb10-2"><a></a>**negrito**</span>
-<span id="cb10-3"><a></a>***os dois***</span>
-<span id="cb10-4"><a></a>~~riscado~~</span>
-<span id="cb10-5"><a></a><span class="in">`código`</span></span>
-<span id="cb10-6"><a></a>H~2~O</span>
-<span id="cb10-7"><a></a>10^-9^</span>
-<span id="cb10-8"><a></a><span class="co">[</span><span class="ot">versalete</span><span class="co">]</span>{.smallcaps}</span>
-<span id="cb10-9"><a></a><span class="at">&gt; citação</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a></a>*itálico*</span>
+<span id="cb9-2"><a></a>**negrito**</span>
+<span id="cb9-3"><a></a>***os dois***</span>
+<span id="cb9-4"><a></a>~~riscado~~</span>
+<span id="cb9-5"><a></a><span class="in">`código`</span></span>
+<span id="cb9-6"><a></a>H~2~O</span>
+<span id="cb9-7"><a></a>10^-9^</span>
+<span id="cb9-8"><a></a><span class="co">[</span><span class="ot">versalete</span><span class="co">]</span>{.smallcaps}</span>
+<span id="cb9-9"><a></a><span class="at">&gt; citação</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <p><em>itálico</em><br>
 <strong>negrito</strong><br>
@@ -677,13 +654,13 @@ H<sub>2</sub>O<br>
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Títulos</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a><span class="fu"># Nível 1</span></span>
-<span id="cb11-2"><a></a><span class="fu">## Nível 2</span></span>
-<span id="cb11-3"><a></a><span class="fu">### Nível 3</span></span>
-<span id="cb11-4"><a></a></span>
-<span id="cb11-5"><a></a><span class="fu">## Métodos {#sec-metodos}   ← id manual, para referenciar</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a></a><span class="fu"># Nível 1</span></span>
+<span id="cb10-2"><a></a><span class="fu">## Nível 2</span></span>
+<span id="cb10-3"><a></a><span class="fu">### Nível 3</span></span>
+<span id="cb10-4"><a></a></span>
+<span id="cb10-5"><a></a><span class="fu">## Métodos {#sec-metodos}   ← id manual, para referenciar</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
@@ -700,15 +677,15 @@ H<sub>2</sub>O<br>
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Links e imagens</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a><span class="co">[</span><span class="ot">texto</span><span class="co">](https://quarto.org)</span></span>
-<span id="cb12-2"><a></a><span class="ot">&lt;https://quarto.org&gt;</span></span>
-<span id="cb12-3"><a></a><span class="co">[</span><span class="ot">para outra seção</span><span class="co">](#sec-metodos)</span></span>
-<span id="cb12-4"><a></a></span>
-<span id="cb12-5"><a></a><span class="al">![Legenda](imagens/fig.png)</span></span>
-<span id="cb12-6"><a></a><span class="al">![Legenda](imagens/fig.png)</span>{width=60%}</span>
-<span id="cb12-7"><a></a><span class="al">![Legenda](imagens/fig.png)</span>{#fig-minha fig-align="left"}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a></a><span class="co">[</span><span class="ot">texto</span><span class="co">](https://quarto.org)</span></span>
+<span id="cb11-2"><a></a><span class="ot">&lt;https://quarto.org&gt;</span></span>
+<span id="cb11-3"><a></a><span class="co">[</span><span class="ot">para outra seção</span><span class="co">](#sec-metodos)</span></span>
+<span id="cb11-4"><a></a></span>
+<span id="cb11-5"><a></a><span class="al">![Legenda](imagens/fig.png)</span></span>
+<span id="cb11-6"><a></a><span class="al">![Legenda](imagens/fig.png)</span>{width=60%}</span>
+<span id="cb11-7"><a></a><span class="al">![Legenda](imagens/fig.png)</span>{#fig-minha fig-align="left"}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>A diferença entre link e imagem é o <strong><code>!</code></strong> na frente.</p>
 </div>
@@ -725,23 +702,22 @@ H<sub>2</sub>O<br>
 </div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Listas</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a><span class="ss">- </span>item</span>
-<span id="cb13-2"><a></a><span class="ss">- </span>outro</span>
-<span id="cb13-3"><a></a><span class="ss">  - </span>subitem</span>
-<span id="cb13-4"><a></a><span class="ss">- </span>terceiro</span>
-<span id="cb13-5"><a></a></span>
-<span id="cb13-6"><a></a><span class="ss">1. </span>primeiro</span>
-<span id="cb13-7"><a></a><span class="ss">2. </span>segundo</span>
-<span id="cb13-8"><a></a></span>
-<span id="cb13-9"><a></a><span class="ss">- </span><span class="va">[ ]</span> pendente</span>
-<span id="cb13-10"><a></a><span class="ss">- </span><span class="va">[x]</span> feito</span>
-<span id="cb13-11"><a></a></span>
-<span id="cb13-12"><a></a>FASTQ</span>
-<span id="cb13-13"><a></a>: sequências + qualidades</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a></a><span class="ss">- </span>item</span>
+<span id="cb12-2"><a></a><span class="ss">- </span>outro</span>
+<span id="cb12-3"><a></a><span class="ss">  - </span>subitem</span>
+<span id="cb12-4"><a></a></span>
+<span id="cb12-5"><a></a><span class="ss">1. </span>primeiro</span>
+<span id="cb12-6"><a></a><span class="ss">2. </span>segundo</span>
+<span id="cb12-7"><a></a></span>
+<span id="cb12-8"><a></a><span class="ss">- </span><span class="va">[ ]</span> pendente</span>
+<span id="cb12-9"><a></a><span class="ss">- </span><span class="va">[x]</span> feito</span>
+<span id="cb12-10"><a></a></span>
+<span id="cb12-11"><a></a>FASTQ</span>
+<span id="cb12-12"><a></a>: sequências e qualidades</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <ul>
 <li>item</li>
@@ -749,16 +725,22 @@ H<sub>2</sub>O<br>
 <ul>
 <li>subitem</li>
 </ul></li>
-<li>terceiro</li>
 </ul>
+<p><br></p>
 <ol type="1">
 <li>primeiro</li>
 <li>segundo</li>
 </ol>
+<p><br></p>
+<ul class="task-list">
+<li><label><input type="checkbox">pendente</label></li>
+<li><label><input type="checkbox" checked="">feito</label></li>
+</ul>
+<p><br></p>
 <dl>
 <dt>FASTQ</dt>
 <dd>
-sequências + qualidades
+sequências e qualidades
 </dd>
 </dl>
 </div></div>
@@ -773,16 +755,15 @@ sequências + qualidades
 </div>
 </div>
 </section>
-<section class="slide level2" data-background-color="#D95F02">
+<section class="slide level2 center" data-background-color="#D95F02">
 <h2>🧪 Exercício 1</h2>
 <p><strong>Crie <code>exercicio1.qmd</code> com:</strong></p>
 <ol type="1">
 <li>Header YAML: título, autoria, <code>format: html</code></li>
 <li><code>## Sobre mim</code> — parágrafo com <strong>negrito</strong> e <em>itálico</em></li>
-<li><code>## Ferramentas</code> — lista com 3 itens, um com 2 subitens</li>
-<li><code>## Passos de RNA-seq</code> — lista ordenada de 4 etapas</li>
+<li><code>## Meus hobbies</code> — lista <strong>não ordenada</strong> de 3 hobbies, sendo que um tem <strong>dois subitens</strong></li>
+<li><code>## Minha rotina</code> — lista <strong>ordenada</strong> de 4 etapas do seu dia</li>
 <li>Um link e uma imagem com <code>width=70%</code></li>
-<li>Uma fórmula com subscrito (<code>CO~2~</code>)</li>
 </ol>
 <div class="timer" data-minutes="15">
 
@@ -793,30 +774,30 @@ sequências + qualidades
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Solução na seção 3.4 do material</p>
+<p>Solução na seção 4.5 do material</p>
 </div>
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Footnotes</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a></a>Este método é amplamente usado.<span class="ot">[^1]</span></span>
-<span id="cb14-2"><a></a></span>
-<span id="cb14-3"><a></a><span class="ot">[^1]: </span>Ainda que existam críticas relevantes.</span>
-<span id="cb14-4"><a></a></span>
-<span id="cb14-5"><a></a>Ou em linha.^<span class="co">[</span><span class="ot">Assim, sem declarar depois.</span><span class="co">]</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a></a>Este método é amplamente usado.<span class="ot">[^1]</span></span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a><span class="ot">[^1]: </span>Ainda que existam críticas relevantes.</span>
+<span id="cb13-4"><a></a></span>
+<span id="cb13-5"><a></a>Ou em linha.^<span class="co">[</span><span class="ot">Assim, sem declarar depois.</span><span class="co">]</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>O rótulo (<code>[^1]</code>, <code>[^metodo]</code>) é só interno — a numeração final é automática e segue a ordem de aparição.</p>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Tabelas de pipe</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a></a><span class="pp">|</span> Gene   <span class="pp">|</span> log2FC <span class="pp">|</span> p-ajustado <span class="pp">|</span></span>
-<span id="cb15-2"><a></a><span class="pp">|:-------|-------:|-----------:|</span></span>
-<span id="cb15-3"><a></a><span class="pp">|</span> BRCA1  <span class="pp">|</span>   2,31 <span class="pp">|</span>     0,0001 <span class="pp">|</span></span>
-<span id="cb15-4"><a></a><span class="pp">|</span> TP53   <span class="pp">|</span>  -1,87 <span class="pp">|</span>     0,0034 <span class="pp">|</span></span>
-<span id="cb15-5"><a></a></span>
-<span id="cb15-6"><a></a>: Genes diferencialmente expressos {#tbl-degs .striped}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a></a><span class="pp">|</span> Gene   <span class="pp">|</span> log2FC <span class="pp">|</span> p-ajustado <span class="pp">|</span></span>
+<span id="cb14-2"><a></a><span class="pp">|:-------|-------:|-----------:|</span></span>
+<span id="cb14-3"><a></a><span class="pp">|</span> BRCA1  <span class="pp">|</span>   2,31 <span class="pp">|</span>     0,0001 <span class="pp">|</span></span>
+<span id="cb14-4"><a></a><span class="pp">|</span> TP53   <span class="pp">|</span>  -1,87 <span class="pp">|</span>     0,0034 <span class="pp">|</span></span>
+<span id="cb14-5"><a></a></span>
+<span id="cb14-6"><a></a>: Genes diferencialmente expressos {#tbl-degs .striped}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <table class="caption-top">
 <thead>
@@ -845,17 +826,17 @@ sequências + qualidades
 Classes: <code>.striped</code> <code>.hover</code> <code>.bordered</code> <code>.sm</code></p>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Tabelas de grade</h2>
 <p>Quando a célula precisa de mais de uma linha:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a></a>+-------------+------------------+</span>
-<span id="cb16-2"><a></a><span class="pp">|</span> Etapa       <span class="pp">|</span> Ferramentas      <span class="pp">|</span></span>
-<span id="cb16-3"><a></a>+===========<span class="al">==+==</span>================+</span>
-<span id="cb16-4"><a></a><span class="pp">|</span> QC          <span class="pp">|</span> - FastQC         <span class="pp">|</span></span>
-<span id="cb16-5"><a></a><span class="pp">|</span>             <span class="pp">|</span> - MultiQC        <span class="pp">|</span></span>
-<span id="cb16-6"><a></a>+-------------+------------------+</span>
-<span id="cb16-7"><a></a><span class="pp">|</span> Alinhamento <span class="pp">|</span> - STAR           <span class="pp">|</span></span>
-<span id="cb16-8"><a></a>+-------------+------------------+</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a></a>+-------------+------------------+</span>
+<span id="cb15-2"><a></a><span class="pp">|</span> Etapa       <span class="pp">|</span> Ferramentas      <span class="pp">|</span></span>
+<span id="cb15-3"><a></a>+===========<span class="al">==+==</span>================+</span>
+<span id="cb15-4"><a></a><span class="pp">|</span> QC          <span class="pp">|</span> - FastQC         <span class="pp">|</span></span>
+<span id="cb15-5"><a></a><span class="pp">|</span>             <span class="pp">|</span> - MultiQC        <span class="pp">|</span></span>
+<span id="cb15-6"><a></a>+-------------+------------------+</span>
+<span id="cb15-7"><a></a><span class="pp">|</span> Alinhamento <span class="pp">|</span> - STAR           <span class="pp">|</span></span>
+<span id="cb15-8"><a></a>+-------------+------------------+</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-tip callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
@@ -868,14 +849,14 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Equações</h2>
 <p>Em linha: <code>$E = mc^2$</code> → <span class="math inline">\(E = mc^2\)</span></p>
 <div class="fragment">
 <p>Em bloco, com id para referenciar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a></a>$$</span>
-<span id="cb17-2"><a></a>\log_2 \text{FC} = \log_2<span class="sc">\!</span>\left(\frac{\mu_{trat}}{\mu_{ctrl}}\right)</span>
-<span id="cb17-3"><a></a>$$ {#eq-log2fc}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a></a>$$</span>
+<span id="cb16-2"><a></a>\log_2 \text{FC} = \log_2<span class="sc">\!</span>\left(\frac{\mu_{trat}}{\mu_{ctrl}}\right)</span>
+<span id="cb16-3"><a></a>$$ {#eq-log2fc}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p><span class="math display">\[
 \log_2 \text{FC} = \log_2\!\left(\frac{\mu_{trat}}{\mu_{ctrl}}\right)
 \]</span></p>
@@ -884,23 +865,23 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 <p>E no texto: <code>A @eq-log2fc mostra...</code> → “A Equação 1 mostra…”</p>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 smaller center">
 <h2>Diagramas — Mermaid</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a></a><span class="in">```{mermaid}</span></span>
-<span id="cb18-2"><a></a>flowchart TD</span>
-<span id="cb18-3"><a></a>    A[FASTQ] --&gt; B[QC]</span>
-<span id="cb18-4"><a></a>    B --&gt; C{Qualidade OK?}</span>
-<span id="cb18-5"><a></a>    C --&gt;|Sim| D[Alinhamento]</span>
-<span id="cb18-6"><a></a>    C --&gt;|Não| E[Trimagem]</span>
-<span id="cb18-7"><a></a>    E --&gt; B</span>
-<span id="cb18-8"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell" data-reveal="true" data-fig-width="6" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a></a>flowchart TD</span>
-<span id="cb19-2"><a></a>    A[FASTQ] --&gt; B[QC]</span>
-<span id="cb19-3"><a></a>    B --&gt; C{Qualidade OK?}</span>
-<span id="cb19-4"><a></a>    C --&gt;|Sim| D[Alinhamento]</span>
-<span id="cb19-5"><a></a>    C --&gt;|Não| E[Trimagem]</span>
-<span id="cb19-6"><a></a>    E --&gt; B</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Você escreve</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a></a><span class="in">```{mermaid}</span></span>
+<span id="cb17-2"><a></a>flowchart TD</span>
+<span id="cb17-3"><a></a>    A[FASTQ] --&gt; B[QC]</span>
+<span id="cb17-4"><a></a>    B --&gt; C{Qualidade OK?}</span>
+<span id="cb17-5"><a></a>    C --&gt;|Sim| D[Alinhamento]</span>
+<span id="cb17-6"><a></a>    C --&gt;|Não| E[Trimagem]</span>
+<span id="cb17-7"><a></a>    E --&gt; B</span>
+<span id="cb17-8"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<p><strong>Sai isto</strong></p>
+<div class="diagrama-cabe">
+<div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -917,90 +898,88 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 </div>
 </div>
 </div>
-<div class="callout callout-note callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
 </div>
-<div class="callout-content">
-<p>Em blocos <code>mermaid</code> as opções usam <code>%%|</code>; em <code>dot</code>, usam <code>//|</code>.</p>
-</div>
-</div>
-</div>
+</div></div>
 </section>
-<section class="slide level2">
+<section class="slide level2 smaller center">
 <h2>Diagramas — Graphviz</h2>
-<div class="cell" data-fig-width="8" data-fig-height="2.5" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource dot number-lines code-with-copy"><code class="sourceCode dot"><span id="cb20-1"><a></a><span class="kw">digraph</span> <span class="va">G</span> <span class="ot">{</span></span>
-<span id="cb20-2"><a></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">LR</span><span class="ot">;</span></span>
-<span id="cb20-3"><a></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="ot">=</span><span class="va">box</span><span class="co">, </span><span class="at">style</span><span class="ot">=</span><span class="st">"rounded,filled"</span><span class="co">,</span></span>
-<span id="cb20-4"><a></a><span class="co">        </span><span class="at">fillcolor</span><span class="ot">=</span><span class="st">"#EAF2F8"</span><span class="co">, </span><span class="at">fontname</span><span class="ot">=</span><span class="st">"Helvetica"</span><span class="ot">];</span></span>
-<span id="cb20-5"><a></a><span class="co">  </span><span class="st">"_quarto.yml"</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="st">"analise.qmd"</span><span class="ot">;</span></span>
-<span id="cb20-6"><a></a><span class="co">  </span><span class="st">"referencias.bib"</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="st">"analise.qmd"</span><span class="ot">;</span></span>
-<span id="cb20-7"><a></a><span class="co">  </span><span class="st">"styles.css"</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="st">"analise.qmd"</span><span class="ot">;</span></span>
-<span id="cb20-8"><a></a><span class="co">  </span><span class="st">"analise.qmd"</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="st">"_site/analise.html"</span><span class="ot">;</span></span>
-<span id="cb20-9"><a></a><span class="ot">}</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="columns">
+<div class="column" style="width:42%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource dot number-lines code-with-copy"><code class="sourceCode dot"><span id="cb18-1"><a></a><span class="kw">digraph</span> <span class="va">G</span> <span class="ot">{</span></span>
+<span id="cb18-2"><a></a><span class="co">  </span><span class="at">rankdir</span><span class="ot">=</span><span class="va">LR</span><span class="ot">;</span><span class="co">          // LR, TD, BT, RL</span></span>
+<span id="cb18-3"><a></a><span class="co">  </span><span class="at">bgcolor</span><span class="ot">=</span><span class="st">"transparent"</span><span class="ot">;</span></span>
+<span id="cb18-4"><a></a></span>
+<span id="cb18-5"><a></a><span class="co">  </span><span class="kw">node</span><span class="co"> </span><span class="ot">[</span><span class="at">shape</span><span class="ot">=</span><span class="va">box</span><span class="co">,</span></span>
+<span id="cb18-6"><a></a><span class="co">        </span><span class="at">style</span><span class="ot">=</span><span class="st">"rounded,filled"</span><span class="co">,</span></span>
+<span id="cb18-7"><a></a><span class="co">        </span><span class="at">fillcolor</span><span class="ot">=</span><span class="st">"#EAF2F8"</span><span class="co">,</span></span>
+<span id="cb18-8"><a></a><span class="co">        </span><span class="at">color</span><span class="ot">=</span><span class="st">"#2C7FB8"</span><span class="co">,</span></span>
+<span id="cb18-9"><a></a><span class="co">        </span><span class="at">fontname</span><span class="ot">=</span><span class="st">"Helvetica"</span><span class="co">,</span></span>
+<span id="cb18-10"><a></a><span class="co">        </span><span class="at">fontsize</span><span class="ot">=</span><span class="dv">11</span><span class="ot">];</span></span>
+<span id="cb18-11"><a></a></span>
+<span id="cb18-12"><a></a><span class="co">  </span><span class="kw">edge</span><span class="co"> </span><span class="ot">[</span><span class="at">color</span><span class="ot">=</span><span class="st">"#7A8894"</span><span class="co">,</span></span>
+<span id="cb18-13"><a></a><span class="co">        </span><span class="at">arrowsize</span><span class="ot">=</span><span class="dv">0.7</span><span class="co">,</span></span>
+<span id="cb18-14"><a></a><span class="co">        </span><span class="at">style</span><span class="ot">=</span><span class="va">dashed</span><span class="ot">];</span></span>
+<span id="cb18-15"><a></a></span>
+<span id="cb18-16"><a></a><span class="co">  // nó com estilo próprio</span></span>
+<span id="cb18-17"><a></a><span class="co">  </span><span class="va">saida</span><span class="co"> </span><span class="ot">[</span><span class="at">label</span><span class="ot">=</span><span class="st">"_site/"</span><span class="co">,</span></span>
+<span id="cb18-18"><a></a><span class="co">         </span><span class="at">shape</span><span class="ot">=</span><span class="va">folder</span><span class="co">,</span></span>
+<span id="cb18-19"><a></a><span class="co">         </span><span class="at">fillcolor</span><span class="ot">=</span><span class="st">"#FFE9D6"</span><span class="ot">];</span></span>
+<span id="cb18-20"><a></a></span>
+<span id="cb18-21"><a></a><span class="co">  </span><span class="st">"_quarto.yml"</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="st">"analise.qmd"</span><span class="ot">;</span></span>
+<span id="cb18-22"><a></a><span class="co">  </span><span class="st">"styles.css"</span><span class="co">  </span><span class="ot">-&gt;</span><span class="co"> </span><span class="st">"analise.qmd"</span><span class="ot">;</span></span>
+<span id="cb18-23"><a></a><span class="co">  </span><span class="st">"analise.qmd"</span><span class="co"> </span><span class="ot">-&gt;</span><span class="co"> </span><span class="va">saida</span></span>
+<span id="cb18-24"><a></a><span class="co">      </span><span class="ot">[</span><span class="at">style</span><span class="ot">=</span><span class="va">solid</span><span class="co">, </span><span class="va">penwidth</span><span class="ot">=</span><span class="dv">2</span><span class="ot">];</span></span>
+<span id="cb18-25"><a></a><span class="ot">}</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:58%;">
+<div class="cell" data-fig-width="5.6" data-fig-height="3.6" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
-<svg width="768" height="240" viewbox="0.00 0.00 403.48 152.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 148)">
+<svg width="538" height="346" viewbox="0.00 0.00 282.78 98.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 94)">
 <title>G</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-148 399.48,-148 399.48,4 -4,4"></polygon>
-<!-- _quarto.yml -->
+<!-- saida -->
 <g id="node1" class="node">
+<title>saida</title>
+<polygon fill="#ffe9d6" stroke="#2c7fb8" points="274.78,-63 271.78,-67 250.78,-67 247.78,-63 220.78,-63 220.78,-27 274.78,-27 274.78,-63"></polygon>
+<text text-anchor="middle" x="247.78" y="-41.7" font-family="Helvetica,sans-Serif" font-size="11.00">_site/</text>
+</g>
+<!-- _quarto.yml -->
+<g id="node2" class="node">
 <title>_quarto.yml</title>
-<path fill="#eaf2f8" stroke="black" d="M86.56,-144C86.56,-144 21.27,-144 21.27,-144 15.27,-144 9.27,-138 9.27,-132 9.27,-132 9.27,-120 9.27,-120 9.27,-114 15.27,-108 21.27,-108 21.27,-108 86.56,-108 86.56,-108 92.56,-108 98.56,-114 98.56,-120 98.56,-120 98.56,-132 98.56,-132 98.56,-138 92.56,-144 86.56,-144"></path>
-<text text-anchor="middle" x="53.91" y="-121.8" font-family="Helvetica,sans-Serif" font-size="14.00">_quarto.yml</text>
+<path fill="#eaf2f8" stroke="#2c7fb8" d="M61.71,-90C61.71,-90 11.76,-90 11.76,-90 5.76,-90 -0.24,-84 -0.24,-78 -0.24,-78 -0.24,-66 -0.24,-66 -0.24,-60 5.76,-54 11.76,-54 11.76,-54 61.71,-54 61.71,-54 67.71,-54 73.71,-60 73.71,-66 73.71,-66 73.71,-78 73.71,-78 73.71,-84 67.71,-90 61.71,-90"></path>
+<text text-anchor="middle" x="36.74" y="-68.7" font-family="Helvetica,sans-Serif" font-size="11.00">_quarto.yml</text>
 </g>
 <!-- analise.qmd -->
-<g id="node2" class="node">
+<g id="node3" class="node">
 <title>analise.qmd</title>
-<path fill="#eaf2f8" stroke="black" d="M223.56,-90C223.56,-90 155.58,-90 155.58,-90 149.58,-90 143.58,-84 143.58,-78 143.58,-78 143.58,-66 143.58,-66 143.58,-60 149.58,-54 155.58,-54 155.58,-54 223.56,-54 223.56,-54 229.56,-54 235.56,-60 235.56,-66 235.56,-66 235.56,-78 235.56,-78 235.56,-84 229.56,-90 223.56,-90"></path>
-<text text-anchor="middle" x="189.57" y="-67.8" font-family="Helvetica,sans-Serif" font-size="14.00">analise.qmd</text>
+<path fill="#eaf2f8" stroke="#2c7fb8" d="M172.94,-63C172.94,-63 121.31,-63 121.31,-63 115.31,-63 109.31,-57 109.31,-51 109.31,-51 109.31,-39 109.31,-39 109.31,-33 115.31,-27 121.31,-27 121.31,-27 172.94,-27 172.94,-27 178.94,-27 184.94,-33 184.94,-39 184.94,-39 184.94,-51 184.94,-51 184.94,-57 178.94,-63 172.94,-63"></path>
+<text text-anchor="middle" x="147.13" y="-41.7" font-family="Helvetica,sans-Serif" font-size="11.00">analise.qmd</text>
 </g>
 <!-- _quarto.yml&#45;&gt;analise.qmd -->
 <g id="edge1" class="edge">
 <title>_quarto.yml-&gt;analise.qmd</title>
-<path fill="none" stroke="black" d="M98.68,-108.32C110.09,-103.71 122.53,-98.68 134.41,-93.88"></path>
-<polygon fill="black" stroke="black" points="135.83,-97.08 143.79,-90.09 133.21,-90.59 135.83,-97.08"></polygon>
+<path fill="none" stroke="#7a8894" stroke-dasharray="5,2" d="M73.53,-63.08C82.76,-60.79 92.79,-58.29 102.38,-55.9"></path>
+<polygon fill="#7a8894" stroke="#7a8894" points="103.06,-58.25 109.26,-54.18 101.87,-53.5 103.06,-58.25"></polygon>
 </g>
-<!-- _site/analise.html -->
-<g id="node5" class="node">
-<title>_site/analise.html</title>
-<path fill="#eaf2f8" stroke="black" d="M383.56,-90C383.56,-90 283.23,-90 283.23,-90 277.23,-90 271.23,-84 271.23,-78 271.23,-78 271.23,-66 271.23,-66 271.23,-60 277.23,-54 283.23,-54 283.23,-54 383.56,-54 383.56,-54 389.56,-54 395.56,-60 395.56,-66 395.56,-66 395.56,-78 395.56,-78 395.56,-84 389.56,-90 383.56,-90"></path>
-<text text-anchor="middle" x="333.4" y="-67.8" font-family="Helvetica,sans-Serif" font-size="14.00">_site/analise.html</text>
-</g>
-<!-- analise.qmd&#45;&gt;_site/analise.html -->
-<g id="edge4" class="edge">
-<title>analise.qmd-&gt;_site/analise.html</title>
-<path fill="none" stroke="black" d="M235.45,-72C243.61,-72 252.31,-72 261.02,-72"></path>
-<polygon fill="black" stroke="black" points="261.22,-75.5 271.22,-72 261.22,-68.5 261.22,-75.5"></polygon>
-</g>
-<!-- referencias.bib -->
-<g id="node3" class="node">
-<title>referencias.bib</title>
-<path fill="#eaf2f8" stroke="black" d="M95.74,-90C95.74,-90 12.09,-90 12.09,-90 6.09,-90 0.09,-84 0.09,-78 0.09,-78 0.09,-66 0.09,-66 0.09,-60 6.09,-54 12.09,-54 12.09,-54 95.74,-54 95.74,-54 101.74,-54 107.74,-60 107.74,-66 107.74,-66 107.74,-78 107.74,-78 107.74,-84 101.74,-90 95.74,-90"></path>
-<text text-anchor="middle" x="53.91" y="-67.8" font-family="Helvetica,sans-Serif" font-size="14.00">referencias.bib</text>
-</g>
-<!-- referencias.bib&#45;&gt;analise.qmd -->
-<g id="edge2" class="edge">
-<title>referencias.bib-&gt;analise.qmd</title>
-<path fill="none" stroke="black" d="M108.12,-72C116.51,-72 125.19,-72 133.61,-72"></path>
-<polygon fill="black" stroke="black" points="133.72,-75.5 143.72,-72 133.72,-68.5 133.72,-75.5"></polygon>
+<!-- analise.qmd&#45;&gt;saida -->
+<g id="edge3" class="edge">
+<title>analise.qmd-&gt;saida</title>
+<path fill="none" stroke="#7a8894" stroke-width="2" d="M184.86,-45C194.2,-45 204.18,-45 213.35,-45"></path>
+<polygon fill="#7a8894" stroke="#7a8894" stroke-width="2" points="213.49,-47.45 220.49,-45 213.49,-42.55 213.49,-47.45"></polygon>
 </g>
 <!-- styles.css -->
 <g id="node4" class="node">
 <title>styles.css</title>
-<path fill="#eaf2f8" stroke="black" d="M80.09,-36C80.09,-36 27.74,-36 27.74,-36 21.74,-36 15.74,-30 15.74,-24 15.74,-24 15.74,-12 15.74,-12 15.74,-6 21.74,0 27.74,0 27.74,0 80.09,0 80.09,0 86.09,0 92.09,-6 92.09,-12 92.09,-12 92.09,-24 92.09,-24 92.09,-30 86.09,-36 80.09,-36"></path>
-<text text-anchor="middle" x="53.91" y="-13.8" font-family="Helvetica,sans-Serif" font-size="14.00">styles.css</text>
+<path fill="#eaf2f8" stroke="#2c7fb8" d="M56.41,-36C56.41,-36 17.06,-36 17.06,-36 11.06,-36 5.06,-30 5.06,-24 5.06,-24 5.06,-12 5.06,-12 5.06,-6 11.06,0 17.06,0 17.06,0 56.41,0 56.41,0 62.41,0 68.41,-6 68.41,-12 68.41,-12 68.41,-24 68.41,-24 68.41,-30 62.41,-36 56.41,-36"></path>
+<text text-anchor="middle" x="36.74" y="-14.7" font-family="Helvetica,sans-Serif" font-size="11.00">styles.css</text>
 </g>
 <!-- styles.css&#45;&gt;analise.qmd -->
-<g id="edge3" class="edge">
+<g id="edge2" class="edge">
 <title>styles.css-&gt;analise.qmd</title>
-<path fill="none" stroke="black" d="M92.14,-33.04C105.2,-38.32 120.14,-44.35 134.3,-50.07"></path>
-<polygon fill="black" stroke="black" points="133.37,-53.47 143.95,-53.97 135.99,-46.98 133.37,-53.47"></polygon>
+<path fill="none" stroke="#7a8894" stroke-dasharray="5,2" d="M68.51,-25.66C78.98,-28.27 90.89,-31.24 102.19,-34.05"></path>
+<polygon fill="#7a8894" stroke="#7a8894" points="101.74,-36.47 109.12,-35.78 102.92,-31.71 101.74,-36.47"></polygon>
 </g>
 </g>
 </svg>
@@ -1009,12 +988,21 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 </div>
 </div>
 </div>
+<p><strong>O que dá para mexer</strong></p>
+<ul>
+<li><code>rankdir</code> — direção do fluxo</li>
+<li><code>shape</code> — <code>box</code>, <code>ellipse</code>, <code>folder</code>, <code>cylinder</code>, <code>diamond</code></li>
+<li><code>fillcolor</code> / <code>color</code> — preenchimento e borda</li>
+<li><code>style</code> — <code>dashed</code>, <code>bold</code>, <code>rounded</code></li>
+<li><code>penwidth</code> — espessura da seta</li>
+</ul>
+</div></div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Citações</h2>
 <p>No YAML:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> referencias.bib</span></span>
-<span id="cb21-2"><a></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> nature.csl</span><span class="co">        # opcional</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb19-1"><a></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> referencias.bib</span></span>
+<span id="cb19-2"><a></a><span class="fu">csl</span><span class="kw">:</span><span class="at"> nature.csl</span><span class="co">        # opcional</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="columns">
 <div class="column" style="width:45%;">
 <table class="caption-top">
@@ -1044,26 +1032,33 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 </tbody>
 </table>
 </div><div class="column" style="width:55%;">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource bibtex number-lines code-with-copy"><code class="sourceCode bibtex"><span id="cb22-1"><a></a><span class="va">@article</span>{<span class="ot">sandve2013</span>,</span>
-<span id="cb22-2"><a></a>  <span class="dt">author</span>  = {Sandve, G. K. and others},</span>
-<span id="cb22-3"><a></a>  <span class="dt">title</span>   = {Ten Simple Rules for</span>
-<span id="cb22-4"><a></a>             Reproducible Research},</span>
-<span id="cb22-5"><a></a>  <span class="dt">journal</span> = {PLoS Comput Biol},</span>
-<span id="cb22-6"><a></a>  <span class="dt">year</span>    = {2013}</span>
-<span id="cb22-7"><a></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource bibtex number-lines code-with-copy"><code class="sourceCode bibtex"><span id="cb20-1"><a></a><span class="va">@article</span>{<span class="ot">sandve2013</span>,</span>
+<span id="cb20-2"><a></a>  <span class="dt">author</span>  = {Sandve, G. K. and others},</span>
+<span id="cb20-3"><a></a>  <span class="dt">title</span>   = {Ten Simple Rules for</span>
+<span id="cb20-4"><a></a>             Reproducible Research},</span>
+<span id="cb20-5"><a></a>  <span class="dt">journal</span> = {PLoS Comput Biol},</span>
+<span id="cb20-6"><a></a>  <span class="dt">year</span>    = {2013}</span>
+<span id="cb20-7"><a></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
-<div class="callout callout-tip callout-style-simple">
+<div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
+<div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
+<p><strong>De onde vem o <code>.bib</code>?</strong></p>
+</div>
 <div class="callout-content">
-<p>Zotero + Better BibTeX · <code>citation("DESeq2")</code> no R · estilos <code>.csl</code> em <a href="https://github.com/citation-style-language/styles" class="uri">https://github.com/citation-style-language/styles</a></p>
+<ul>
+<li><strong>Zotero</strong> com o plugin <em>Better BibTeX</em> exporta e mantém o arquivo atualizado sozinho.</li>
+<li>No R, <code>citation("DESeq2")</code> devolve a entrada BibTeX do pacote — sempre cite as ferramentas que você usou.</li>
+<li>Para o estilo do periódico, baixe o <code>.csl</code> em <a href="https://github.com/citation-style-language/styles">citation-style-language/styles</a>.</li>
+</ul>
 </div>
 </div>
 </div>
 </section>
-<section class="slide level2" data-background-color="#D95F02">
+<section class="slide level2 center" data-background-color="#D95F02">
 <h2>🧪 Exercício 2</h2>
 <p><strong>Adicione ao seu documento:</strong></p>
 <ol type="1">
@@ -1082,7 +1077,7 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Solução na seção 3.11 do material</p>
+<p>Solução na seção 4.11 do material</p>
 </div>
 </div>
 </div>
@@ -1097,47 +1092,47 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 <h1>4. Header</h1>
 
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>O painel de controle</h2>
 <div class="columns">
 <div class="column" style="width:48%;">
 <p><strong>Mínimo</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a></a><span class="pp">---</span></span>
-<span id="cb23-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Análise"</span></span>
-<span id="cb23-3"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb23-4"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb21-1"><a></a><span class="pp">---</span></span>
+<span id="cb21-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Análise"</span></span>
+<span id="cb21-3"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb21-4"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Confortável</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a></a><span class="pp">---</span></span>
-<span id="cb24-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Análise"</span></span>
-<span id="cb24-3"><a></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Projeto Caatinga-Seq"</span></span>
-<span id="cb24-4"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Fulana de Tal"</span></span>
-<span id="cb24-5"><a></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb24-6"><a></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> pt-BR</span></span>
-<span id="cb24-7"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
-<span id="cb24-8"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb22-1"><a></a><span class="pp">---</span></span>
+<span id="cb22-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Análise"</span></span>
+<span id="cb22-3"><a></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Projeto Caatinga-Seq"</span></span>
+<span id="cb22-4"><a></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Fulana de Tal"</span></span>
+<span id="cb22-5"><a></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb22-6"><a></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> pt-BR</span></span>
+<span id="cb22-7"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb22-8"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:52%;">
 <p><strong>Completo</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a></a><span class="pp">---</span></span>
-<span id="cb25-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Análise"</span></span>
-<span id="cb25-3"><a></a><span class="fu">author</span><span class="kw">:</span></span>
-<span id="cb25-4"><a></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Fulana de Tal"</span></span>
-<span id="cb25-5"><a></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"fulana@ufrn.br"</span></span>
-<span id="cb25-6"><a></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"UFRN"</span></span>
-<span id="cb25-7"><a></a><span class="at">    </span><span class="fu">orcid</span><span class="kw">:</span><span class="at"> </span><span class="st">"0000-0000-0000-0000"</span></span>
-<span id="cb25-8"><a></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
-<span id="cb25-9"><a></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> pt-BR</span></span>
-<span id="cb25-10"><a></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb25-11"><a></a>  Relatório da análise de 12 amostras.</span>
-<span id="cb25-12"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb25-13"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb25-14"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb25-15"><a></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb25-16"><a></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb25-17"><a></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> referencias.bib</span></span>
-<span id="cb25-18"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb23-1"><a></a><span class="pp">---</span></span>
+<span id="cb23-2"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Análise"</span></span>
+<span id="cb23-3"><a></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb23-4"><a></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Fulana de Tal"</span></span>
+<span id="cb23-5"><a></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"fulana@ufrn.br"</span></span>
+<span id="cb23-6"><a></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"UFRN"</span></span>
+<span id="cb23-7"><a></a><span class="at">    </span><span class="fu">orcid</span><span class="kw">:</span><span class="at"> </span><span class="st">"0000-0000-0000-0000"</span></span>
+<span id="cb23-8"><a></a><span class="fu">date</span><span class="kw">:</span><span class="at"> today</span></span>
+<span id="cb23-9"><a></a><span class="fu">lang</span><span class="kw">:</span><span class="at"> pt-BR</span></span>
+<span id="cb23-10"><a></a><span class="fu">abstract</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb23-11"><a></a>  Relatório da análise de 12 amostras.</span>
+<span id="cb23-12"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb23-13"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb23-14"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb23-15"><a></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb23-16"><a></a><span class="at">    </span><span class="fu">code-fold</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb23-17"><a></a><span class="fu">bibliography</span><span class="kw">:</span><span class="at"> referencias.bib</span></span>
+<span id="cb23-18"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Opções de HTML que valem a pena</h2>
 <table class="caption-top">
 <colgroup>
@@ -1182,11 +1177,11 @@ Conversor útil: <a href="https://www.tablesgenerator.com/markdown_tables" class
 </tbody>
 </table>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2><code>embed-resources</code></h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb26-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb26-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb26-3"><a></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb24-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb24-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb24-3"><a></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -1209,15 +1204,15 @@ Se você mandar só o HTML por e-mail, <strong>ele chega quebrado</strong>.</p>
 <code>self-contained: true</code> era o nome antigo — está <strong>depreciado</strong>.</p>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Cache</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb27-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb27-2"><a></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">          # documento inteiro</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb28-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb28-2"><a></a><span class="co">#| label: modelo-pesado</span></span>
-<span id="cb28-3"><a></a><span class="co">#| cache: true         # só este chunk</span></span>
-<span id="cb28-4"><a></a>resultado <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
-<span id="cb28-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb25-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb25-2"><a></a><span class="at">  </span><span class="fu">cache</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">          # documento inteiro</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb26-2"><a></a><span class="co">#| label: modelo-pesado</span></span>
+<span id="cb26-3"><a></a><span class="co">#| cache: true         # só este chunk</span></span>
+<span id="cb26-4"><a></a>resultado <span class="ot">&lt;-</span> <span class="fu">DESeq</span>(dds)</span>
+<span id="cb26-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
@@ -1235,17 +1230,27 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 </div>
 </div>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb29-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb29-2"><a></a><span class="co">#| cache: true</span></span>
-<span id="cb29-3"><a></a><span class="co">#| dependson: ["carrega-dados"]</span></span>
-<span id="cb29-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb27-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb27-2"><a></a><span class="co">#| cache: true</span></span>
+<span id="cb27-3"><a></a><span class="co">#| dependson: ["carrega-dados"]</span></span>
+<span id="cb27-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-warning callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>O chunk citado em <code>dependson</code> também precisa ter <code>cache: true</code> — senão o <code>knitr</code> para com <code>must not depend on the uncached chunk</code>.</p>
+</div>
+</div>
+</div>
 <p>Limpar: <code>quarto render --cache-refresh</code> ou apagar <code>*_cache/</code>.</p>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2><code>freeze</code>: cache para projetos</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb30-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb30-2"><a></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span><span class="co">      # só re-executa se o .qmd mudar</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb28-1"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb28-2"><a></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span><span class="co">      # só re-executa se o .qmd mudar</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Os resultados vão para <code>_freeze/</code> e <strong>podem ser commitados</strong>.</p>
 </div>
@@ -1265,7 +1270,7 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 </div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Documento vs chunk</h2>
 <table class="caption-top">
 <thead>
@@ -1295,17 +1300,17 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 </table>
 <div class="fragment">
 <p><strong>O mais específico vence:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb31-1"><a></a><span class="pp">---</span></span>
-<span id="cb31-2"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb31-3"><a></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">      # nenhum código aparece...</span></span>
-<span id="cb31-4"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb32-2"><a></a><span class="co">#| echo: true      # ...exceto neste</span></span>
-<span id="cb32-3"><a></a><span class="fu">head</span>(mtcars)</span>
-<span id="cb32-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb29-1"><a></a><span class="pp">---</span></span>
+<span id="cb29-2"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb29-3"><a></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">      # nenhum código aparece...</span></span>
+<span id="cb29-4"><a></a><span class="pp">---</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb30-2"><a></a><span class="co">#| echo: true      # ...exceto neste</span></span>
+<span id="cb30-3"><a></a><span class="fu">head</span>(mtcars)</span>
+<span id="cb30-4"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Opções de chunk essenciais</h2>
 <table class="caption-top">
 <thead>
@@ -1350,33 +1355,55 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 </tbody>
 </table>
 </section>
-<section class="slide level2">
+<section class="slide level2 smaller center">
 <h2>O chunk <code>setup</code></h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a></a><span class="in">```{r}</span></span>
-<span id="cb33-2"><a></a><span class="co">#| label: setup</span></span>
-<span id="cb33-3"><a></a><span class="co">#| include: false</span></span>
-<span id="cb33-4"><a></a></span>
-<span id="cb33-5"><a></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb33-6"><a></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.align =</span> <span class="st">"center"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb33-7"><a></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb33-8"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Por convenção, o <strong>primeiro</strong> chunk do documento. Concentra tudo que os demais vão precisar.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb31-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb31-2"><a></a><span class="co">#| label: setup</span></span>
+<span id="cb31-3"><a></a><span class="co">#| include: false</span></span>
+<span id="cb31-4"><a></a></span>
+<span id="cb31-5"><a></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb31-6"><a></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.align =</span> <span class="st">"center"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb31-7"><a></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb31-8"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Importante</strong></p>
-</div>
-<div class="callout-content">
-<p><code>set.seed()</code> é <strong>obrigatório</strong> sempre que houver aleatoriedade: simulação, permutação, subamostragem, <em>bootstrap</em>, UMAP…</p>
-</div>
-</div>
-</div>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Linha</th>
+<th style="text-align: left;">O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>#| label: setup</code></td>
+<td style="text-align: left;">Dá nome ao chunk — é o nome que aparece se der erro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>#| include: false</code></td>
+<td style="text-align: left;">Executa tudo, mas não mostra código nem saída</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>library(tidyverse)</code></td>
+<td style="text-align: left;">Carrega os pacotes uma vez só, para o documento inteiro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>opts_chunk$set(...)</code></td>
+<td style="text-align: left;">Define o padrão de <strong>todos</strong> os chunks seguintes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>set.seed(42)</code></td>
+<td style="text-align: left;">Fixa a aleatoriedade: simulação, <em>bootstrap</em>, UMAP…</td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
-<section class="slide level2" data-background-color="#D95F02">
+<section class="slide level2 center" data-background-color="#D95F02">
 <h2>🧪 Exercício 3</h2>
 <p><strong>Transforme o header do seu documento:</strong></p>
 <ol type="1">
@@ -1399,7 +1426,7 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Solução na seção 4.5 do material</p>
+<p>Solução na seção 5.5 do material</p>
 </div>
 </div>
 </div>
@@ -1409,12 +1436,12 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 <h1>5. Personalização</h1>
 
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Callouts</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a></a>::: {.callout-tip}</span>
-<span id="cb34-2"><a></a><span class="fu">## Título personalizado</span></span>
-<span id="cb34-3"><a></a>Conteúdo.</span>
-<span id="cb34-4"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb32-1"><a></a>::: {.callout-tip}</span>
+<span id="cb32-2"><a></a><span class="fu">## Título personalizado</span></span>
+<span id="cb32-3"><a></a>Conteúdo.</span>
+<span id="cb32-4"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="callout callout-note callout-style-simple">
@@ -1471,96 +1498,101 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 <p>Atributos: <code>collapse="true"</code>, <code>appearance="simple"</code>, <code>icon=false</code></p>
 </div></div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Colunas</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb35-1"><a></a>:::: {.columns}</span>
-<span id="cb35-2"><a></a>::: {.column width="60%"}</span>
-<span id="cb35-3"><a></a>Coluna larga.</span>
-<span id="cb35-4"><a></a>:::</span>
-<span id="cb35-5"><a></a>::: {.column width="40%"}</span>
-<span id="cb35-6"><a></a>Coluna estreita.</span>
-<span id="cb35-7"><a></a>:::</span>
-<span id="cb35-8"><a></a>::::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="fragment">
-<div class="callout callout-warning callout-titled callout-style-default">
+<div class="columns">
+<div class="column" style="width:54%;">
+<p><strong>Você escreve</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb33-1"><a></a>:::: {.columns}</span>
+<span id="cb33-2"><a></a>::: {.column width="60%"}</span>
+<span id="cb33-3"><a></a>O texto explicativo fica aqui,</span>
+<span id="cb33-4"><a></a>e a figura fica ao lado.</span>
+<span id="cb33-5"><a></a>:::</span>
+<span id="cb33-6"><a></a>::: {.column width="40%"}</span>
+<span id="cb33-7"><a></a><span class="al">![](img/logo.svg)</span></span>
+<span id="cb33-8"><a></a>:::</span>
+<span id="cb33-9"><a></a>::::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:46%;">
+<p><strong>Sai isto</strong></p>
+<div style="display:flex; gap:1em; align-items:center; border:1px solid #DDE3E8; border-radius:8px; padding:0.9em;">
+<div style="flex:0 0 60%; font-size:0.9em;">
+O texto explicativo fica aqui, e a figura fica ao lado.
+</div>
+<div style="flex:0 0 32%;">
+<img src="../img/logo.svg" style="width:100%; display:block;" alt="Logo do minicurso">
+</div>
+</div>
+</div></div>
+<div class="callout callout-warning callout-style-simple">
 <div class="callout-body">
-<div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
-</div>
-<p><strong>Conte os dois-pontos</strong></p>
 </div>
 <div class="callout-content">
 <p>A div <strong>externa</strong> precisa de <strong>mais</strong> <code>:</code> que as internas — <code>::::</code> fora, <code>:::</code> dentro. É assim que o Pandoc sabe qual fecha qual.</p>
 </div>
 </div>
 </div>
-</div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Tabsets</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a></a>::: {.panel-tabset}</span>
-<span id="cb36-2"><a></a><span class="fu">## R</span></span>
-<span id="cb36-3"><a></a>Código em R.</span>
-<span id="cb36-4"><a></a><span class="fu">## Python</span></span>
-<span id="cb36-5"><a></a>Código em Python.</span>
-<span id="cb36-6"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a></a>::: {.panel-tabset}</span>
+<span id="cb34-2"><a></a><span class="fu">## R</span></span>
+<span id="cb34-3"><a></a>Código em R.</span>
+<span id="cb34-4"><a></a><span class="fu">## Python</span></span>
+<span id="cb34-5"><a></a>Código em Python.</span>
+<span id="cb34-6"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">R</a></li><li><a href="#tabset-1-2">Python</a></li><li><a href="#tabset-1-3">Bash</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a></a><span class="im">import</span> statistics</span>
-<span id="cb38-2"><a></a>media <span class="op">=</span> statistics.mean([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a></a><span class="im">import</span> statistics</span>
+<span id="cb36-2"><a></a>media <span class="op">=</span> statistics.mean([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a></a><span class="fu">awk</span> <span class="st">'{s+=$1} END {print s/NR}'</span> numeros.txt</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a></a><span class="fu">awk</span> <span class="st">'{s+=$1} END {print s/NR}'</span> numeros.txt</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </section>
-<section class="slide level2">
-<h2>Larguras e margens</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a></a>::: {.column-margin}</span>
-<span id="cb40-2"><a></a>Nota lateral.</span>
-<span id="cb40-3"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Classes de largura, do mais estreito ao mais largo:</p>
-<p><code>.column-body</code> → <code>.column-body-outset</code> → <code>.column-page</code> → <code>.column-screen-inset</code> → <code>.column-screen</code></p>
-<div class="fragment">
-<div class="callout callout-tip callout-style-simple">
-<div class="callout-body">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-content">
-<p><code>.column-page</code> é ótimo para heatmaps e tabelas largas.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>CSS</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb41-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb41-3"><a></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb41-4"><a></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb42-1"><a></a><span class="in">:root</span> { <span class="va">--cor-primaria</span><span class="ch">:</span> <span class="cn">#2C7FB8</span><span class="op">;</span> }</span>
-<span id="cb42-2"><a></a></span>
-<span id="cb42-3"><a></a><span class="fu">.destaque</span> {</span>
-<span id="cb42-4"><a></a>  <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#FFF3CD</span><span class="op">;</span></span>
-<span id="cb42-5"><a></a>  <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0.1</span><span class="dt">em</span> <span class="dv">0.35</span><span class="dt">em</span><span class="op">;</span></span>
-<span id="cb42-6"><a></a>  <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">4</span><span class="dt">px</span><span class="op">;</span></span>
-<span id="cb42-7"><a></a>  <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">600</span><span class="op">;</span></span>
-<span id="cb42-8"><a></a>}</span>
-<span id="cb42-9"><a></a></span>
-<span id="cb42-10"><a></a>h2 {</span>
-<span id="cb42-11"><a></a>  <span class="kw">color</span><span class="ch">:</span> <span class="fu">var(</span><span class="va">--cor-primaria</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb42-12"><a></a>  <span class="kw">border-bottom</span><span class="ch">:</span> <span class="dv">2</span><span class="dt">px</span> <span class="dv">solid</span> <span class="fu">var(</span><span class="va">--cor-primaria</span><span class="fu">)</span><span class="op">;</span></span>
-<span id="cb42-13"><a></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<p>E no texto: <code>[palavra importante]{.destaque}</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb38-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb38-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb38-3"><a></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb38-4"><a></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span><span class="co">      # &lt;- seu arquivo</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong><code>styles.css</code></strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb39-1"><a></a><span class="fu">.destaque</span> {</span>
+<span id="cb39-2"><a></a>  <span class="kw">background</span><span class="ch">:</span> <span class="cn">#FFF3CD</span><span class="op">;</span></span>
+<span id="cb39-3"><a></a>  <span class="kw">padding</span><span class="ch">:</span> <span class="dv">0.1</span><span class="dt">em</span> <span class="dv">0.35</span><span class="dt">em</span><span class="op">;</span></span>
+<span id="cb39-4"><a></a>  <span class="kw">border-radius</span><span class="ch">:</span> <span class="dv">4</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb39-5"><a></a>  <span class="kw">font-weight</span><span class="ch">:</span> <span class="dv">600</span><span class="op">;</span></span>
+<span id="cb39-6"><a></a>}</span>
+<span id="cb39-7"><a></a></span>
+<span id="cb39-8"><a></a>h2 {</span>
+<span id="cb39-9"><a></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">#2C7FB8</span><span class="op">;</span></span>
+<span id="cb39-10"><a></a>  <span class="kw">border-bottom</span><span class="ch">:</span> <span class="dv">2</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#2C7FB8</span><span class="op">;</span></span>
+<span id="cb39-11"><a></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>No <code>.qmd</code></strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb40-1"><a></a><span class="fu">## Resultados</span></span>
+<span id="cb40-2"><a></a></span>
+<span id="cb40-3"><a></a>O ponto-chave é o</span>
+<span id="cb40-4"><a></a><span class="co">[</span><span class="ot">controle de qualidade</span><span class="co">]</span>{.destaque}.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:50%;">
+<p><strong>Como fica</strong></p>
+<div style="background:#fff; border:1px solid #DDE3E8; border-radius:8px; padding:1em 1.1em; color:#1A1A1A; font-size:0.95em;">
+<div style="color:#2C7FB8; border-bottom:2px solid #2C7FB8; font-size:1.35em; font-weight:650; padding-bottom:0.15em; margin-bottom:0.5em;">
+Resultados
+</div>
+<p style="margin:0;">
+O ponto-chave é o <span style="background:#FFF3CD; padding:0.1em 0.35em; border-radius:4px; font-weight:600;">controle de qualidade</span>.
+</p>
+</div>
 <div class="callout callout-tip callout-style-simple">
 <div class="callout-body">
 <div class="callout-icon-container">
@@ -1571,86 +1603,164 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 </div>
 </div>
 </div>
+</div></div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>SCSS: mexer no tema por dentro</h2>
+<p>O CSS <strong>pinta por cima</strong>; o SCSS muda as variáveis <strong>antes</strong> de o tema ser compilado.</p>
+<div class="columns">
+<div class="column" style="width:52%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb41-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb41-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb41-3"><a></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> custom.scss</span><span class="kw">]</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb42-1"><a></a><span class="co">/*-- scss:defaults --*/</span></span>
+<span id="cb42-2"><a></a><span class="co">// trocado ANTES de compilar o tema</span></span>
+<span id="cb42-3"><a></a><span class="va">$primary</span>:   <span class="cn">#D95F02</span><span class="op">;</span></span>
+<span id="cb42-4"><a></a><span class="va">$body-bg</span>:   <span class="cn">#FDF8F3</span><span class="op">;</span></span>
+<span id="cb42-5"><a></a><span class="va">$h2-font-size</span>: <span class="dv">1.6</span><span class="dt">rem</span><span class="op">;</span></span>
+<span id="cb42-6"><a></a></span>
+<span id="cb42-7"><a></a><span class="co">/*-- scss:rules --*/</span></span>
+<span id="cb42-8"><a></a><span class="co">// CSS comum, aplicado DEPOIS</span></span>
+<span id="cb42-9"><a></a><span class="fu">.callout-note</span> {</span>
+<span id="cb42-10"><a></a>  <span class="kw">border-left-color</span>: <span class="va">$primary</span><span class="op">;</span></span>
+<span id="cb42-11"><a></a>}</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:48%;">
+<p><strong>Como fica</strong></p>
+<div style="background:#FDF8F3; border:1px solid #E6D9CC; border-radius:8px; padding:1em 1.1em; color:#1A1A1A; font-size:0.95em;">
+<div style="color:#D95F02; font-size:1.3em; font-weight:650; margin-bottom:0.5em;">
+Métodos
+</div>
+<div style="border-left:5px solid #D95F02; background:#FFF; padding:0.5em 0.8em; border-radius:0 4px 4px 0;">
+<p><strong style="color:#D95F02;">Nota</strong><br> O botão e o link herdam <code>$primary</code> sozinhos.</p>
+</div>
+<p style="margin:0.7em 0 0;">
+<a href="#" style="color:#D95F02;">Este link</a> mudou de cor sem eu tocar nele.
+</p>
+</div>
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Uma variável em <code>scss:defaults</code> repercute em <strong>tudo</strong> — links, botões, callouts, tabelas.</p>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section class="slide level2 smaller center">
+<h2>O mesmo documento, dois temas</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb43-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
 <span id="cb43-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb43-3"><a></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">cosmo</span><span class="kw">,</span><span class="at"> custom.scss</span><span class="kw">]</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource scss number-lines code-with-copy"><code class="sourceCode scss"><span id="cb44-1"><a></a><span class="co">/*-- scss:defaults --*/</span></span>
-<span id="cb44-2"><a></a><span class="va">$primary</span>: <span class="cn">#2C7FB8</span><span class="op">;</span></span>
-<span id="cb44-3"><a></a><span class="va">$font-family-sans-serif</span>: <span class="st">"Source Sans Pro"</span><span class="op">,</span> <span class="dv">sans-serif</span><span class="op">;</span></span>
-<span id="cb44-4"><a></a><span class="va">$h2-font-size</span>: <span class="dv">1.6</span><span class="dt">rem</span><span class="op">;</span></span>
-<span id="cb44-5"><a></a></span>
-<span id="cb44-6"><a></a><span class="co">/*-- scss:rules --*/</span></span>
-<span id="cb44-7"><a></a><span class="fu">.callout-note</span> { <span class="kw">border-left-color</span>: <span class="va">$primary</span><span class="op">;</span> }</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="fragment">
-<p>25 temas prontos: <code>cosmo</code> <code>flatly</code> <code>journal</code> <code>litera</code> <code>minty</code> <code>sandstone</code> <code>darkly</code>…</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb45-1"><a></a><span class="fu">theme</span><span class="kw">:</span></span>
-<span id="cb45-2"><a></a><span class="at">  </span><span class="fu">light</span><span class="kw">:</span><span class="at"> flatly</span></span>
-<span id="cb45-3"><a></a><span class="at">  </span><span class="fu">dark</span><span class="kw">:</span><span class="at"> darkly</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb43-3"><a></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span></span>
+<span id="cb43-4"><a></a><span class="at">      </span><span class="fu">light</span><span class="kw">:</span><span class="at"> flatly</span><span class="co">     # botão de alternância aparece sozinho</span></span>
+<span id="cb43-5"><a></a><span class="at">      </span><span class="fu">dark</span><span class="kw">:</span><span class="at"> darkly</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="background:#FFFFFF; border:1px solid #D6DCE2; border-radius:8px; padding:0.9em 1em; font-size:0.72em; color:#212529;">
+<div style="font-size:0.8em; color:#95A5A6; border-bottom:1px solid #ECF0F1; padding-bottom:0.35em; margin-bottom:0.6em;">
+☀️ flatly
+</div>
+<div style="color:#2C3E50; font-size:1.5em; font-weight:650;">
+Expressão diferencial
+</div>
+<p style="margin:0.4em 0 0.7em; color:#5D6D7E;">
+Foram testados 1 843 genes; 118 passaram o filtro.
+</p>
+<div style="border-left:5px solid #18BC9C; background:#F4FBF9; padding:0.45em 0.7em;">
+<strong style="color:#18BC9C;">Nota</strong> — dados simulados.
+</div>
+<pre style="background:#ECF0F1; padding:0.5em 0.7em; border-radius:4px; margin:0.7em 0 0;"><code style="color:#2C3E50;">res &lt;- results(dds)</code></pre>
+</div>
+</div><div class="column" style="width:50%;">
+<div style="background:#222222; border:1px solid #3A3A3A; border-radius:8px; padding:0.9em 1em; font-size:0.72em; color:#E8E8E8;">
+<div style="font-size:0.8em; color:#888; border-bottom:1px solid #3A3A3A; padding-bottom:0.35em; margin-bottom:0.6em;">
+🌙 darkly
+</div>
+<div style="color:#FFFFFF; font-size:1.5em; font-weight:650;">
+Expressão diferencial
+</div>
+<p style="margin:0.4em 0 0.7em; color:#B4BCC2;">
+Foram testados 1 843 genes; 118 passaram o filtro.
+</p>
+<div style="border-left:5px solid #00BC8C; background:#2B2B2B; padding:0.45em 0.7em;">
+<strong style="color:#00BC8C;">Nota</strong> — dados simulados.
+</div>
+<pre style="background:#303030; padding:0.5em 0.7em; border-radius:4px; margin:0.7em 0 0;"><code style="color:#E8E8E8;">res &lt;- results(dds)</code></pre>
+</div>
+</div></div>
+<div class="callout callout-note callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Mesmo <code>.qmd</code>, mesmo conteúdo — só o <code>theme</code> mudou. Nada no texto foi tocado.</p>
+</div>
+</div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2><code>_brand.yml</code></h2>
 <p>Uma identidade visual, <strong>todos</strong> os formatos.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb46-1"><a></a><span class="co"># _brand.yml (na raiz do projeto)</span></span>
-<span id="cb46-2"><a></a><span class="fu">color</span><span class="kw">:</span></span>
-<span id="cb46-3"><a></a><span class="at">  </span><span class="fu">palette</span><span class="kw">:</span></span>
-<span id="cb46-4"><a></a><span class="at">    </span><span class="fu">azul-profundo</span><span class="kw">:</span><span class="at"> </span><span class="st">"#12355B"</span></span>
-<span id="cb46-5"><a></a><span class="at">    </span><span class="fu">laranja</span><span class="kw">:</span><span class="at"> </span><span class="st">"#D95F02"</span></span>
-<span id="cb46-6"><a></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> azul-profundo</span></span>
-<span id="cb46-7"><a></a><span class="at">  </span><span class="fu">secondary</span><span class="kw">:</span><span class="at"> laranja</span></span>
-<span id="cb46-8"><a></a></span>
-<span id="cb46-9"><a></a><span class="fu">typography</span><span class="kw">:</span></span>
-<span id="cb46-10"><a></a><span class="at">  </span><span class="fu">fonts</span><span class="kw">:</span></span>
-<span id="cb46-11"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Roboto</span></span>
-<span id="cb46-12"><a></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
-<span id="cb46-13"><a></a><span class="at">  </span><span class="fu">base</span><span class="kw">:</span><span class="at"> Roboto</span></span>
-<span id="cb46-14"><a></a><span class="at">  </span><span class="fu">headings</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">family</span><span class="kw">:</span><span class="at"> Roboto</span><span class="kw">,</span><span class="at"> </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> </span><span class="dv">600</span><span class="kw">}</span></span>
-<span id="cb46-15"><a></a></span>
-<span id="cb46-16"><a></a><span class="fu">logo</span><span class="kw">:</span></span>
-<span id="cb46-17"><a></a><span class="at">  </span><span class="fu">medium</span><span class="kw">:</span><span class="at"> logos/logo.png</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb44-1"><a></a><span class="co"># _brand.yml (na raiz do projeto)</span></span>
+<span id="cb44-2"><a></a><span class="fu">color</span><span class="kw">:</span></span>
+<span id="cb44-3"><a></a><span class="at">  </span><span class="fu">palette</span><span class="kw">:</span></span>
+<span id="cb44-4"><a></a><span class="at">    </span><span class="fu">azul-profundo</span><span class="kw">:</span><span class="at"> </span><span class="st">"#12355B"</span></span>
+<span id="cb44-5"><a></a><span class="at">    </span><span class="fu">laranja</span><span class="kw">:</span><span class="at"> </span><span class="st">"#D95F02"</span></span>
+<span id="cb44-6"><a></a><span class="at">  </span><span class="fu">primary</span><span class="kw">:</span><span class="at"> azul-profundo</span></span>
+<span id="cb44-7"><a></a><span class="at">  </span><span class="fu">secondary</span><span class="kw">:</span><span class="at"> laranja</span></span>
+<span id="cb44-8"><a></a></span>
+<span id="cb44-9"><a></a><span class="fu">typography</span><span class="kw">:</span></span>
+<span id="cb44-10"><a></a><span class="at">  </span><span class="fu">fonts</span><span class="kw">:</span></span>
+<span id="cb44-11"><a></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">family</span><span class="kw">:</span><span class="at"> Roboto</span></span>
+<span id="cb44-12"><a></a><span class="at">      </span><span class="fu">source</span><span class="kw">:</span><span class="at"> google</span></span>
+<span id="cb44-13"><a></a><span class="at">  </span><span class="fu">base</span><span class="kw">:</span><span class="at"> Roboto</span></span>
+<span id="cb44-14"><a></a><span class="at">  </span><span class="fu">headings</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">family</span><span class="kw">:</span><span class="at"> Roboto</span><span class="kw">,</span><span class="at"> </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> </span><span class="dv">600</span><span class="kw">}</span></span>
+<span id="cb44-15"><a></a></span>
+<span id="cb44-16"><a></a><span class="fu">logo</span><span class="kw">:</span></span>
+<span id="cb44-17"><a></a><span class="at">  </span><span class="fu">medium</span><span class="kw">:</span><span class="at"> logos/logo.png</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Nada precisa ser declarado no <code>.qmd</code>. Para desligar: <code>brand: false</code>.</p>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2><code>_quarto.yml</code>: o projeto inteiro</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb47-1"><a></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb47-2"><a></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb47-3"><a></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span></span>
-<span id="cb47-4"><a></a></span>
-<span id="cb47-5"><a></a><span class="fu">website</span><span class="kw">:</span></span>
-<span id="cb47-6"><a></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Projeto Caatinga-Seq"</span></span>
-<span id="cb47-7"><a></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
-<span id="cb47-8"><a></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
-<span id="cb47-9"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
-<span id="cb47-10"><a></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Início</span></span>
-<span id="cb47-11"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> resultados.qmd</span></span>
-<span id="cb47-12"><a></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Resultados</span></span>
-<span id="cb47-13"><a></a></span>
-<span id="cb47-14"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb47-15"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb47-16"><a></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
-<span id="cb47-17"><a></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span>
-<span id="cb47-18"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb47-19"><a></a></span>
-<span id="cb47-20"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb47-21"><a></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb45-1"><a></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb45-2"><a></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb45-3"><a></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> _site</span></span>
+<span id="cb45-4"><a></a></span>
+<span id="cb45-5"><a></a><span class="fu">website</span><span class="kw">:</span></span>
+<span id="cb45-6"><a></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Projeto Caatinga-Seq"</span></span>
+<span id="cb45-7"><a></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb45-8"><a></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
+<span id="cb45-9"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> index.qmd</span></span>
+<span id="cb45-10"><a></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Início</span></span>
+<span id="cb45-11"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">href</span><span class="kw">:</span><span class="at"> resultados.qmd</span></span>
+<span id="cb45-12"><a></a><span class="at">        </span><span class="fu">text</span><span class="kw">:</span><span class="at"> Resultados</span></span>
+<span id="cb45-13"><a></a></span>
+<span id="cb45-14"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb45-15"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb45-16"><a></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb45-17"><a></a><span class="at">    </span><span class="fu">css</span><span class="kw">:</span><span class="at"> styles.css</span></span>
+<span id="cb45-18"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb45-19"><a></a></span>
+<span id="cb45-20"><a></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb45-21"><a></a><span class="at">  </span><span class="fu">freeze</span><span class="kw">:</span><span class="at"> auto</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Vale para todos os <code>.qmd</code> — e cada um pode sobrescrever.</p>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Personalização no PDF</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb48-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb48-2"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
-<span id="cb48-3"><a></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> article</span></span>
-<span id="cb48-4"><a></a><span class="at">    </span><span class="fu">papersize</span><span class="kw">:</span><span class="at"> a4</span></span>
-<span id="cb48-5"><a></a><span class="at">    </span><span class="fu">geometry</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">top=25mm</span><span class="kw">,</span><span class="at"> bottom=25mm</span><span class="kw">,</span><span class="at"> left=25mm</span><span class="kw">,</span><span class="at"> right=25mm</span><span class="kw">]</span></span>
-<span id="cb48-6"><a></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> 11pt</span></span>
-<span id="cb48-7"><a></a><span class="at">    </span><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.5</span></span>
-<span id="cb48-8"><a></a><span class="at">    </span><span class="fu">colorlinks</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb48-9"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb48-10"><a></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb48-11"><a></a><span class="at">    </span><span class="fu">fig-pos</span><span class="kw">:</span><span class="at"> </span><span class="st">"H"</span><span class="co">        # fixa a figura onde ela foi escrita</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb46-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb46-2"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb46-3"><a></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> article</span></span>
+<span id="cb46-4"><a></a><span class="at">    </span><span class="fu">papersize</span><span class="kw">:</span><span class="at"> a4</span></span>
+<span id="cb46-5"><a></a><span class="at">    </span><span class="fu">geometry</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at">top=25mm</span><span class="kw">,</span><span class="at"> bottom=25mm</span><span class="kw">,</span><span class="at"> left=25mm</span><span class="kw">,</span><span class="at"> right=25mm</span><span class="kw">]</span></span>
+<span id="cb46-6"><a></a><span class="at">    </span><span class="fu">fontsize</span><span class="kw">:</span><span class="at"> 11pt</span></span>
+<span id="cb46-7"><a></a><span class="at">    </span><span class="fu">linestretch</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.5</span></span>
+<span id="cb46-8"><a></a><span class="at">    </span><span class="fu">colorlinks</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb46-9"><a></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb46-10"><a></a><span class="at">    </span><span class="fu">number-sections</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb46-11"><a></a><span class="at">    </span><span class="fu">fig-pos</span><span class="kw">:</span><span class="at"> </span><span class="st">"H"</span><span class="co">        # fixa a figura onde ela foi escrita</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1669,28 +1779,28 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Conteúdo condicional</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a></a>::: {.content-visible when-format="html"}</span>
-<span id="cb49-2"><a></a>Tabela interativa aqui.</span>
-<span id="cb49-3"><a></a>:::</span>
-<span id="cb49-4"><a></a></span>
-<span id="cb49-5"><a></a>::: {.content-visible when-format="pdf"}</span>
-<span id="cb49-6"><a></a>Tabela estática aqui.</span>
-<span id="cb49-7"><a></a>:::</span>
-<span id="cb49-8"><a></a></span>
-<span id="cb49-9"><a></a>::: {.content-hidden when-format="pdf"}</span>
-<span id="cb49-10"><a></a>Tudo menos PDF.</span>
-<span id="cb49-11"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a></a>::: {.content-visible when-format="html"}</span>
+<span id="cb47-2"><a></a>Tabela interativa aqui.</span>
+<span id="cb47-3"><a></a>:::</span>
+<span id="cb47-4"><a></a></span>
+<span id="cb47-5"><a></a>::: {.content-visible when-format="pdf"}</span>
+<span id="cb47-6"><a></a>Tabela estática aqui.</span>
+<span id="cb47-7"><a></a>:::</span>
+<span id="cb47-8"><a></a></span>
+<span id="cb47-9"><a></a>::: {.content-hidden when-format="pdf"}</span>
+<span id="cb47-10"><a></a>Tudo menos PDF.</span>
+<span id="cb47-11"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb50-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb50-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="kw">}</span></span>
-<span id="cb50-3"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> article</span><span class="kw">}</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a></a><span class="ex">quarto</span> render doc.qmd          <span class="co"># os dois</span></span>
-<span id="cb51-2"><a></a><span class="ex">quarto</span> render doc.qmd <span class="at">--to</span> pdf <span class="co"># só um</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb48-1"><a></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb48-2"><a></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="kw">}</span></span>
+<span id="cb48-3"><a></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> </span><span class="kw">{</span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> article</span><span class="kw">}</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a></a><span class="ex">quarto</span> render doc.qmd          <span class="co"># os dois</span></span>
+<span id="cb49-2"><a></a><span class="ex">quarto</span> render doc.qmd <span class="at">--to</span> pdf <span class="co"># só um</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section class="slide level2" data-background-color="#D95F02">
+<section class="slide level2 center" data-background-color="#D95F02">
 <h2>🧪 Exercício 4</h2>
 <ol type="1">
 <li>Um callout de cada tipo — um com título próprio, outro recolhível</li>
@@ -1698,9 +1808,12 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 <li>Um <strong>tabset</strong> com duas abas</li>
 <li>Um <code>styles.css</code> com a classe <code>.destaque</code> e <code>h2</code> colorido — e aplique</li>
 <li>Tema claro/escuro alternável</li>
-<li>Adicione <code>format: pdf</code> e use <strong>conteúdo condicional</strong></li>
 </ol>
-<p><strong>Desafio:</strong> um <code>_brand.yml</code> com duas cores e uma fonte do Google</p>
+<p><strong>Desafios</strong></p>
+<ol start="6" type="1">
+<li>Adicione <code>format: pdf</code> e use <strong>conteúdo condicional</strong> para uma frase aparecer só no HTML</li>
+<li>Um <code>_brand.yml</code> com duas cores e uma fonte do Google</li>
+</ol>
 <div class="timer" data-minutes="20">
 
 </div>
@@ -1710,28 +1823,36 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Solução na seção 5.8 do material</p>
+<p>Solução na seção 6.5 do material</p>
 </div>
 </div>
 </div>
 </section></section>
+<section class="title-slide slide level1 center" data-background-color="#7FBC41">
+<h1>🍽️ Hora do almoço</h1>
+<div style="text-align: center; font-size: 1.15em; margin-top: 1em;">
+<p>Voltamos para o último bloco: <strong>code chunks</strong>.</p>
+<p>Deixe o <code>quarto preview</code> rodando — a gente retoma direto do seu documento.</p>
+</div>
+</section>
+
 <section>
 <section class="title-slide slide level1 center" data-background-color="#12355B">
 <h1>6. Code chunks</h1>
 
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>O básico</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>, <span class="dv">22</span>, <span class="dv">18</span>)</span>
-<span id="cb52-2"><a></a><span class="fu">mean</span>(x)</span>
-<span id="cb52-3"><a></a><span class="co">#&gt; [1] 15.2</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">9</span>, <span class="dv">22</span>, <span class="dv">18</span>)</span>
+<span id="cb50-2"><a></a><span class="fu">mean</span>(x)</span>
+<span id="cb50-3"><a></a><span class="co">#&gt; [1] 15.2</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p>O código aparece, o resultado aparece embaixo, e o resultado <strong>é de verdade</strong> — foi calculado agora, na renderização.</p>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Código inline: o recurso mais subestimado</h2>
 <p>Você escreve:</p>
 <blockquote>
@@ -1759,18 +1880,18 @@ Editou o CSV sem tocar no código? O cache serve o resultado <strong>velho</stro
 </div>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Plots</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt, mtcars<span class="sc">$</span>mpg, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#2C7FB8"</span>,</span>
-<span id="cb53-2"><a></a>     <span class="at">xlab =</span> <span class="st">"Peso"</span>, <span class="at">ylab =</span> <span class="st">"Milhas por galão"</span>)</span>
-<span id="cb53-3"><a></a><span class="fu">abline</span>(<span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars), <span class="at">col =</span> <span class="st">"#D95F02"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt, mtcars<span class="sc">$</span>mpg, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">col =</span> <span class="st">"#2C7FB8"</span>,</span>
+<span id="cb51-2"><a></a>     <span class="at">xlab =</span> <span class="st">"Peso"</span>, <span class="at">ylab =</span> <span class="st">"Milhas por galão"</span>)</span>
+<span id="cb51-3"><a></a><span class="fu">abline</span>(<span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> mtcars), <span class="at">col =</span> <span class="st">"#D95F02"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="minicurso-quarto_files/figure-revealjs/fig-slide-plot-1.png" width="768" class="r-stretch quarto-figure-center" id="fig-slide-plot"><p class="caption">
 Figura&nbsp;1: Peso versus consumo no mtcars.
 </p></section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Opções de figura</h2>
 <table class="caption-top">
 <colgroup>
@@ -1815,10 +1936,10 @@ Figura&nbsp;1: Peso versus consumo no mtcars.
 </tbody>
 </table>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Subfiguras num só chunk</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">hist</span>(mtcars<span class="sc">$</span>mpg, <span class="at">col =</span> <span class="st">"#2C7FB8"</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">main =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"mpg"</span>)</span>
-<span id="cb54-2"><a></a><span class="fu">hist</span>(mtcars<span class="sc">$</span>hp, <span class="at">col =</span> <span class="st">"#D95F02"</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">main =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"hp"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a></a><span class="fu">hist</span>(mtcars<span class="sc">$</span>mpg, <span class="at">col =</span> <span class="st">"#2C7FB8"</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">main =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"mpg"</span>)</span>
+<span id="cb52-2"><a></a><span class="fu">hist</span>(mtcars<span class="sc">$</span>hp, <span class="at">col =</span> <span class="st">"#D95F02"</span>, <span class="at">border =</span> <span class="st">"white"</span>, <span class="at">main =</span> <span class="st">""</span>, <span class="at">xlab =</span> <span class="st">"hp"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div id="fig-slide-painel" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-slide-painel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1856,17 +1977,22 @@ Figura&nbsp;2: Distribuições
 </div>
 <p>Ids automáticos: <code>@fig-slide-painel-1</code>, <code>@fig-slide-painel-2</code></p>
 </section>
-<section class="slide level2">
+<section class="slide level2 smaller center">
 <h2>Tabelas por código</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1"><code>kable</code></a></li><li><a href="#tabset-2-2"><code>gt</code></a></li><li><a href="#tabset-2-3"><code>kableExtra</code></a></li><li><a href="#tabset-2-4"><code>DT</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<p>O básico, sempre funciona, em todos os formatos.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(mtcars[, <span class="fu">c</span>(<span class="st">"mpg"</span>, <span class="st">"cyl"</span>, <span class="st">"hp"</span>)], <span class="dv">4</span>),</span>
-<span id="cb55-2"><a></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Consumo"</span>, <span class="st">"Cilindros"</span>, <span class="st">"Potência"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-slide" class="cell quarto-float quarto-figure quarto-figure-center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(mtcars[, <span class="fu">c</span>(<span class="st">"mpg"</span>, <span class="st">"cyl"</span>, <span class="st">"hp"</span>)], <span class="dv">4</span>),</span>
+<span id="cb53-2"><a></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Consumo"</span>, <span class="st">"Cilindros"</span>, <span class="st">"Potência"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="tbl-kable" class="cell quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-slide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Tabela&nbsp;1: Primeiras linhas do mtcars.
 </figcaption>
-<div aria-describedby="tbl-slide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="tbl-kable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
 <table class="cell caption-top">
 <thead>
@@ -1909,11 +2035,582 @@ Tabela&nbsp;1: Primeiras linhas do mtcars.
 </figure>
 </div>
 </div>
-<div class="fragment">
-<p><code>kable</code> (simples) · <code>gt</code> (publicação) · <code>kableExtra</code> (agrupamentos) · <code>DT</code> (interativa) · <code>flextable</code> (Word)</p>
+</div>
+<div id="tabset-2-2">
+<p>Tabelas de publicação: títulos, notas de rodapé, formatação por coluna.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a></a><span class="fu">library</span>(gt)</span>
+<span id="cb54-2"><a></a></span>
+<span id="cb54-3"><a></a><span class="fu">head</span>(mtcars[, <span class="fu">c</span>(<span class="st">"mpg"</span>, <span class="st">"cyl"</span>, <span class="st">"hp"</span>)], <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-4"><a></a>  <span class="fu">gt</span>(<span class="at">rownames_to_stub =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-5"><a></a>  <span class="fu">tab_header</span>(<span class="at">title =</span> <span class="st">"Consumo por modelo"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-6"><a></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> mpg, <span class="at">decimals =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb54-7"><a></a>  <span class="fu">tab_source_note</span>(<span class="st">"Fonte: Motor Trend, 1974."</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="aefdnvmbrp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aefdnvmbrp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#aefdnvmbrp thead, #aefdnvmbrp tbody, #aefdnvmbrp tfoot, #aefdnvmbrp tr, #aefdnvmbrp td, #aefdnvmbrp th {
+  border-style: none;
+}
+
+#aefdnvmbrp p {
+  margin: 0;
+  padding: 0;
+}
+
+#aefdnvmbrp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#aefdnvmbrp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#aefdnvmbrp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#aefdnvmbrp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#aefdnvmbrp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#aefdnvmbrp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#aefdnvmbrp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#aefdnvmbrp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#aefdnvmbrp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#aefdnvmbrp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#aefdnvmbrp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#aefdnvmbrp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#aefdnvmbrp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#aefdnvmbrp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#aefdnvmbrp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aefdnvmbrp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#aefdnvmbrp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#aefdnvmbrp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#aefdnvmbrp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aefdnvmbrp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#aefdnvmbrp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aefdnvmbrp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#aefdnvmbrp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aefdnvmbrp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#aefdnvmbrp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#aefdnvmbrp .gt_left {
+  text-align: left;
+}
+
+#aefdnvmbrp .gt_center {
+  text-align: center;
+}
+
+#aefdnvmbrp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#aefdnvmbrp .gt_font_normal {
+  font-weight: normal;
+}
+
+#aefdnvmbrp .gt_font_bold {
+  font-weight: bold;
+}
+
+#aefdnvmbrp .gt_font_italic {
+  font-style: italic;
+}
+
+#aefdnvmbrp .gt_super {
+  font-size: 65%;
+}
+
+#aefdnvmbrp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#aefdnvmbrp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#aefdnvmbrp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#aefdnvmbrp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#aefdnvmbrp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#aefdnvmbrp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#aefdnvmbrp .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#aefdnvmbrp .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#aefdnvmbrp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="4" class="gt_heading gt_title gt_font_normal gt_bottom_border">Consumo por modelo</td>
+</tr>
+<tr class="gt_col_headings even">
+<th id="a::stub" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"></th>
+<th id="mpg" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">mpg</th>
+<th id="cyl" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">cyl</th>
+<th id="hp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">hp</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<th id="stub_1_1" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Mazda RX4</th>
+<td class="gt_row gt_right" headers="stub_1_1 mpg">21.0</td>
+<td class="gt_row gt_right" headers="stub_1_1 cyl">6</td>
+<td class="gt_row gt_right" headers="stub_1_1 hp">110</td>
+</tr>
+<tr class="even">
+<th id="stub_1_2" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Mazda RX4 Wag</th>
+<td class="gt_row gt_right" headers="stub_1_2 mpg">21.0</td>
+<td class="gt_row gt_right" headers="stub_1_2 cyl">6</td>
+<td class="gt_row gt_right" headers="stub_1_2 hp">110</td>
+</tr>
+<tr class="odd">
+<th id="stub_1_3" class="gt_row gt_left gt_stub" data-quarto-table-cell-role="th" scope="row">Datsun 710</th>
+<td class="gt_row gt_right" headers="stub_1_3 mpg">22.8</td>
+<td class="gt_row gt_right" headers="stub_1_3 cyl">4</td>
+<td class="gt_row gt_right" headers="stub_1_3 hp">93</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="4" class="gt_sourcenote">Fonte: Motor Trend, 1974.</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-3">
+<p>Agrupa colunas e linhas, fixa cabeçalho, colore células.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb55-2"><a></a></span>
+<span id="cb55-3"><a></a><span class="fu">kbl</span>(<span class="fu">head</span>(mtcars[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb55-4"><a></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>),</span>
+<span id="cb55-5"><a></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb55-6"><a></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">"Motor"</span> <span class="ot">=</span> <span class="dv">3</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb55-7"><a></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">background =</span> <span class="st">"#2C7FB8"</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="table table-striped table-hover caption-top" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; empty-cells: hide; border-bottom: hidden;"></th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-bottom: hidden; padding-bottom: 0; padding-left: 3px; padding-right: 3px;"><div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Motor
+</div></th>
+</tr>
+<tr class="even">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">mpg</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">cyl</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">disp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mazda RX4</td>
+<td style="text-align: right; color: white !important; background-color: rgba(44, 127, 184, 1) !important;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mazda RX4 Wag</td>
+<td style="text-align: right; color: white !important; background-color: rgba(44, 127, 184, 1) !important;">21.0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">160</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Datsun 710</td>
+<td style="text-align: right; color: white !important; background-color: rgba(44, 127, 184, 1) !important;">22.8</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">108</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="tabset-2-4">
+<p>Interativa: busca, ordenação e paginação. <strong>Só HTML.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a></a>DT<span class="sc">::</span><span class="fu">datatable</span>(mtcars[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>],</span>
+<span id="cb56-2"><a></a>              <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">4</span>, <span class="at">dom =</span> <span class="st">"tp"</span>))</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-3d0df12e78a7f06a7649" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3d0df12e78a7f06a7649">{"x":{"filter":"none","vertical":false,"data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],[6,6,4,6,8,6,8,4,4,6,6,8,8,8,8,8,8,4,4,4,4,8,8,8,8,4,4,4,8,6,8,4],[160,160,108,258,360,225,360,146.7,140.8,167.6,167.6,275.8,275.8,275.8,472,460,440,78.7,75.7,71.09999999999999,120.1,318,304,350,400,79,120.3,95.09999999999999,351,145,301,121],[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"dom":"tp","columnDefs":[{"className":"dt-right","targets":[1,2,3,4]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"mpg","targets":1},{"name":"cyl","targets":2},{"name":"disp","targets":3},{"name":"hp","targets":4}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Cross-references</h2>
 <p><strong>Duas regras:</strong> rótulo com o prefixo certo + <code>@rotulo</code> no texto.</p>
 <table class="caption-top">
@@ -1965,7 +2662,48 @@ Tabela&nbsp;1: Primeiras linhas do mtcars.
 </tbody>
 </table>
 </section>
-<section class="slide level2">
+<section class="slide level2 smaller center">
+<h2>Cross-reference na prática</h2>
+<div class="columns">
+<div class="column" style="width:47%;">
+<p><strong>Você escreve</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb57-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb57-2"><a></a><span class="co">#| label: fig-consumo</span></span>
+<span id="cb57-3"><a></a><span class="co">#| fig-cap: "Peso versus consumo."</span></span>
+<span id="cb57-4"><a></a><span class="fu">plot</span>(mtcars<span class="sc">$</span>wt, mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb57-5"><a></a><span class="in">```</span></span>
+<span id="cb57-6"><a></a></span>
+<span id="cb57-7"><a></a>A relação está na @fig-consumo.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div><div class="column" style="width:53%;">
+<p><strong>Sai isto</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-consumo" class="quarto-float quarto-figure quarto-figure-center">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-consumo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="minicurso-quarto_files/figure-revealjs/fig-consumo-1.png" width="441">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-consumo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Peso versus consumo.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>A relação está na <a href="#/fig-consumo" class="quarto-xref">Figura&nbsp;3</a>.</p>
+</div></div>
+<div class="callout callout-important callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>A numeração e o link são automáticos. Insira uma figura antes desta e ela vira “Figura 2” sozinha — em todo o documento.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
 <h2>Três armadilhas de cross-reference</h2>
 <ol type="1">
 <li class="fragment"><strong>Sem legenda, sem referência.</strong> <code>label: fig-x</code> sem <code>fig-cap</code> não vira figura referenciável.</li>
@@ -1976,18 +2714,18 @@ Tabela&nbsp;1: Primeiras linhas do mtcars.
 <p>Variações: <code>@fig-x</code> → Figura 1 · <code>[@fig-x]</code> → (Figura 1) · <code>[-@fig-x]</code> → 1</p>
 </div>
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>Outras linguagens</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb56-1"><a></a><span class="in">```{python}</span></span>
-<span id="cb56-2"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb56-3"><a></a>df <span class="op">=</span> pd.read_csv(<span class="st">"counts.csv"</span>)</span>
-<span id="cb56-4"><a></a><span class="bu">print</span>(df.describe())</span>
-<span id="cb56-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb57-1"><a></a><span class="in">```{bash}</span></span>
-<span id="cb57-2"><a></a><span class="co">#| eval: false</span></span>
-<span id="cb57-3"><a></a><span class="ex">fastqc</span> <span class="at">-t</span> 8 <span class="at">-o</span> qc/ dados/<span class="pp">*</span>.fastq.gz</span>
-<span id="cb57-4"><a></a><span class="ex">multiqc</span> qc/ <span class="at">-o</span> qc/</span>
-<span id="cb57-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb58-1"><a></a><span class="in">```{python}</span></span>
+<span id="cb58-2"><a></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb58-3"><a></a>df <span class="op">=</span> pd.read_csv(<span class="st">"counts.csv"</span>)</span>
+<span id="cb58-4"><a></a><span class="bu">print</span>(df.describe())</span>
+<span id="cb58-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb59-1"><a></a><span class="in">```{bash}</span></span>
+<span id="cb59-2"><a></a><span class="co">#| eval: false</span></span>
+<span id="cb59-3"><a></a><span class="ex">fastqc</span> <span class="at">-t</span> 8 <span class="at">-o</span> qc/ dados/<span class="pp">*</span>.fastq.gz</span>
+<span id="cb59-4"><a></a><span class="ex">multiqc</span> qc/ <span class="at">-o</span> qc/</span>
+<span id="cb59-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <div class="callout callout-note callout-style-simple">
 <div class="callout-body">
@@ -2002,7 +2740,7 @@ Tabela&nbsp;1: Primeiras linhas do mtcars.
 </div>
 </div>
 </section>
-<section class="slide level2 smaller" data-background-color="#D95F02">
+<section class="slide level2 smaller center" data-background-color="#D95F02">
 <h2>🧬 Exercício 5 — o integrador</h2>
 <p>Construa <code>exercicio5.qmd</code>: um relatório de expressão diferencial completo.</p>
 <div class="columns">
@@ -2030,7 +2768,104 @@ Tabela&nbsp;1: Primeiras linhas do mtcars.
 </ol>
 </div></div>
 </section>
-<section class="slide level2" data-background-color="#D95F02">
+<section class="slide level2 smaller center">
+<h2>🧬 Exercício 5 — colas de código</h2>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">5. Simular</a></li><li><a href="#tabset-3-2">6. Testar</a></li><li><a href="#tabset-3-3">7-8. Tabela e volcano</a></li><li><a href="#tabset-3-4">9-10. Painel e inline</a></li><li><a href="#tabset-3-5">11-14. Acabamento</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb60-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb60-2"><a></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb60-3"><a></a>n_genes <span class="ot">&lt;-</span> <span class="dv">2000</span>; n_por_grupo <span class="ot">&lt;-</span> <span class="dv">6</span>; n_de <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb60-4"><a></a></span>
+<span id="cb60-5"><a></a>mu <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(n_genes, <span class="at">shape =</span> <span class="dv">2</span>, <span class="at">scale =</span> <span class="dv">60</span>)</span>
+<span id="cb60-6"><a></a>contagens <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span>(<span class="dv">2</span><span class="sc">*</span>n_por_grupo),</span>
+<span id="cb60-7"><a></a>                    \(j) <span class="fu">rnbinom</span>(n_genes, <span class="at">mu =</span> mu, <span class="at">size =</span> <span class="dv">8</span>))</span>
+<span id="cb60-8"><a></a><span class="fu">rownames</span>(contagens) <span class="ot">&lt;-</span> <span class="fu">sprintf</span>(<span class="st">"GENE%04d"</span>, <span class="dv">1</span><span class="sc">:</span>n_genes)</span>
+<span id="cb60-9"><a></a>grupo <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"controle"</span>,<span class="st">"tratado"</span>), <span class="at">each =</span> n_por_grupo))</span>
+<span id="cb60-10"><a></a></span>
+<span id="cb60-11"><a></a><span class="co"># aplica o efeito só nas amostras tratadas</span></span>
+<span id="cb60-12"><a></a>genes_de <span class="ot">&lt;-</span> <span class="fu">sample</span>(n_genes, n_de)</span>
+<span id="cb60-13"><a></a>efeito   <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">0.4</span>), n_de, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb60-14"><a></a>contagens[genes_de, grupo <span class="sc">==</span> <span class="st">"tratado"</span>] <span class="ot">&lt;-</span></span>
+<span id="cb60-15"><a></a>  <span class="fu">round</span>(contagens[genes_de, grupo <span class="sc">==</span> <span class="st">"tratado"</span>] <span class="sc">*</span> efeito)</span>
+<span id="cb60-16"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-3-2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb61-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb61-2"><a></a>cpm     <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">t</span>(contagens) <span class="sc">/</span> <span class="fu">colSums</span>(contagens)) <span class="sc">*</span> <span class="fl">1e6</span></span>
+<span id="cb61-3"><a></a>log_cpm <span class="ot">&lt;-</span> <span class="fu">log2</span>(cpm <span class="sc">+</span> <span class="dv">1</span>)[<span class="fu">rowMeans</span>(cpm) <span class="sc">&gt;</span> <span class="dv">1</span>, ]</span>
+<span id="cb61-4"><a></a></span>
+<span id="cb61-5"><a></a>log2fc <span class="ot">&lt;-</span> <span class="fu">rowMeans</span>(log_cpm[, grupo <span class="sc">==</span> <span class="st">"tratado"</span>]) <span class="sc">-</span></span>
+<span id="cb61-6"><a></a>          <span class="fu">rowMeans</span>(log_cpm[, grupo <span class="sc">==</span> <span class="st">"controle"</span>])</span>
+<span id="cb61-7"><a></a></span>
+<span id="cb61-8"><a></a>pvalor <span class="ot">&lt;-</span> <span class="fu">apply</span>(log_cpm, <span class="dv">1</span>, \(y)</span>
+<span id="cb61-9"><a></a>  <span class="fu">t.test</span>(y[grupo <span class="sc">==</span> <span class="st">"tratado"</span>], y[grupo <span class="sc">==</span> <span class="st">"controle"</span>])<span class="sc">$</span>p.value)</span>
+<span id="cb61-10"><a></a></span>
+<span id="cb61-11"><a></a>res <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rownames</span>(log_cpm), <span class="at">log2FC =</span> log2fc,</span>
+<span id="cb61-12"><a></a>                  <span class="at">padj =</span> <span class="fu">p.adjust</span>(pvalor, <span class="st">"BH"</span>))</span>
+<span id="cb61-13"><a></a>res <span class="ot">&lt;-</span> res[<span class="fu">order</span>(res<span class="sc">$</span>padj), ]</span>
+<span id="cb61-14"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-3-3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb62-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb62-2"><a></a><span class="co">#| label: tbl-top-genes</span></span>
+<span id="cb62-3"><a></a><span class="co">#| tbl-cap: "Dez genes mais significativos."</span></span>
+<span id="cb62-4"><a></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(res, <span class="dv">10</span>), <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb62-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb63-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb63-2"><a></a><span class="co">#| label: fig-volcano</span></span>
+<span id="cb63-3"><a></a><span class="co">#| fig-cap: "Volcano plot."</span></span>
+<span id="cb63-4"><a></a><span class="co">#| fig-alt: "Dispersão de log2FC contra -log10(p), em forma de V."</span></span>
+<span id="cb63-5"><a></a>cor <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(res<span class="sc">$</span>padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="fu">abs</span>(res<span class="sc">$</span>log2FC) <span class="sc">&gt;</span> <span class="dv">1</span>, <span class="st">"#D95F02"</span>, <span class="st">"grey70"</span>)</span>
+<span id="cb63-6"><a></a><span class="fu">plot</span>(res<span class="sc">$</span>log2FC, <span class="sc">-</span><span class="fu">log10</span>(res<span class="sc">$</span>padj), <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">cex =</span> .<span class="dv">6</span>, <span class="at">col =</span> cor,</span>
+<span id="cb63-7"><a></a>     <span class="at">xlab =</span> <span class="st">"log2 FC"</span>, <span class="at">ylab =</span> <span class="st">"-log10(p ajustado)"</span>)</span>
+<span id="cb63-8"><a></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="sc">-</span><span class="fu">log10</span>(<span class="fl">0.05</span>), <span class="at">v =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb63-9"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-3-4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb64-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb64-2"><a></a><span class="co">#| label: fig-diagnostico</span></span>
+<span id="cb64-3"><a></a><span class="co">#| fig-cap: "Diagnóstico."</span></span>
+<span id="cb64-4"><a></a><span class="co">#| fig-subcap: ["p-valores", "log2FC"]</span></span>
+<span id="cb64-5"><a></a><span class="co">#| layout-ncol: 2</span></span>
+<span id="cb64-6"><a></a><span class="fu">hist</span>(res<span class="sc">$</span>padj);  <span class="fu">hist</span>(res<span class="sc">$</span>log2FC)</span>
+<span id="cb64-7"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb65-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb65-2"><a></a><span class="co">#| include: false</span></span>
+<span id="cb65-3"><a></a>sig <span class="ot">&lt;-</span> <span class="fu">subset</span>(res, padj <span class="sc">&lt;</span> <span class="fl">0.05</span> <span class="sc">&amp;</span> <span class="fu">abs</span>(log2FC) <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb65-4"><a></a>n_sig <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sig); n_up <span class="ot">&lt;-</span> <span class="fu">sum</span>(sig<span class="sc">$</span>log2FC <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb65-5"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Depois, no <strong>texto</strong>: cerca de <code>r n_sig</code> genes, dos quais <code>r n_up</code> super-expressos.</p>
+</div>
+<div id="tabset-3-5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb66-1"><a></a>$$</span>
+<span id="cb66-2"><a></a>\log_2 FC_g = \overline{\log_2 CPM}_{trat}</span>
+<span id="cb66-3"><a></a><span class="ss">             - </span>\overline{\log_2 CPM}_{ctrl}</span>
+<span id="cb66-4"><a></a>$$ {#eq-log2fc}</span>
+<span id="cb66-5"><a></a></span>
+<span id="cb66-6"><a></a>Conforme a @eq-log2fc...</span>
+<span id="cb66-7"><a></a></span>
+<span id="cb66-8"><a></a>::: {.callout-warning}</span>
+<span id="cb66-9"><a></a><span class="fu">## Limitações</span></span>
+<span id="cb66-10"><a></a>Dados simulados; o teste *t* ignora a relação</span>
+<span id="cb66-11"><a></a>média-variância. Use DESeq2 no mundo real.</span>
+<span id="cb66-12"><a></a>:::</span>
+<span id="cb66-13"><a></a></span>
+<span id="cb66-14"><a></a>Seguimos @sandve2013.</span>
+<span id="cb66-15"><a></a></span>
+<span id="cb66-16"><a></a><span class="fu">## Referências</span></span>
+<span id="cb66-17"><a></a></span>
+<span id="cb66-18"><a></a>::: {#refs}</span>
+<span id="cb66-19"><a></a>:::</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb67-1"><a></a><span class="in">```{r}</span></span>
+<span id="cb67-2"><a></a><span class="fu">sessionInfo</span>()</span>
+<span id="cb67-3"><a></a><span class="in">```</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center" data-background-color="#D95F02">
 <h2>🎯 Critério de sucesso</h2>
 <p>Troque <code>n_de &lt;- 150</code> por <code>n_de &lt;- 300</code> e renderize de novo.</p>
 <div class="fragment">
@@ -2060,7 +2895,7 @@ Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.</
 <i class="callout-icon"></i>
 </div>
 <div class="callout-content">
-<p>Solução na seção 6.9 do material</p>
+<p>Solução completa e comentada na seção 7.7 do material</p>
 </div>
 </div>
 </div>
@@ -2071,18 +2906,9 @@ Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.</
 <h1>7. Encerramento</h1>
 
 </section>
-<section class="slide level2">
+<section class="slide level2 center">
 <h2>O que vimos</h2>
 <div class="cell" data-reveal="true" data-fig-width="11" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb58-1"><a></a>flowchart LR</span>
-<span id="cb58-2"><a></a>    Q(("Quarto")) --&gt; M["Markdown"]</span>
-<span id="cb58-3"><a></a>    Q --&gt; H["Header"]</span>
-<span id="cb58-4"><a></a>    Q --&gt; P["Personalização"]</span>
-<span id="cb58-5"><a></a>    Q --&gt; C["Code chunks"]</span>
-<span id="cb58-6"><a></a>    M --&gt; M1["Texto · tabelas · equações&lt;br/&gt;diagramas · citações"]</span>
-<span id="cb58-7"><a></a>    H --&gt; H1["YAML · opções de chunk&lt;br/&gt;embed-resources · cache"]</span>
-<span id="cb58-8"><a></a>    P --&gt; P1["Callouts · colunas · tabsets&lt;br/&gt;CSS · SCSS · brand.yml"]</span>
-<span id="cb58-9"><a></a>    C --&gt; C1["Plots · tabelas · inline&lt;br/&gt;cross-references"]</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -2103,18 +2929,17 @@ Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.</
 </div>
 </div>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Cinco hábitos para levar daqui</h2>
 <ol type="1">
 <li class="fragment"><strong>Nunca digite um número que o computador pode calcular.</strong> Use código inline.</li>
 <li class="fragment"><strong>Comece pelo <code>embed-resources: true</code>.</strong> Relatório que abre quebrado não é lido.</li>
 <li class="fragment"><strong>Rotule figuras e tabelas desde o início.</strong> Renomear depois dói.</li>
-<li class="fragment"><strong>Versione o <code>.qmd</code>, ignore a saída.</strong><br>
-<code>.gitignore</code>: <code>*_files/</code> <code>*_cache/</code> <code>/_site/</code> <code>/.quarto/</code></li>
+<li class="fragment"><strong>Deixe o <code>quarto preview</code> rodando.</strong> Ver o erro na hora que ele aparece custa segundos; achá-lo depois de 40 edições custa a tarde.</li>
 <li class="fragment"><strong>Demorou mais de 30 s? Use cache</strong> — e lembre do <code>dependson</code>.</li>
 </ol>
 </section>
-<section class="slide level2 smaller">
+<section class="slide level2 smaller center">
 <h2>Para onde ir agora</h2>
 <table class="caption-top">
 <thead>
@@ -2170,7 +2995,7 @@ Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.</
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-<p>Introdução ao Quarto — SNNB</p>
+<p>Introdução ao Quarto — SNNB 2026</p>
 </div>
 </div></div>
 
@@ -2254,7 +3079,7 @@ Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.</
         disableLayout: false,
 
         // Vertical centering of slides
-        center: false,
+        center: true,
 
         // Enables touch navigation on devices with touch input
         touch: true,
