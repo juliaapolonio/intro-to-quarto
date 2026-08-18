@@ -91,6 +91,153 @@
     "text": "Ferramentas\nO curso usa o Quarto com o motor knitr (R). O ambiente vem pronto em um arquivo environment.yml do conda, e a IDE sugerida é o Positron — mas tudo funciona igualmente bem no RStudio, no VS Code ou em qualquer editor de texto com um terminal ao lado.\nAs instruções de instalação estão na página Setup e materiais.\n\n\n\n\n\n\nNotaLicença\n\n\n\nO material está sob licença CC BY 4.0 e o código sob MIT. Sinta-se livre para reutilizar, adaptar e reministrar, citando a fonte."
   },
   {
+    "objectID": "demo/aula-personalizacao.html",
+    "href": "demo/aula-personalizacao.html",
+    "title": "Demonstração ao vivo — Personalização",
+    "section": "",
+    "text": "DicaComo acompanhar\n\n\n\nEste arquivo trabalha junto com styles-demo.css, que está ao lado dele. Vamos editar os dois e renderizar entre uma mudança e outra."
+  },
+  {
+    "objectID": "demo/aula-personalizacao.html#um-título-de-exemplo",
+    "href": "demo/aula-personalizacao.html#um-título-de-exemplo",
+    "title": "Demonstração ao vivo — Personalização",
+    "section": "4.1 Um título de exemplo",
+    "text": "4.1 Um título de exemplo\nQuando descomentar o h2 no css, o título muda de cor. Qualquer título com dois ## irá mudar de cor."
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html",
+    "href": "demo/aula-code-chunks.html",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "",
+    "text": "DicaComo acompanhar\n\n\n\nRode os chunks um a um. No fim, renderize o documento inteiro — várias coisas deste arquivo só existem depois de renderizar."
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#duas-figuras-num-chunk-só",
+    "href": "demo/aula-code-chunks.html#duas-figuras-num-chunk-só",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "4.1 Duas figuras num chunk só",
+    "text": "4.1 Duas figuras num chunk só\nhist(mtcars$mpg, col = \"#2C7FB8\", border = \"white\",\n     main = \"\", xlab = \"Milhas por galão\", ylab = \"Frequência\")\n\nhist(mtcars$hp, col = \"#D95F02\", border = \"white\",\n     main = \"\", xlab = \"Potência (hp)\", ylab = \"Frequência\")\n\n\n\n\n\n\n\n\n\n\n\n(a) Consumo\n\n\n\n\n\n\n\n\n\n\n\n(b) Potência\n\n\n\n\n\n\n\nFigura 2: Distribuições das variáveis do mtcars."
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#kable-o-básico",
+    "href": "demo/aula-code-chunks.html#kable-o-básico",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "5.1 kable — o básico",
+    "text": "5.1 kable — o básico\n\nkable(head(mtcars[, c(\"mpg\", \"cyl\", \"hp\", \"wt\")], 6),\n      col.names = c(\"Consumo\", \"Cilindros\", \"Potência\", \"Peso\"),\n      digits = 2)\n\n\n\nTabela 1: Primeiras linhas do mtcars.\n\n\n\n\n\n\n\nConsumo\nCilindros\nPotência\nPeso\n\n\n\n\nMazda RX4\n21.0\n6\n110\n2.62\n\n\nMazda RX4 Wag\n21.0\n6\n110\n2.88\n\n\nDatsun 710\n22.8\n4\n93\n2.32\n\n\nHornet 4 Drive\n21.4\n6\n110\n3.21\n\n\nHornet Sportabout\n18.7\n8\n175\n3.44\n\n\nValiant\n18.1\n6\n105\n3.46"
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#gt-tabela-de-publicação",
+    "href": "demo/aula-code-chunks.html#gt-tabela-de-publicação",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "5.2 gt — tabela de publicação",
+    "text": "5.2 gt — tabela de publicação\n\nlibrary(gt)\n\nhead(mtcars[, c(\"mpg\", \"cyl\", \"hp\")], 4) |&gt;\n  gt(rownames_to_stub = TRUE) |&gt;\n  tab_header(title = \"Consumo por modelo\") |&gt;\n  fmt_number(columns = mpg, decimals = 1) |&gt;\n  tab_source_note(\"Fonte: Motor Trend, 1974.\")\n\n\n\n\n\n\n\nConsumo por modelo\n\n\n\nmpg\ncyl\nhp\n\n\n\n\nMazda RX4\n21.0\n6\n110\n\n\nMazda RX4 Wag\n21.0\n6\n110\n\n\nDatsun 710\n22.8\n4\n93\n\n\nHornet 4 Drive\n21.4\n6\n110\n\n\n\nFonte: Motor Trend, 1974."
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#kableextra-agrupamentos-e-cores",
+    "href": "demo/aula-code-chunks.html#kableextra-agrupamentos-e-cores",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "5.3 kableExtra — agrupamentos e cores",
+    "text": "5.3 kableExtra — agrupamentos e cores\n\nlibrary(kableExtra)\n\nsystemfonts and textshaping have been compiled with different versions of Freetype. Because of this, textshaping will not use the font cache provided by systemfonts\n\nkbl(head(mtcars[, 1:3], 4)) |&gt;\n  kable_styling(bootstrap_options = c(\"striped\", \"hover\"),\n                full_width = FALSE) |&gt;\n  add_header_above(c(\" \" = 1, \"Motor\" = 3)) |&gt;\n  column_spec(2, color = \"white\", background = \"#2C7FB8\")\n\n\n\n\n\n\n\n\n\n\n\n\nMotor\n\n\n\n\nmpg\ncyl\ndisp\n\n\n\n\nMazda RX4\n21.0\n6\n160\n\n\nMazda RX4 Wag\n21.0\n6\n160\n\n\nDatsun 710\n22.8\n4\n108\n\n\nHornet 4 Drive\n21.4\n6\n258"
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#dt-interativa-só-em-html",
+    "href": "demo/aula-code-chunks.html#dt-interativa-só-em-html",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "5.4 DT — interativa, só em HTML",
+    "text": "5.4 DT — interativa, só em HTML\n\nDT::datatable(mtcars[, 1:5],\n              options = list(pageLength = 5))"
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#figuras",
+    "href": "demo/aula-code-chunks.html#figuras",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "6.1 Figuras",
+    "text": "6.1 Figuras\nA Figura 1 mostra a tendência decrescente, e a Figura 2 traz as distribuições. Os números da Tabela 1 vêm do mesmo conjunto.\nAgora usando uma imagem renderizada direto do markdown:\n\n\n\n\n\n\nFigura 3: Logo oficial do Quarto.\n\n\n\nA Figura 3 vem de um link externo, não de um chunk de R."
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#tabelas-1",
+    "href": "demo/aula-code-chunks.html#tabelas-1",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "6.2 Tabelas",
+    "text": "6.2 Tabelas\nTabela de pipe, com legenda usando : e id começando em tbl-:\n\n\n\nTabela 2: Motores de execução por linguagem\n\n\n\n\n\nLinguagem\nMotor\n\n\n\n\nR\nknitr\n\n\nPython\njupyter\n\n\n\n\n\n\nA Tabela 2 mostra os dois motores mais comuns.\nTabela, via chunk:\n\nknitr::kable(head(mtcars[, 1:3], 3))\n\n\n\nTabela 3: Primeiras linhas do mtcars.\n\n\n\n\n\n\n\nmpg\ncyl\ndisp\n\n\n\n\nMazda RX4\n21.0\n6\n160\n\n\nMazda RX4 Wag\n21.0\n6\n160\n\n\nDatsun 710\n22.8\n4\n108\n\n\n\n\n\n\n\n\nJá a Tabela 3 foi gerada por código."
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#equação",
+    "href": "demo/aula-code-chunks.html#equação",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "6.3 Equação",
+    "text": "6.3 Equação\nBloco de LaTeX com id começando em eq-:\n\\[\nIMC = \\frac{peso}{altura^2}\n\\tag{1}\\]\nA Equação 1 é a fórmula clássica do índice de massa corporal."
+  },
+  {
+    "objectID": "demo/aula-code-chunks.html#seção",
+    "href": "demo/aula-code-chunks.html#seção",
+    "title": "Demonstração ao vivo — Code chunks",
+    "section": "6.4 Seção",
+    "text": "6.4 Seção\nUm título com id começando em sec- (exige number-sections: true no YAML):\n\n6.4.1 Métodos\nTexto qualquer da seção.\nConforme descrito na Seção 6.4.1, o procedimento foi…\n\n\n\n\n\n\nAvisoIsto só funciona depois de renderizar\n\n\n\nNo console, @fig-dispersao é texto puro. A numeração e o link são criados na renderização — e se você inserir uma figura antes, tudo se renumera sozinho."
+  },
+  {
+    "objectID": "demo/aula-header.html",
+    "href": "demo/aula-header.html",
+    "title": "Demonstração ao vivo — Header",
+    "section": "",
+    "text": "DicaComo acompanhar\n\n\n\nA maior parte da demonstração acontece no header YAML acima, não nos chunks. Edite uma opção, salve, renderize — e mostre a diferença. Coloquei opções de exploração em tópicos nesse documento"
+  },
+  {
+    "objectID": "demo/aula-header.html#adicionando-autoria-completa",
+    "href": "demo/aula-header.html#adicionando-autoria-completa",
+    "title": "Demonstração ao vivo — Header",
+    "section": "1.1 Adicionando autoria completa",
+    "text": "1.1 Adicionando autoria completa\n\nTrocar a linha author: \"Julia Apolonio\" por:\n\nauthor:\n  - name: \"Julia Apolonio\"\n    affiliation: \"UFRN\""
+  },
+  {
+    "objectID": "demo/aula-header.html#o-dependson",
+    "href": "demo/aula-header.html#o-dependson",
+    "title": "Demonstração ao vivo — Header",
+    "section": "4.1 O dependson",
+    "text": "4.1 O dependson\n\ndados &lt;- rnorm(90)\n\n\nmean(dados)\n\n[1] 0.2365394\n\n\n\nTirar o cache do carrega-dados e ver o que acontece com usa-dados"
+  },
+  {
+    "objectID": "demo/aula-header.html#eval-executa-ou-não-o-código",
+    "href": "demo/aula-header.html#eval-executa-ou-não-o-código",
+    "title": "Demonstração ao vivo — Header",
+    "section": "6.1 eval: executa ou não o código",
+    "text": "6.1 eval: executa ou não o código\n\n# roda e mostra o resultado (comportamento padrão)\n2 + 2\n\n[1] 4\n\n\n\n# aparece o código, mas NÃO executa — útil para comandos de cluster\n2 + 2"
+  },
+  {
+    "objectID": "demo/aula-header.html#echo-mostra-ou-não-o-código-fonte",
+    "href": "demo/aula-header.html#echo-mostra-ou-não-o-código-fonte",
+    "title": "Demonstração ao vivo — Header",
+    "section": "6.2 echo: mostra ou não o código-fonte",
+    "text": "6.2 echo: mostra ou não o código-fonte\n\n# mostra o código E o resultado (padrão)\nmean(1:10)\n\n[1] 5.5\n\n\n\n\n[1] 5.5"
+  },
+  {
+    "objectID": "demo/aula-header.html#output-mostra-ou-não-o-resultado",
+    "href": "demo/aula-header.html#output-mostra-ou-não-o-resultado",
+    "title": "Demonstração ao vivo — Header",
+    "section": "6.3 output: mostra ou não o resultado",
+    "text": "6.3 output: mostra ou não o resultado\n\n# mostra o código E o resultado (padrão)\nsummary(1:10)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   1.00    3.25    5.50    5.50    7.75   10.00 \n\n\n\n# mostra o código, mas ESCONDE o resultado\nsummary(1:10)"
+  },
+  {
+    "objectID": "demo/aula-header.html#warning-mostra-ou-não-avisos-do-r",
+    "href": "demo/aula-header.html#warning-mostra-ou-não-avisos-do-r",
+    "title": "Demonstração ao vivo — Header",
+    "section": "6.4 warning: mostra ou não avisos do R",
+    "text": "6.4 warning: mostra ou não avisos do R\n\n# o aviso abaixo APARECE no documento\nas.numeric(\"abc\")\n\nWarning: NAs introduced by coercion\n\n\n[1] NA\n\n\n\n# o mesmo aviso fica ESCONDIDO\nas.numeric(\"abc\")\n\n[1] NA"
+  },
+  {
+    "objectID": "demo/aula-header.html#error-true-continua-renderizando-mesmo-com-erro",
+    "href": "demo/aula-header.html#error-true-continua-renderizando-mesmo-com-erro",
+    "title": "Demonstração ao vivo — Header",
+    "section": "6.5 error: true: continua renderizando mesmo com erro",
+    "text": "6.5 error: true: continua renderizando mesmo com erro\n\n# sem error: true, este chunk PARARIA a renderização inteira\nstop(\"Isto é um erro proposital.\")\n\nError:\n! Isto é um erro proposital.\n\n\n\n# a prova de que a renderização continuou depois do erro acima\n\"Chegamos até aqui.\"\n\n[1] \"Chegamos até aqui.\""
+  },
+  {
+    "objectID": "demo/aula-header.html#include-false-executa-mas-não-mostra-nada",
+    "href": "demo/aula-header.html#include-false-executa-mas-não-mostra-nada",
+    "title": "Demonstração ao vivo — Header",
+    "section": "6.6 include: false: executa, mas não mostra NADA",
+    "text": "6.6 include: false: executa, mas não mostra NADA\nO valor de x fica disponível para os chunks seguintes, mesmo sem aparecer no documento: 456."
+  },
+  {
     "objectID": "exercicios.html",
     "href": "exercicios.html",
     "title": "Exercícios",

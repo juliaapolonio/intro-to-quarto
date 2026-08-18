@@ -2,26 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://juliaapolonio.github.io/intro-to-quarto/slides/minicurso-quarto.html</loc>
-    <lastmod>2026-08-18T00:16:21.281Z</lastmod>
+    <lastmod>2026-08-18T03:28:28.481Z</lastmod>
   </url>
   <url>
     <loc>https://juliaapolonio.github.io/intro-to-quarto/recursos.html</loc>
-    <lastmod>2026-08-18T00:16:21.281Z</lastmod>
+    <lastmod>2026-08-15T15:03:45.986Z</lastmod>
   </url>
   <url>
     <loc>https://juliaapolonio.github.io/intro-to-quarto/index.html</loc>
-    <lastmod>2026-08-18T00:16:21.281Z</lastmod>
+    <lastmod>2026-08-15T14:11:17.161Z</lastmod>
+  </url>
+  <url>
+    <loc>https://juliaapolonio.github.io/intro-to-quarto/demo/aula-personalizacao.html</loc>
+    <lastmod>2026-08-18T03:21:23.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://juliaapolonio.github.io/intro-to-quarto/demo/aula-code-chunks.html</loc>
+    <lastmod>2026-08-18T01:56:40.868Z</lastmod>
+  </url>
+  <url>
+    <loc>https://juliaapolonio.github.io/intro-to-quarto/demo/aula-header.html</loc>
+    <lastmod>2026-08-18T02:56:01.507Z</lastmod>
   </url>
   <url>
     <loc>https://juliaapolonio.github.io/intro-to-quarto/exercicios.html</loc>
-    <lastmod>2026-08-18T00:16:21.280Z</lastmod>
+    <lastmod>2026-08-15T14:11:17.154Z</lastmod>
   </url>
   <url>
     <loc>https://juliaapolonio.github.io/intro-to-quarto/material/minicurso-quarto.html</loc>
-    <lastmod>2026-08-18T00:16:21.281Z</lastmod>
+    <lastmod>2026-08-15T14:11:17.233Z</lastmod>
   </url>
   <url>
     <loc>https://juliaapolonio.github.io/intro-to-quarto/setup.html</loc>
-    <lastmod>2026-08-18T00:16:21.281Z</lastmod>
+    <lastmod>2026-08-15T15:03:45.986Z</lastmod>
   </url>
 </urlset>
