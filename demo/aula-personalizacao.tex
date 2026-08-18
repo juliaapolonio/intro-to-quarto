@@ -1,0 +1,448 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  brazilian,
+  11pt,
+  a4paper,
+]{article}
+\usepackage{xcolor}
+\usepackage[top=25mm,bottom=25mm,left=25mm,right=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+\ifLuaTeX
+\usepackage[bidi=basic,shorthands=off]{babel}
+\else
+\usepackage[bidi=default,shorthands=off]{babel}
+\fi
+\ifLuaTeX
+  \usepackage{selnolig} % disable illegal ligatures
+\fi
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+
+
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Índice}
+\else
+  \newcommand\contentsname{Índice}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{Lista de Figuras}
+\else
+  \newcommand\listfigurename{Lista de Figuras}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{Lista de Tabelas}
+\else
+  \newcommand\listtablename{Lista de Tabelas}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figura}
+\else
+  \newcommand\figurename{Figura}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Tabela}
+\else
+  \newcommand\tablename{Tabela}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listagem}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listagens}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Demonstração ao vivo --- Personalização},
+  pdfauthor={Nome de quem ministra},
+  pdflang={pt-BR},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Demonstração ao vivo --- Personalização}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Bloco 5 do minicurso}
+\author{Nome de quem ministra}
+\date{2026-08-18}
+\begin{document}
+\maketitle
+
+\renewcommand*\contentsname{Índice}
+{
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Como acompanhar}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Este arquivo trabalha junto com \texttt{styles-demo.css}, que está ao
+lado dele. Vamos editar os dois e renderizar entre uma mudança e outra.
+
+\end{tcolorbox}
+
+\section{Callouts}\label{callouts}
+
+Cinco tipos prontos, sem precisar de nenhum CSS:
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Um \texttt{note} --- para observações neutras.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Dica}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Um \texttt{tip} --- para dicas e atalhos.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{Aviso}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Um \texttt{warning} --- para avisos que merecem atenção.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Importante}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Um \texttt{important} --- para o que é crítico não esquecer.
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-caution-color!10!white, colframe=quarto-callout-caution-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-caution-color}{\faFire}\hspace{0.5em}{Um \texttt{caution} recolhível}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Clique no título para abrir. \texttt{collapse="true"} é ótimo para
+conteúdo opcional --- soluções de exercício, por exemplo.
+
+\end{tcolorbox}
+
+\section{Colunas}\label{colunas}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{:::: \{.columns\}}
+\NormalTok{::: \{.column width="60\%"\}}
+\NormalTok{Coluna larga.}
+\NormalTok{:::}
+\NormalTok{::: \{.column width="40\%"\}}
+\NormalTok{Coluna estreita.}
+\NormalTok{:::}
+\NormalTok{::::}
+\end{Highlighting}
+\end{Shaded}
+
+O texto explicativo fica aqui, na coluna larga.
+
+E aqui vai algo mais curto, na coluna estreita.
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-warning-color!10!white, colframe=quarto-callout-warning-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{O erro mais comum}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+A div \textbf{externa} precisa de \textbf{mais} \texttt{:} que as
+internas --- \texttt{::::} fora, \texttt{:::} dentro. Tire um \texttt{:}
+da externa ao vivo e mostre o erro de renderização.
+
+\end{tcolorbox}
+
+\section{Tabsets}\label{tabsets}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{::: \{.panel{-}tabset\}}
+\FunctionTok{\#\# R}
+\NormalTok{Conteúdo da aba R.}
+
+\FunctionTok{\#\# Python}
+\NormalTok{Conteúdo da aba Python.}
+\NormalTok{:::}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{R}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{media }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Python}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ statistics}
+\NormalTok{media }\OperatorTok{=}\NormalTok{ statistics.mean([}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{])}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Bash}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{awk} \StringTok{\textquotesingle{}\{s+=$1\} END \{print s/NR\}\textquotesingle{}}\NormalTok{ numeros.txt}
+\end{Highlighting}
+\end{Shaded}
+
+\section{CSS}\label{css}
+
+Este parágrafo tem uma palavra marcada com a classe \texttt{.destaque}:
+{controle de qualidade}. Sem regra nenhuma no CSS, ela ainda não aparece
+diferente do resto do texto.
+
+Este título abaixo também vai mudar de cor quando ativarmos a regra
+\texttt{h2} no arquivo CSS.
+
+\subsection{Um título de exemplo}\label{um-tuxedtulo-de-exemplo}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-important-color!10!white, colframe=quarto-callout-important-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Demonstre isto ao vivo}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Abra \texttt{demo/styles-demo.css} ao lado deste arquivo.
+\item
+  Descomente o bloco \texttt{.destaque} (tire os \texttt{/*} e
+  \texttt{*/}). Salve.
+\item
+  Renderize este \texttt{.qmd} de novo.
+\item
+  Mostre a palavra ``controle de qualidade'' com fundo amarelo ---
+  \textbf{sem ter tocado neste arquivo}.
+\item
+  Repita com o bloco \texttt{h2} e mostre os títulos mudando de cor.
+\end{enumerate}
+
+\end{tcolorbox}
+
+\section{\texorpdfstring{YAML e
+\texttt{\_brand.yml}}{YAML e \_brand.yml}}\label{yaml-e-_brand.yml}
+
+O \texttt{\_brand.yml} funciona em nível de \textbf{projeto} --- um
+arquivo na raiz do repositório, aplicado a todos os documentos
+automaticamente. Por isso não dá para demonstrar aplicando-o de verdade
+sem afetar o site inteiro.
+
+Mostre a sintaxe como texto, sem executar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \_brand.yml — ficaria na RAIZ do projeto, não aqui em demo/}
+\FunctionTok{color}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{palette}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{azul}\KeywordTok{:}\AttributeTok{ }\StringTok{"\#12355B"}
+\AttributeTok{    }\FunctionTok{laranja}\KeywordTok{:}\AttributeTok{ }\StringTok{"\#D95F02"}
+\AttributeTok{  }\FunctionTok{primary}\KeywordTok{:}\AttributeTok{ azul}
+\AttributeTok{  }\FunctionTok{secondary}\KeywordTok{:}\AttributeTok{ laranja}
+
+\FunctionTok{typography}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{fonts}\KeywordTok{:}
+\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{family}\KeywordTok{:}\AttributeTok{ Roboto}
+\AttributeTok{      }\FunctionTok{source}\KeywordTok{:}\AttributeTok{ google}
+\AttributeTok{  }\FunctionTok{base}\KeywordTok{:}\AttributeTok{ Roboto}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-note-color!10!white, colframe=quarto-callout-note-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{O que explicar aqui}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
+
+Basta o arquivo existir na raiz do projeto --- nenhum \texttt{.qmd}
+precisa referenciá-lo. Ele muda cores, fontes e logo em \textbf{todos}
+os formatos (HTML, PDF, slides) de uma vez só.
+
+\end{tcolorbox}
+
+\section{Personalização no PDF}\label{personalizauxe7uxe3o-no-pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{format}\KeywordTok{:}
+\AttributeTok{  }\FunctionTok{pdf}\KeywordTok{:}
+\AttributeTok{    }\FunctionTok{documentclass}\KeywordTok{:}\AttributeTok{ article}
+\AttributeTok{    }\FunctionTok{papersize}\KeywordTok{:}\AttributeTok{ a4}
+\AttributeTok{    }\FunctionTok{geometry}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\AttributeTok{top=25mm}\KeywordTok{,}\AttributeTok{ bottom=25mm}\KeywordTok{,}\AttributeTok{ left=25mm}\KeywordTok{,}\AttributeTok{ right=25mm}\KeywordTok{]}
+\AttributeTok{    }\FunctionTok{fontsize}\KeywordTok{:}\AttributeTok{ 11pt}
+\AttributeTok{    }\FunctionTok{colorlinks}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
+\AttributeTok{    }\FunctionTok{toc}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
+\AttributeTok{    }\FunctionTok{number{-}sections}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
+\AttributeTok{    }\FunctionTok{fig{-}pos}\KeywordTok{:}\AttributeTok{ }\StringTok{"H"}
+\end{Highlighting}
+\end{Shaded}
+
+
+
+
+
+\end{document}

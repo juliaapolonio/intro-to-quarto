@@ -1,0 +1,127 @@
+---
+title: "Demonstração ao vivo — Personalização"
+subtitle: "Bloco 5 do minicurso"
+author: "Julia Apolonio"
+date: today
+lang: pt-BR
+project:
+  output-dir: .
+format:
+  html:
+    theme: default   
+    css: styles-demo.css   
+    toc: true
+    toc-location: left
+    number-sections: true
+    code-copy: true
+    embed-resources: true
+    fig-align: center
+execute:
+  warning: false
+  message: false
+---
+
+
+::: {.callout-tip}
+## Como acompanhar
+
+Este arquivo trabalha junto com `styles-demo.css`, que está ao lado dele. Vamos editar os dois e renderizar entre uma mudança e outra.
+:::
+
+# Callouts
+
+Cinco tipos prontos, sem precisar de nenhum CSS:
+
+::: {.callout-note}
+Um `note` — para observações neutras.
+:::
+
+::: {.callout-tip}
+Um `tip` — para dicas e atalhos.
+:::
+
+::: {.callout-warning}
+Um `warning` — para avisos que merecem atenção.
+:::
+
+::: {.callout-important}
+Um `important` — para o que é crítico não esquecer.
+:::
+
+::: {.callout-caution collapse="true"}
+## Um `caution` recolhível
+
+Clique no título para abrir. `collapse="true"` é ótimo para conteúdo
+opcional — soluções de exercício, por exemplo.
+:::
+
+
+# Colunas
+
+```markdown
+::: {.columns}
+::: {.column width="60%"}
+Coluna larga.
+:::
+::: {.column width="40%"}
+Coluna estreita.
+:::
+:::
+```
+
+::: {.columns}
+::: {.column width="60%"}
+O texto explicativo fica aqui, na coluna larga.
+:::
+::: {.column width="40%"}
+E aqui vai algo mais curto, na coluna estreita.
+:::
+:::
+
+
+# Tabsets
+
+```markdown
+::: {.panel-tabset}
+## R
+Conteúdo da aba R.
+
+## Python
+Conteúdo da aba Python.
+:::
+```
+
+::: {.panel-tabset}
+## R
+
+```r
+media <- mean(c(1, 2, 3, 4, 5))
+```
+
+## Python
+
+```python
+import statistics
+media = statistics.mean([1, 2, 3, 4, 5])
+```
+
+## Bash
+
+```bash
+awk '{s+=$1} END {print s/NR}' numeros.txt
+```
+:::
+
+# CSS
+
+Este parágrafo tem uma palavra marcada com a classe `.destaque`:
+[controle de qualidade]{.destaque}. Sem regra nenhuma no CSS, ela ainda não
+aparece diferente do resto do texto.
+
+Este título abaixo também vai mudar de cor quando ativarmos a regra `h2`
+no arquivo CSS.
+
+## Um título de exemplo
+
+Quando descomentar o h2 no css, o título muda de cor. Qualquer título com dois ## irá mudar de cor.
+

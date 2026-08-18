@@ -1,0 +1,235 @@
+---
+title: "Demonstração ao vivo — Header"
+subtitle: "Bloco 4 do minicurso"
+author: "Julia Apolonio"
+date: today
+lang: pt-BR
+format:
+  html:
+    theme: default
+    css: []          
+    toc: true
+    toc-location: left
+    number-sections: true
+    code-copy: true
+    embed-resources: true
+    fig-align: center
+execute:
+  warning: false
+  message: false
+---
+
+::: {.callout-tip}
+## Como acompanhar
+
+A maior parte da demonstração acontece **no header YAML acima**, não nos
+chunks. Edite uma opção, salve, renderize — e mostre a diferença. Coloquei opções de exploração em tópicos nesse documento
+:::
+
+# Header básico
+
+O header atual já tem `title`, `subtitle`, `author`, `date` e `lang`.
+
+- Mudar o autor
+- Mudar a data
+
+## Adicionando autoria completa
+
+- Trocar a linha `author: "Julia Apolonio"` por:
+
+```yaml
+author:
+  - name: "Julia Apolonio"
+    affiliation: "UFRN"
+```
+
+
+# `toc`, `number-sections` e afins {#sec-number}
+
+- Ligar e desligar toc
+- Ligar e desligar number-sections
+- Mudar o tema (cosmo, darkly)
+- Adicionar anchor sections
+- Mudar o code fold e code tools:
+
+```yaml
+  html:
+    code-fold: true
+    code-tools: true
+```
+
+Como visto na sessão @sec-number, a numeração existe implicitamente e o crossref continua funcionando...
+
+# `embed-resources`
+
+```yaml
+embed-resources: true
+```
+
+- Demonstrar embed resources
+
+Imagem gerada no próprio relatório não vai ser aberta se não tiver o embed-resources habilitado
+```{r}
+#| label: plot-embed
+
+plot(mtcars$wt, mtcars$mpg,
+     pch = 19, col = "#2C7FB8",
+     xlab = "Peso (1000 lbs)", ylab = "Milhas por galao")
+abline(lm(mpg ~ wt, data = mtcars), col = "#D95F02", lwd = 2)
+```
+
+# Cache
+
+```{r}
+#| label: setup
+#| include: false
+set.seed(123)
+```
+
+- Testar a velocidade de renderização com e sem o cache
+- Testar mudar o valor do sleep com o cache habilitado
+
+```{r}
+#| label: etapa-lenta
+#| cache: true
+
+Sys.sleep(15)
+resultado <- mean(rnorm(1e6))
+resultado
+```
+
+
+## O `dependson`
+
+```{r}
+#| label: carrega-dados
+#| cache: true
+
+dados <- rnorm(90)
+```
+
+```{r}
+#| label: usa-dados
+#| cache: true
+#| dependson: ["carrega-dados"]
+
+mean(dados)
+```
+
+
+- Tirar o cache do carrega-dados e ver o que acontece com usa-dados
+
+
+# Header do documento vs header do chunk
+
+O mesmo nome de opção pode estar em dois lugares — e o mais específico
+sempre vence.
+
+- Adicionar isso no header do documento e ver o que acontece com o chunk seguinte
+
+```yaml
+execute:
+  echo: false
+```
+
+```{r}
+#| label: sobrescreve-echo
+#| echo: true
+
+# Mesmo com echo: false no header do documento,
+# ESTE código aparece — porque #| echo: true manda mais.
+1 + 1
+```
+
+# Opções de execução — exemplos
+
+## `eval`: executa ou não o código
+
+```{r}
+#| label: eval-true
+#| eval: true
+# roda e mostra o resultado (comportamento padrão)
+2 + 2
+```
+
+```{r}
+#| label: eval-false
+#| eval: false
+# aparece o código, mas NÃO executa — útil para comandos de cluster
+2 + 2
+```
+
+## `echo`: mostra ou não o código-fonte
+
+```{r}
+#| label: echo-true
+#| echo: true
+# mostra o código E o resultado (padrão)
+mean(1:10)
+```
+
+```{r}
+#| label: echo-false
+#| echo: false
+# executa e mostra só o RESULTADO, sem o código
+mean(1:10)
+```
+
+## `output`: mostra ou não o resultado
+
+```{r}
+#| label: output-true
+#| output: true
+# mostra o código E o resultado (padrão)
+summary(1:10)
+```
+
+```{r}
+#| label: output-false
+#| output: false
+# mostra o código, mas ESCONDE o resultado
+summary(1:10)
+```
+
+## `warning`: mostra ou não avisos do R
+
+```{r}
+#| label: warning-true
+#| warning: true
+# o aviso abaixo APARECE no documento
+as.numeric("abc")
+```
+
+```{r}
+#| label: warning-false
+#| warning: false
+# o mesmo aviso fica ESCONDIDO
+as.numeric("abc")
+```
+
+## `error: true`: continua renderizando mesmo com erro
+
+```{r}
+#| label: com-erro
+#| error: true
+# sem error: true, este chunk PARARIA a renderização inteira
+stop("Isto é um erro proposital.")
+```
+
+```{r}
+#| label: depois-do-erro
+# a prova de que a renderização continuou depois do erro acima
+"Chegamos até aqui."
+```
+
+## `include: false`: executa, mas não mostra NADA
+
+```{r}
+#| label: include-false
+#| include: false
+# roda em silêncio total — nem código, nem resultado, nem avisos
+x <- 456
+```
+
+O valor de `x` fica disponível para os chunks seguintes, mesmo sem
+aparecer no documento: `r x`.

@@ -1163,58 +1163,6 @@ execute:
 
 Vale para todos os `.qmd` — e cada um pode sobrescrever.
 
-## Personalização no PDF {.smaller}
-
-```yaml
-format:
-  pdf:
-    documentclass: article
-    papersize: a4
-    geometry: [top=25mm, bottom=25mm, left=25mm, right=25mm]
-    fontsize: 11pt
-    linestretch: 1.5
-    colorlinks: true
-    toc: true
-    number-sections: true
-    fig-pos: "H"        # fixa a figura onde ela foi escrita
-```
-
-::: {.callout-warning}
-## Erros clássicos
-- Pacote LaTeX faltando → `quarto install tinytex`
-- Figura "fugindo" de página → `fig-pos: "H"`
-- **CSS não funciona no PDF.** No PDF, o equivalente é LaTeX.
-:::
-
-## Conteúdo condicional
-
-```markdown
-::: {.content-visible when-format="html"}
-Tabela interativa aqui.
-:::
-
-::: {.content-visible when-format="pdf"}
-Tabela estática aqui.
-:::
-
-::: {.content-hidden when-format="pdf"}
-Tudo menos PDF.
-:::
-```
-
-. . .
-
-```yaml
-format:
-  html: {toc: true}
-  pdf: {documentclass: article}
-```
-
-```bash
-quarto render doc.qmd          # os dois
-quarto render doc.qmd --to pdf # só um
-```
-
 ## 🧪 Exercício 4 {background-color="#D95F02"}
 
 1. Um callout de cada tipo — um com título próprio, outro recolhível
@@ -1223,10 +1171,8 @@ quarto render doc.qmd --to pdf # só um
 4. Um `styles.css` com a classe `.destaque` e `h2` colorido — e aplique
 5. Tema claro/escuro alternável
 
-**Desafios**
+**Desafio**
 
-6. Adicione `format: pdf` e use **conteúdo condicional** para uma frase
-   aparecer só no HTML
 7. Um `_brand.yml` com duas cores e uma fonte do Google
 
 <div class="timer" data-minutes="20"></div>
@@ -1240,7 +1186,7 @@ Solução na seção 6.5 do material
 ::: {style="text-align: center; font-size: 1.15em; margin-top: 1em;"}
 Voltamos para o último bloco: **code chunks**.
 
-Deixe o `quarto preview` rodando — a gente retoma direto do seu documento.
+
 :::
 
 # 6. Code chunks {background-color="#12355B"}
