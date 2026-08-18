@@ -36,3 +36,6 @@ Thumbs.db
 .vscode/
 
 **/*.quarto_ipynb
+
+# Lixo de metadados do Windows/NTFS
+*:Zone.Identifier

@@ -1080,13 +1080,36 @@ CSV de entrada sem tocar no código, o cache vai servir o resultado velho.
 Use `dependson` para encadear chunks e, na dúvida, apague a pasta de cache:
 
 ```{{r}}
+#| label: carrega-dados
+#| cache: true
+```
+
+```{{r}}
 #| label: analise
 #| cache: true
 #| dependson: ["carrega-dados"]
 ```
 
+**Atenção a uma regra fácil de esquecer:** o chunk listado em `dependson`
+precisa **ele próprio** estar com `cache: true`. Se ele não estiver, o `knitr`
+avisa `code chunks must not depend on the uncached chunk` e interrompe a
+renderização. Ou você cacheia a cadeia inteira, ou não cacheia nenhum elo dela.
+
 Para limpar tudo: `quarto render --cache-refresh` ou apagar
 `documento_cache/` e `documento_files/`.
+:::
+
+::: {.callout-note}
+## O cache do `knitr` precisa do pacote `codetools`
+
+Para descobrir de quais objetos um chunk depende, o `knitr` usa o pacote
+`codetools`. Ele costuma vir junto com o R (é um pacote "recomendado"), mas
+algumas instalações mínimas — inclusive certos ambientes conda — não o
+incluem. Se aparecer `there is no package called 'codetools'`, instale-o:
+
+```bash
+conda install -c conda-forge r-codetools
+```
 :::
 
 Alternativa moderna, feita para projetos (sites e livros):
@@ -2103,19 +2126,21 @@ bibliography: referencias.bib
 #| label: setup-ex5
 #| include: false
 
+# Bibliotecas e configurações globais do relatório
 library(knitr)
-
 ```
 
 ```{r}
 #| label: simulacao
+#| cache: true
 #| code-summary: "Simulação da matriz de contagens"
 
-
+# Parâmetros da simulação — é aqui que você mexe para testar
+# o critério de sucesso no fim desta seção.
 set.seed(2026)
-n_genes <- 2000
+n_genes     <- 2000
 n_por_grupo <- 6
-n_de <- 150
+n_de        <- 150
 
 # Contagens de base (distribuição binomial negativa, como em RNA-seq real)
 mu_base <- rgamma(n_genes, shape = 2, scale = 60)

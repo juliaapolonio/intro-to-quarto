@@ -9,7 +9,7 @@ dependencies:
   - r-base>=4.3
   - r-knitr
   - r-rmarkdown
-  - r-codetools
+  - r-codetools   # exigido pelo cache do knitr; nem toda instalação de R o traz
 
   # Usados nos exemplos e nas soluções dos exercícios
   - r-ggplot2

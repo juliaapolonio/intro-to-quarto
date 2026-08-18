@@ -121,12 +121,12 @@ O site é publicado no GitHub Pages pela branch `gh-pages`.
    *Source: Deploy from a branch* → branch **`gh-pages`**, pasta **`/ (root)`**.
 2. Em **Settings → Actions → General → Workflow permissions**, marque
    *Read and write permissions*.
-3. Substitua `juliaapolonio` por seu usuário do GitHub em:
+3. Substitua `seu-usuario` por seu usuário do GitHub em:
    `_quarto.yml`, `README.md`, `setup.qmd`, `recursos.qmd` e `CITATION.cff`.
 
    ```bash
-   grep -rl "juliaapolonio" . --exclude-dir=.git \
-     | xargs sed -i 's/juliaapolonio/seu-usuario-real/g'
+   grep -rl "seu-usuario" . --exclude-dir=.git \
+     | xargs sed -i 's/seu-usuario/seu-usuario-real/g'
    ```
 
 ### Fluxo de publicação

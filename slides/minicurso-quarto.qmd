@@ -1,12 +1,13 @@
 ---
 title: "Introdução ao Quarto"
 subtitle: "Simpósio Norte-Nordeste de Bioinformática"
-author: "Nome de quem ministra"   # <- edite aqui
+author: "Julia Apolonio e Romério Filho" 
 date: today
 date-format: "DD/MM/YYYY"
 lang: pt-BR
 format:
   revealjs:
+    center: true
     theme: [default, custom.scss]
     slide-number: c/t
     show-slide-number: all
@@ -22,12 +23,13 @@ format:
     code-copy: true
     code-overflow: wrap
     highlight-style: github
-    footer: "Introdução ao Quarto — SNNB"
+    footer: "Introdução ao Quarto — SNNB 2026"
     width: 1280
     height: 720
     center-title-slide: true
     menu:
       side: left
+    include-after-body: timer.html
 execute:
   echo: true
   warning: false
@@ -114,17 +116,10 @@ desatualizado. É só uma questão de tempo.
 
 Texto, código e resultado no **mesmo arquivo**.
 
-```{mermaid}
-%%| fig-width: 11
-flowchart LR
-    A["documento.qmd<br/>texto + código"] --> B["knitr / jupyter"]
-    B --> C["markdown"]
-    C --> D["Pandoc"]
-    D --> E["HTML"]
-    D --> F["PDF"]
-    D --> G["Word"]
-    D --> H["Slides"]
-```
+::: {.fragment}
+Você escreve **um** `.qmd`. O `knitr` executa o código, o Pandoc converte, e
+saem HTML, PDF, Word ou slides — todos com os **mesmos** resultados.
+:::
 
 ::: {.fragment}
 A ideia é de Knuth (1984); a prática virou padrão em pesquisa reproduzível
@@ -161,9 +156,6 @@ quarto remove quarto-ext/fontawesome
 | `shafayetShafee/downloadthis` | Botão de download |
 | `quarto-ext/pointer` | Laser pointer nos slides |
 
-::: {.callout-warning appearance="simple"}
-Extensões ficam em `_extensions/` — **commite essa pasta**.
-:::
 
 ## Documentação {.smaller}
 
@@ -373,7 +365,6 @@ Use **caminhos relativos** — `imagens/fig.png`, nunca `/home/seu-usuario/...`
 - item
 - outro
   - subitem
-- terceiro
 
 1. primeiro
 2. segundo
@@ -382,20 +373,28 @@ Use **caminhos relativos** — `imagens/fig.png`, nunca `/home/seu-usuario/...`
 - [x] feito
 
 FASTQ
-: sequências + qualidades
+: sequências e qualidades
 ```
 :::
 :::{.column width="50%"}
 - item
 - outro
   - subitem
-- terceiro
+
+<br>
 
 1. primeiro
 2. segundo
 
+<br>
+
+- [ ] pendente
+- [x] feito
+
+<br>
+
 FASTQ
-: sequências + qualidades
+: sequências e qualidades
 :::
 ::::
 
@@ -409,13 +408,15 @@ FASTQ
 
 1. Header YAML: título, autoria, `format: html`
 2. `## Sobre mim` — parágrafo com **negrito** e *itálico*
-3. `## Ferramentas` — lista com 3 itens, um com 2 subitens
-4. `## Passos de RNA-seq` — lista ordenada de 4 etapas
+3. `## Meus hobbies` — lista **não ordenada** de 3 hobbies, sendo que um
+   tem **dois subitens**
+4. `## Minha rotina` — lista **ordenada** de 4 etapas do seu dia
 5. Um link e uma imagem com `width=70%`
-6. Uma fórmula com subscrito (`CO~2~`)
+
+<div class="timer" data-minutes="15"></div>
 
 ::: {.callout-note appearance="simple"}
-⏱️ 15 minutos — solução na seção 3.4 do material
+Solução na seção 4.5 do material
 :::
 
 ## Footnotes
@@ -498,7 +499,11 @@ $$
 
 E no texto: `A @eq-log2fc mostra...` → "A Equação 1 mostra..."
 
-## Diagramas — Mermaid
+## Diagramas — Mermaid {.smaller}
+
+:::::{.columns}
+::::{.column width="50%"}
+**Você escreve**
 
 ```{{mermaid}}
 flowchart TD
@@ -508,9 +513,13 @@ flowchart TD
     C -->|Não| E[Trimagem]
     E --> B
 ```
+::::
+::::{.column width="50%"}
+**Sai isto**
 
+::: {.diagrama-cabe}
 ```{mermaid}
-%%| fig-width: 6
+%%| echo: false
 flowchart TD
     A[FASTQ] --> B[QC]
     B --> C{Qualidade OK?}
@@ -518,26 +527,70 @@ flowchart TD
     C -->|Não| E[Trimagem]
     E --> B
 ```
-
-::: {.callout-note appearance="simple"}
-Em blocos `mermaid` as opções usam `%%|`; em `dot`, usam `//|`.
 :::
+::::
+:::::
 
-## Diagramas — Graphviz
 
-```{dot}
-//| fig-width: 8
-//| fig-height: 2.5
+## Diagramas — Graphviz {.smaller}
+
+::::{.columns}
+:::{.column width="42%"}
+```dot
 digraph G {
-  rankdir=LR;
-  node [shape=box, style="rounded,filled",
-        fillcolor="#EAF2F8", fontname="Helvetica"];
+  rankdir=LR;          // LR, TD, BT, RL
+  bgcolor="transparent";
+
+  node [shape=box,
+        style="rounded,filled",
+        fillcolor="#EAF2F8",
+        color="#2C7FB8",
+        fontname="Helvetica",
+        fontsize=11];
+
+  edge [color="#7A8894",
+        arrowsize=0.7,
+        style=dashed];
+
+  // nó com estilo próprio
+  saida [label="_site/",
+         shape=folder,
+         fillcolor="#FFE9D6"];
+
   "_quarto.yml" -> "analise.qmd";
-  "referencias.bib" -> "analise.qmd";
-  "styles.css" -> "analise.qmd";
-  "analise.qmd" -> "_site/analise.html";
+  "styles.css"  -> "analise.qmd";
+  "analise.qmd" -> saida
+      [style=solid, penwidth=2];
 }
 ```
+:::
+:::{.column width="58%"}
+```{dot}
+//| echo: false
+//| fig-width: 5.6
+//| fig-height: 3.6
+digraph G {
+  rankdir=LR;
+  bgcolor="transparent";
+  node [shape=box, style="rounded,filled", fillcolor="#EAF2F8",
+        color="#2C7FB8", fontname="Helvetica", fontsize=11];
+  edge [color="#7A8894", arrowsize=0.7, style=dashed];
+  saida [label="_site/", shape=folder, fillcolor="#FFE9D6"];
+  "_quarto.yml" -> "analise.qmd";
+  "styles.css"  -> "analise.qmd";
+  "analise.qmd" -> saida [style=solid, penwidth=2];
+}
+```
+
+**O que dá para mexer**
+
+- `rankdir` — direção do fluxo
+- `shape` — `box`, `ellipse`, `folder`, `cylinder`, `diamond`
+- `fillcolor` / `color` — preenchimento e borda
+- `style` — `dashed`, `bold`, `rounded`
+- `penwidth` — espessura da seta
+:::
+::::
 
 ## Citações {.smaller}
 
@@ -570,9 +623,15 @@ csl: nature.csl        # opcional
 :::
 ::::
 
-::: {.callout-tip appearance="simple"}
-Zotero + Better BibTeX · `citation("DESeq2")` no R · estilos `.csl` em
-<https://github.com/citation-style-language/styles>
+::: {.callout-tip}
+## De onde vem o `.bib`?
+
+- **Zotero** com o plugin *Better BibTeX* exporta e mantém o arquivo
+  atualizado sozinho.
+- No R, `citation("DESeq2")` devolve a entrada BibTeX do pacote — sempre cite
+  as ferramentas que você usou.
+- Para o estilo do periódico, baixe o `.csl` em
+  [citation-style-language/styles](https://github.com/citation-style-language/styles).
 :::
 
 ## 🧪 Exercício 2 {background-color="#D95F02"}
@@ -585,8 +644,10 @@ Zotero + Better BibTeX · `citation("DESeq2")` no R · estilos `.csl` em
 4. Uma **footnote**
 5. **Duas citações** + um `referencias.bib` que você mesmo cria + seção de referências
 
+<div class="timer" data-minutes="20"></div>
+
 ::: {.callout-note appearance="simple"}
-⏱️ 20 minutos — solução na seção 3.11 do material
+Solução na seção 4.11 do material
 :::
 
 # ☕ Intervalo — 15 min {background-color="#7FBC41"}
@@ -708,6 +769,11 @@ Editou o CSV sem tocar no código? O cache serve o resultado **velho**.
 #| dependson: ["carrega-dados"]
 ```
 
+::: {.callout-warning appearance="simple"}
+O chunk citado em `dependson` também precisa ter `cache: true` — senão o
+`knitr` para com `must not depend on the uncached chunk`.
+:::
+
 Limpar: `quarto render --cache-refresh` ou apagar `*_cache/`.
 
 ## `freeze`: cache para projetos
@@ -765,7 +831,10 @@ head(mtcars)
 | `label` | Identificador (para cross-refs) |
 | `fig-cap`, `fig-width`, `out-width`, `fig-alt` | Figuras |
 
-## O chunk `setup`
+## O chunk `setup` {.smaller}
+
+Por convenção, o **primeiro** chunk do documento. Concentra tudo que os
+demais vão precisar.
 
 ```{{r}}
 #| label: setup
@@ -778,10 +847,13 @@ set.seed(42)
 
 . . .
 
-::: {.callout-important}
-`set.seed()` é **obrigatório** sempre que houver aleatoriedade: simulação,
-permutação, subamostragem, *bootstrap*, UMAP…
-:::
+| Linha | O que faz |
+|:--|:--|
+| `#| label: setup` | Dá nome ao chunk — é o nome que aparece se der erro |
+| `#| include: false` | Executa tudo, mas não mostra código nem saída |
+| `library(tidyverse)` | Carrega os pacotes uma vez só, para o documento inteiro |
+| `opts_chunk$set(...)` | Define o padrão de **todos** os chunks seguintes |
+| `set.seed(42)` | Fixa a aleatoriedade: simulação, *bootstrap*, UMAP… |
 
 ## 🧪 Exercício 3 {background-color="#D95F02"}
 
@@ -798,8 +870,10 @@ permutação, subamostragem, *bootstrap*, UMAP…
 
 **Desafio:** um chunk que **mostra** sem executar (comando de cluster)
 
+<div class="timer" data-minutes="15"></div>
+
 ::: {.callout-note appearance="simple"}
-⏱️ 15 minutos — solução na seção 4.5 do material
+Solução na seção 5.5 do material
 :::
 
 # 5. Personalização {background-color="#12355B"}
@@ -839,24 +913,36 @@ Atributos: `collapse="true"`, `appearance="simple"`, `icon=false`
 
 ## Colunas {.smaller}
 
+::::{.columns}
+:::{.column width="54%"}
+**Você escreve**
+
 ```markdown
 :::: {.columns}
 ::: {.column width="60%"}
-Coluna larga.
+O texto explicativo fica aqui,
+e a figura fica ao lado.
 :::
 ::: {.column width="40%"}
-Coluna estreita.
+![](img/logo.svg)
 :::
 ::::
 ```
+:::
+:::{.column width="46%"}
+**Sai isto**
 
-. . .
+<div style="display:flex; gap:1em; align-items:center; border:1px solid #DDE3E8; border-radius:8px; padding:0.9em;">
+  <div style="flex:0 0 60%; font-size:0.9em;">O texto explicativo fica aqui, e a figura fica ao lado.</div>
+  <div style="flex:0 0 32%;"><img src="../img/logo.svg" style="width:100%; display:block;" alt="Logo do minicurso"/></div>
+</div>
+:::
+::::
 
-::: {.callout-warning}
-## Conte os dois-pontos
+::: {.callout-warning appearance="simple"}
 A div **externa** precisa de **mais** `:` que as internas — `::::` fora,
 `:::` dentro. É assim que o Pandoc sabe qual fecha qual.
-:::
+:::::::
 
 ## Tabsets
 
@@ -890,58 +976,63 @@ awk '{s+=$1} END {print s/NR}' numeros.txt
 ```
 :::
 
-## Larguras e margens
-
-```markdown
-::: {.column-margin}
-Nota lateral.
-:::
-```
-
-Classes de largura, do mais estreito ao mais largo:
-
-`.column-body` → `.column-body-outset` → `.column-page` →
-`.column-screen-inset` → `.column-screen`
-
-. . .
-
-::: {.callout-tip appearance="simple"}
-`.column-page` é ótimo para heatmaps e tabelas largas.
-:::
-
 ## CSS {.smaller}
 
 ```yaml
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: styles.css      # <- seu arquivo
 ```
 
-```css
-:root { --cor-primaria: #2C7FB8; }
+::::{.columns}
+:::{.column width="50%"}
+**`styles.css`**
 
+```css
 .destaque {
-  background-color: #FFF3CD;
+  background: #FFF3CD;
   padding: 0.1em 0.35em;
   border-radius: 4px;
   font-weight: 600;
 }
 
 h2 {
-  color: var(--cor-primaria);
-  border-bottom: 2px solid var(--cor-primaria);
+  color: #2C7FB8;
+  border-bottom: 2px solid #2C7FB8;
 }
 ```
 
-E no texto: `[palavra importante]{.destaque}`
+**No `.qmd`**
+
+```markdown
+## Resultados
+
+O ponto-chave é o
+[controle de qualidade]{.destaque}.
+```
+:::
+:::{.column width="50%"}
+**Como fica**
+
+<div style="background:#fff; border:1px solid #DDE3E8; border-radius:8px; padding:1em 1.1em; color:#1A1A1A; font-size:0.95em;">
+<div style="color:#2C7FB8; border-bottom:2px solid #2C7FB8; font-size:1.35em; font-weight:650; padding-bottom:0.15em; margin-bottom:0.5em;">Resultados</div>
+<p style="margin:0;">O ponto-chave é o <span style="background:#FFF3CD; padding:0.1em 0.35em; border-radius:4px; font-weight:600;">controle de qualidade</span>.</p>
+</div>
 
 ::: {.callout-tip appearance="simple"}
 Botão direito → **Inspecionar** mostra qual classe controla cada elemento.
 :::
+:::
+::::
 
 ## SCSS: mexer no tema por dentro {.smaller}
 
+O CSS **pinta por cima**; o SCSS muda as variáveis **antes** de o tema ser
+compilado.
+
+::::{.columns}
+:::{.column width="52%"}
 ```yaml
 format:
   html:
@@ -950,24 +1041,73 @@ format:
 
 ```scss
 /*-- scss:defaults --*/
-$primary: #2C7FB8;
-$font-family-sans-serif: "Source Sans Pro", sans-serif;
+// trocado ANTES de compilar o tema
+$primary:   #D95F02;
+$body-bg:   #FDF8F3;
 $h2-font-size: 1.6rem;
 
 /*-- scss:rules --*/
-.callout-note { border-left-color: $primary; }
+// CSS comum, aplicado DEPOIS
+.callout-note {
+  border-left-color: $primary;
+}
 ```
+:::
+:::{.column width="48%"}
+**Como fica**
 
-. . .
+<div style="background:#FDF8F3; border:1px solid #E6D9CC; border-radius:8px; padding:1em 1.1em; color:#1A1A1A; font-size:0.95em;">
+<div style="color:#D95F02; font-size:1.3em; font-weight:650; margin-bottom:0.5em;">Métodos</div>
+<div style="border-left:5px solid #D95F02; background:#FFF; padding:0.5em 0.8em; border-radius:0 4px 4px 0;">
+<strong style="color:#D95F02;">Nota</strong><br/>
+O botão e o link herdam <code>$primary</code> sozinhos.
+</div>
+<p style="margin:0.7em 0 0;"><a href="#" style="color:#D95F02;">Este link</a> mudou de cor sem eu tocar nele.</p>
+</div>
 
-25 temas prontos: `cosmo` `flatly` `journal` `litera` `minty` `sandstone`
-`darkly`…
+::: {.callout-tip appearance="simple"}
+Uma variável em `scss:defaults` repercute em **tudo** — links, botões,
+callouts, tabelas.
+:::
+:::
+::::
+
+## O mesmo documento, dois temas {.smaller}
 
 ```yaml
-theme:
-  light: flatly
-  dark: darkly
+format:
+  html:
+    theme:
+      light: flatly     # botão de alternância aparece sozinho
+      dark: darkly
 ```
+
+::::{.columns}
+:::{.column width="50%"}
+<div style="background:#FFFFFF; border:1px solid #D6DCE2; border-radius:8px; padding:0.9em 1em; font-size:0.72em; color:#212529;">
+<div style="font-size:0.8em; color:#95A5A6; border-bottom:1px solid #ECF0F1; padding-bottom:0.35em; margin-bottom:0.6em;">☀️ flatly</div>
+<div style="color:#2C3E50; font-size:1.5em; font-weight:650;">Expressão diferencial</div>
+<p style="margin:0.4em 0 0.7em; color:#5D6D7E;">Foram testados 1 843 genes; 118 passaram o filtro.</p>
+<div style="border-left:5px solid #18BC9C; background:#F4FBF9; padding:0.45em 0.7em;">
+<strong style="color:#18BC9C;">Nota</strong> — dados simulados.</div>
+<pre style="background:#ECF0F1; padding:0.5em 0.7em; border-radius:4px; margin:0.7em 0 0;"><code style="color:#2C3E50;">res &lt;- results(dds)</code></pre>
+</div>
+:::
+:::{.column width="50%"}
+<div style="background:#222222; border:1px solid #3A3A3A; border-radius:8px; padding:0.9em 1em; font-size:0.72em; color:#E8E8E8;">
+<div style="font-size:0.8em; color:#888; border-bottom:1px solid #3A3A3A; padding-bottom:0.35em; margin-bottom:0.6em;">🌙 darkly</div>
+<div style="color:#FFFFFF; font-size:1.5em; font-weight:650;">Expressão diferencial</div>
+<p style="margin:0.4em 0 0.7em; color:#B4BCC2;">Foram testados 1 843 genes; 118 passaram o filtro.</p>
+<div style="border-left:5px solid #00BC8C; background:#2B2B2B; padding:0.45em 0.7em;">
+<strong style="color:#00BC8C;">Nota</strong> — dados simulados.</div>
+<pre style="background:#303030; padding:0.5em 0.7em; border-radius:4px; margin:0.7em 0 0;"><code style="color:#E8E8E8;">res &lt;- results(dds)</code></pre>
+</div>
+:::
+::::
+
+::: {.callout-note appearance="simple"}
+Mesmo `.qmd`, mesmo conteúdo — só o `theme` mudou. Nada no texto foi tocado.
+:::
 
 ## `_brand.yml` {.smaller}
 
@@ -1082,12 +1222,25 @@ quarto render doc.qmd --to pdf # só um
 3. Um **tabset** com duas abas
 4. Um `styles.css` com a classe `.destaque` e `h2` colorido — e aplique
 5. Tema claro/escuro alternável
-6. Adicione `format: pdf` e use **conteúdo condicional**
 
-**Desafio:** um `_brand.yml` com duas cores e uma fonte do Google
+**Desafios**
+
+6. Adicione `format: pdf` e use **conteúdo condicional** para uma frase
+   aparecer só no HTML
+7. Um `_brand.yml` com duas cores e uma fonte do Google
+
+<div class="timer" data-minutes="20"></div>
 
 ::: {.callout-note appearance="simple"}
-⏱️ 20 minutos — solução na seção 5.8 do material
+Solução na seção 6.5 do material
+:::
+
+# 🍽️ Hora do almoço {background-color="#7FBC41"}
+
+::: {style="text-align: center; font-size: 1.15em; margin-top: 1em;"}
+Voltamos para o último bloco: **code chunks**.
+
+Deixe o `quarto preview` rodando — a gente retoma direto do seu documento.
 :::
 
 # 6. Code chunks {background-color="#12355B"}
@@ -1172,20 +1325,59 @@ hist(mtcars$hp, col = "#D95F02", border = "white", main = "", xlab = "hp")
 
 Ids automáticos: `@fig-slide-painel-1`, `@fig-slide-painel-2`
 
-## Tabelas por código
+## Tabelas por código {.smaller}
+
+::: {.panel-tabset}
+
+### `kable`
+
+O básico, sempre funciona, em todos os formatos.
 
 ```{r}
-#| label: tbl-slide
+#| label: tbl-kable
 #| tbl-cap: "Primeiras linhas do mtcars."
-
 knitr::kable(head(mtcars[, c("mpg", "cyl", "hp")], 4),
              col.names = c("Consumo", "Cilindros", "Potência"))
 ```
 
-. . .
+### `gt`
 
-`kable` (simples) · `gt` (publicação) · `kableExtra` (agrupamentos) ·
-`DT` (interativa) · `flextable` (Word)
+Tabelas de publicação: títulos, notas de rodapé, formatação por coluna.
+
+```{r}
+library(gt)
+
+head(mtcars[, c("mpg", "cyl", "hp")], 3) |>
+  gt(rownames_to_stub = TRUE) |>
+  tab_header(title = "Consumo por modelo") |>
+  fmt_number(columns = mpg, decimals = 1) |>
+  tab_source_note("Fonte: Motor Trend, 1974.")
+```
+
+### `kableExtra`
+
+Agrupa colunas e linhas, fixa cabeçalho, colore células.
+
+```{r}
+library(kableExtra)
+
+kbl(head(mtcars[, 1:3], 3)) |>
+  kable_styling(bootstrap_options = c("striped", "hover"),
+                full_width = FALSE) |>
+  add_header_above(c(" " = 1, "Motor" = 3)) |>
+  column_spec(2, color = "white", background = "#2C7FB8")
+```
+
+### `DT`
+
+Interativa: busca, ordenação e paginação. **Só HTML.**
+
+```{r}
+DT::datatable(mtcars[, 1:4],
+              options = list(pageLength = 4, dom = "tp"))
+```
+
+:::
 
 ## Cross-references {.smaller}
 
@@ -1199,6 +1391,44 @@ knitr::kable(head(mtcars[, c("mpg", "cyl", "hp")], 4),
 | Tabela (markdown) | `tbl-` | `: Cap {#tbl-x}` | `@tbl-x` |
 | Equação | `eq-` | `$$..$$ {#eq-x}` | `@eq-x` |
 | Seção | `sec-` | `## Tít {#sec-x}` | `@sec-x` |
+
+## Cross-reference na prática {.smaller}
+
+::::{.columns}
+:::{.column width="47%"}
+**Você escreve**
+
+````markdown
+```{{r}}
+#| label: fig-consumo
+#| fig-cap: "Peso versus consumo."
+plot(mtcars$wt, mtcars$mpg)
+```
+
+A relação está na @fig-consumo.
+````
+:::
+:::{.column width="53%"}
+**Sai isto**
+
+```{r}
+#| label: fig-consumo
+#| echo: false
+#| fig-cap: "Peso versus consumo."
+#| fig-width: 4.6
+#| fig-height: 2.9
+plot(mtcars$wt, mtcars$mpg, pch = 19, col = "#2C7FB8",
+     xlab = "Peso", ylab = "Consumo")
+```
+
+A relação está na @fig-consumo.
+:::
+::::
+
+::: {.callout-important appearance="simple"}
+A numeração e o link são automáticos. Insira uma figura antes desta e ela
+vira "Figura 2" sozinha — em todo o documento.
+:::
 
 ## Três armadilhas de cross-reference
 
@@ -1263,6 +1493,113 @@ Construa `exercicio5.qmd`: um relatório de expressão diferencial completo.
 :::
 ::::
 
+## 🧬 Exercício 5 — colas de código {.smaller}
+
+::: {.panel-tabset}
+
+### 5. Simular
+
+```{{r}}
+set.seed(2026)
+n_genes <- 2000; n_por_grupo <- 6; n_de <- 150
+
+mu <- rgamma(n_genes, shape = 2, scale = 60)
+contagens <- sapply(1:(2*n_por_grupo),
+                    \(j) rnbinom(n_genes, mu = mu, size = 8))
+rownames(contagens) <- sprintf("GENE%04d", 1:n_genes)
+grupo <- factor(rep(c("controle","tratado"), each = n_por_grupo))
+
+# aplica o efeito só nas amostras tratadas
+genes_de <- sample(n_genes, n_de)
+efeito   <- sample(c(2.5, 0.4), n_de, replace = TRUE)
+contagens[genes_de, grupo == "tratado"] <-
+  round(contagens[genes_de, grupo == "tratado"] * efeito)
+```
+
+### 6. Testar
+
+```{{r}}
+cpm     <- t(t(contagens) / colSums(contagens)) * 1e6
+log_cpm <- log2(cpm + 1)[rowMeans(cpm) > 1, ]
+
+log2fc <- rowMeans(log_cpm[, grupo == "tratado"]) -
+          rowMeans(log_cpm[, grupo == "controle"])
+
+pvalor <- apply(log_cpm, 1, \(y)
+  t.test(y[grupo == "tratado"], y[grupo == "controle"])$p.value)
+
+res <- data.frame(gene = rownames(log_cpm), log2FC = log2fc,
+                  padj = p.adjust(pvalor, "BH"))
+res <- res[order(res$padj), ]
+```
+
+### 7-8. Tabela e volcano
+
+```{{r}}
+#| label: tbl-top-genes
+#| tbl-cap: "Dez genes mais significativos."
+knitr::kable(head(res, 10), digits = 3)
+```
+
+```{{r}}
+#| label: fig-volcano
+#| fig-cap: "Volcano plot."
+#| fig-alt: "Dispersão de log2FC contra -log10(p), em forma de V."
+cor <- ifelse(res$padj < 0.05 & abs(res$log2FC) > 1, "#D95F02", "grey70")
+plot(res$log2FC, -log10(res$padj), pch = 19, cex = .6, col = cor,
+     xlab = "log2 FC", ylab = "-log10(p ajustado)")
+abline(h = -log10(0.05), v = c(-1, 1), lty = 2)
+```
+
+### 9-10. Painel e inline
+
+```{{r}}
+#| label: fig-diagnostico
+#| fig-cap: "Diagnóstico."
+#| fig-subcap: ["p-valores", "log2FC"]
+#| layout-ncol: 2
+hist(res$padj);  hist(res$log2FC)
+```
+
+```{{r}}
+#| include: false
+sig <- subset(res, padj < 0.05 & abs(log2FC) > 1)
+n_sig <- nrow(sig); n_up <- sum(sig$log2FC > 0)
+```
+
+Depois, no **texto**: cerca de `r knitr::inline_expr("n_sig")` genes, dos
+quais `r knitr::inline_expr("n_up")` super-expressos.
+
+### 11-14. Acabamento
+
+```markdown
+$$
+\log_2 FC_g = \overline{\log_2 CPM}_{trat}
+             - \overline{\log_2 CPM}_{ctrl}
+$$ {#eq-log2fc}
+
+Conforme a @eq-log2fc...
+
+::: {.callout-warning}
+## Limitações
+Dados simulados; o teste *t* ignora a relação
+média-variância. Use DESeq2 no mundo real.
+:::
+
+Seguimos @sandve2013.
+
+## Referências
+
+::: {#refs}
+:::
+```
+
+```{{r}}
+sessionInfo()
+```
+
+:::
+
 ## 🎯 Critério de sucesso {background-color="#D95F02"}
 
 Troque `n_de <- 150` por `n_de <- 300` e renderize de novo.
@@ -1279,8 +1616,10 @@ Se usou `cache: true`, vai precisar de `dependson: ["simulacao"]`.
 Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.
 :::
 
+<div class="timer" data-minutes="40"></div>
+
 ::: {.callout-note appearance="simple"}
-⏱️ 40 minutos — solução completa e comentada na seção 6.9 do material
+Solução completa e comentada na seção 7.7 do material
 :::
 
 # 7. Encerramento {background-color="#12355B"}
@@ -1288,6 +1627,7 @@ Senão o cache serve o resultado antigo — exatamente a pegadinha do bloco 4.
 ## O que vimos
 
 ```{mermaid}
+%%| echo: false
 %%| fig-width: 11
 flowchart LR
     Q(("Quarto")) --> M["Markdown"]
@@ -1306,8 +1646,8 @@ flowchart LR
 1. **Nunca digite um número que o computador pode calcular.** Use código inline.
 2. **Comece pelo `embed-resources: true`.** Relatório que abre quebrado não é lido.
 3. **Rotule figuras e tabelas desde o início.** Renomear depois dói.
-4. **Versione o `.qmd`, ignore a saída.**  
-   `.gitignore`: `*_files/` `*_cache/` `/_site/` `/.quarto/`
+4. **Deixe o `quarto preview` rodando.** Ver o erro na hora que ele aparece
+   custa segundos; achá-lo depois de 40 edições custa a tarde.
 5. **Demorou mais de 30 s? Use cache** — e lembre do `dependson`.
 :::
 
